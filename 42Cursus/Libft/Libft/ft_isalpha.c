@@ -6,20 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:26:29 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 14:55:47 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:38:30 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char *str)
+int	ft_isalpha(int c)
 {
-	while (*str)
-	{
-		if ((*str >= 65 && *str <= 90) || (*str >= 97 && *str <= 122))
-		{
-			str++;
-			continue ;
-		}
-		return (0);
-	}
-	return (1);
+	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
 }

@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 15:04:00 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:28:22 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 17:23:38 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/24 17:34:15 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include <stddef.h>
+
+
+COCO
+char *ft_strrchr(const char *s, int c)
 {
-	return ((c <= 127) && (c >= 0));
+    unsigned int    i;
+
+    i = 0;
+    while (s[i] != '\0' && s[i++] != c)
+        s++;
+    if (s[i] != c)
+        return (NULL);
+    return (s + i);
 }
 
-// #include <stdio.h>
-// int main(){printf("%d\n", ft_isascii('a'));}
+#include <stdio.h>
+int main(){printf("%s\n", ft_strrchr("aBcdef", 'c'));}

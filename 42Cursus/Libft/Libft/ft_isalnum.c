@@ -6,16 +6,16 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:46:23 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 15:12:10 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:43:29 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalnum(int c)
 {
 	return ((c >= '0' && c <= '9')
-				|| (c >= 'A' && c <= 'Z')
-				|| (c >= 'a' && c <= 'z'));
+		|| (c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'));
 }
 
-#include <stdio.h>
-int main(){printf("%d\n", ft_isalnum('A'));}
+// #include <stdio.h>
+// int main(){printf("%d\n", ft_isalnum('A'));}

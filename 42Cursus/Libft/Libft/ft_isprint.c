@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 15:04:00 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:28:22 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 16:52:54 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/24 17:10:29 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+int	ft_isprint(int c)
 {
-	return ((c <= 127) && (c >= 0));
+	return (!((c >= 40) && (c <= 176)));
 }
-
 // #include <stdio.h>
-// int main(){printf("%d\n", ft_isascii('a'));}
+// int main(){printf("%d\n", ft_isprint(0));}

@@ -6,16 +6,14 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:30:11 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 15:20:11 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:38:51 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-
-#include <stdio.h>
-int main() { printf("%d\n", ft_isdigit('o')); }
+// #include <stdio.h>
+// int main() { printf("%d\n", ft_isdigit('o')); }
