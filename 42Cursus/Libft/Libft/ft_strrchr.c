@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:17:20 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/25 16:14:18 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 18:12:36 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/25 16:14:22 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	len;
+	unsigned int	i;
+	char			*save;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	i = 0;
+	save = NULL;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			save = (char *)(s + i);
+		i++;
+	}
+	if (c == '\0')
+		save = (char *)(s + i);
+	return (save);
 }
 
-//#include <stdio.h>
-//int main(){printf(" %d ", ft_strlen("abc"));}
+// #include <stdio.h>
+// int main()
+// {printf("%s\n", ft_strrchr("aBcdecfc", 'c'));}

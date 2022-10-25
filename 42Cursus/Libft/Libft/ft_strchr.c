@@ -6,25 +6,23 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:23:38 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:35:48 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:14:21 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-    unsigned int    i;
+	unsigned int	i;
 
-    i = 0;
-    while (s[i] != '\0' && s[i++] != c)
-        s++;
-    if (s[i] != c)
-        return (NULL);
-    return (s + i);
+	i = 0;
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+	if (s[i] != c)
+		return (NULL);
+	return ((char *)(s + i));
 }
 
-#include <stdio.h>
-
-int main()
-{printf("%s\n", ft_strrchr("aBcdef", 'c'));}
+//#include <stdio.h>
+// int main() {printf("%s\n", ft_strchr("aBcdef", 'c'));}

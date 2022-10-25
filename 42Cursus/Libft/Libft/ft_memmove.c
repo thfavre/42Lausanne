@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:17:20 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/25 16:14:18 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/25 16:57:30 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/25 17:13:53 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void    *ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	len;
+	char    *srcdup;
+	size_t	i;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	srcdup = ft_strdup((char *)src);
+	i = 0;
+	while (i < len)
+	{
+		//((char *)dst)[i] = srcdup[i];
+		i++;
+	}
+	return (dst);
 }
-
-//#include <stdio.h>
-//int main(){printf(" %d ", ft_strlen("abc"));}
+int main(){}
