@@ -21,7 +21,7 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 		string[i++] = 0;*/
-	ft_memset(s, n);
+	ft_memset(s, 0, n);
 }
 
 /*#include <stdio.h>
