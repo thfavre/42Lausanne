@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/25 16:14:12 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/26 14:20:47 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (string[i] == c)
+		if (string[i] == (unsigned char)c)
 			return (&string[i]);
 		i++;
 	}
@@ -29,16 +29,8 @@ void	*ft_memchr(const void *s, int c, size_t n)
 }
 
 /*
-#include <string.h>
+#include <stdio.h>
 int main() { 
-	char data[] = {'a', 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    const unsigned int size = 10;
-	
-	int nb = 21;
-    void * found = ft_memchr( data, nb, size );
-    printf( "My is %s\n", ( found != NULL ? "found" : "not found" ) );
-    
-	void * found2 = memchr( data, nb, size );
-    printf( "Official is %s\n", ( found2 != NULL ? "found" : "not found" ) );
-}
-*/
+	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
+    printf("%s", (char *)ft_memchr(tab, -1, 7));
+}*/

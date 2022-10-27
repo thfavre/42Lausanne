@@ -6,13 +6,12 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:02:09 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/25 16:14:21 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/26 15:06:47 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t	i;

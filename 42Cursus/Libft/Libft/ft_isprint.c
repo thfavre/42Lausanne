@@ -6,13 +6,13 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:52:54 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 18:07:46 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:38:57 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return (!((c >= 26) && (c <= 126)));
+	return (((c >= 32) && (c <= 126)));
 }
 // #include <stdio.h>
 // int main(){printf("%d\n", ft_isprint(0));}

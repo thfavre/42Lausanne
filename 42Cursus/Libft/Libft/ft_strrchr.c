@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:12:36 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/25 16:14:22 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:37:27 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
-	char			*save;
+	char	*save;
 
-	i = 0;
 	save = NULL;
-	while (s[i] != '\0')
+	while (*s != '\0')
 	{
-		if (s[i] == c)
-			save = (char *)(s + i);
-		i++;
+		if (*s == (char)c)
+			save = (char *)(s);
+		s++;
 	}
-	if (c == '\0')
-		save = (char *)(s + i);
+	if ((char)c == '\0')
+		save = (char *)(s);
 	return (save);
 }
-
-// #include <stdio.h>
-// int main()
-// {printf("%s\n", ft_strrchr("aBcdecfc", 'c'));}

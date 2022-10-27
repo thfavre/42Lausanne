@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:03:01 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:09:54 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:51:53 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ int	ft_toupper(int c)
 	return (c);
 }
 
-// #include <stdio.h>
+//#include <stdio.h>
 // int main(){printf("%c\n", ft_toupper('a'));}

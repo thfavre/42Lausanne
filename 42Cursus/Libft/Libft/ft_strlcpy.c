@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 16:57:30 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/26 16:04:33 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/27 14:05:32 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/27 17:36:41 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*srcdup;
 	size_t	i;
 
-	if (!dst && !src)
-		return (0);
 	i = 0;
-	if (dst > src)
+	if (dstsize > 0)
 	{
-		while (i < len)
+		while (src[i] && i < dstsize - 1)
 		{
-			((char *)dst)[len - i - 1] = ((char *)src)[len - i - 1];
+			dst[i] = src[i];
 			i++;
 		}
+		dst[i] = 0;
 	}
-	else
-	{
-		while (i < len)
-		{
-			((char *)dst)[i] = ((char *)src)[i];
-			i++;
-		}
-	}
-	return (dst);
+	while (src[i])
+		i++;
+	return (i);
 }
