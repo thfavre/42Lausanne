@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:08:32 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/27 16:14:00 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/30 16:18:16 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,12 @@ void	ft_bzero(void *s, size_t n);
 
 /*	stdlib library	*/
 int		ft_atoi(const char *str);
-void	*calloc(size_t nmemb, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size);
 
-/*	Other	*/
+/*	Others (Part 2)	*/
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
-
-
-
-
-
-
-
-
-
-// Part 2
-
-// Bonus
+char	*ft_strtrim(char const *s1, char const *set);
+char	**ft_split(char const *s, char c);
 
 #endif

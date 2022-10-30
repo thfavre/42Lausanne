@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:11:34 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/27 18:15:23 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/30 13:04:16 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	j;
-	size_t	dstlen;
-	size_t	srclen;
+	size_t		i;
+	size_t		j;
+	size_t		total_len;
 
-	dstlen = ft_strlen(dst);
-	srclen = ft_strlen(src);
-
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	else if (dstsize < ft_strlen(dst))
+		total_len = ft_strlen(src) + dstsize;
+	else
+		total_len = ft_strlen(src) + ft_strlen(dst);
+	i = 0;
+	while (dst[i] != '\0')
+		i++;
 	j = 0;
-	while (src[j] &&  dstlen+j < dstsize - 1)//i + j - 1 < dstsize)
+	while (src[j] != '\0' && i + 1 < dstsize)
 	{
-		dst[dstlen + j] = src[j];
+		dst[i] = src[j];
 		j++;
+		i++;
 	}
-	if (!(dstsize == 0 && dstlen > dstsize))
-		dst[dstlen + j] = 0;
-	return (dstlen + srclen);
+	dst[i] = '\0';
+	return (total_len);
 }

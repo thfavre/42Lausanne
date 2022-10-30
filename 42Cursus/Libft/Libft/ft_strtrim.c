@@ -3,39 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 05:15:21 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/29 05:15:21 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:52:26 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-int	char_in_set(char c, char const *set)
+
+int	get_start_index(const char *s1, char const *set)
 {
-	if (ft_strchr(set, c) != NULL)
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
+		i++;
+	return (i);
+}
+
+int	get_end_index(const char *s1, char const *set)
+{
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	i = 0;
+	while (i < len && ft_strchr(set, s1[len - i - 1]) != NULL)
+		i++;
+	return (len - i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
-	size_t	size;
-	size_t	i;
+	size_t	start;
+	size_t	end;
 
-	i = 0;
-	while (ft_strchr(set, s1[i]))
-		i++;
-	// j = ft_strlen(s1);
-	// while (ft_strchr(set, s1[j]))
-	// 	i++;
-	str = malloc(sizeof(*str) * (ft_strlen(s1) + 1 - i));
-	ft_memcpy(str, s1, ft_strlcpy(s1) - i);
-	printf("->%s<", str);
+	start = get_start_index(s1, set);
+	end = get_end_index(s1, set);
+	if (start >= end)
+		return (ft_strdup(""));
+	str = malloc(sizeof(*str) * (end - start + 1));
+	if (str != NULL)
+		ft_strlcpy(str, s1 + start, (end - start + 1));
 	return (str);
 }
 
-
-int main(){ft_strtrim("abcdef abcdef", "ab");}
+// int main(){
+// 	char s1[] = "abaZa";
+// 	printf("|%s|", ft_strtrim(s1, "ab"));}

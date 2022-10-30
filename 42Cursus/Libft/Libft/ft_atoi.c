@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:45:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/27 14:01:31 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/30 12:23:19 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	char_to_int(char c)
 	return (c - '0');
 }
 
-int	isspace(char c)
+int	ft_isspace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\r' || c == '\v' || c == '\f');
@@ -50,7 +50,7 @@ int	ft_atoi(const char *str)
 
 	res = 0;
 	res_sign = 1;
-	while (isspace(*str))
+	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
 	{
