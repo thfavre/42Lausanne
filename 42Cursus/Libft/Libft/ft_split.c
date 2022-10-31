@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:53:13 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/30 16:20:17 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/10/31 15:47:12 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_char_in_str(char *str, char c)
 	return (0);
 }
 
-int	word_number(char *str, char sep)
+int	word_number(const char *str, char sep)
 {
 	int	count;
 	int	i;
@@ -57,7 +57,7 @@ int	word_number(char *str, char sep)
 	return (count);
 }
 
-int	word_len(char *str, char *sep)
+int	word_len(const char *str, char sep)
 {
 	int	i;
 
@@ -73,31 +73,35 @@ char	**ft_split(char const *s, char c)
 	int		j;
 	char	**res;
 
-	j = 0;
-	i = 0;
+	j = -1;
+	i = -1;
 	res = malloc(sizeof(res) * (word_number(s, c) + 1));
 	if (res == NULL)
 		return (NULL);
-	while (s[i])
+	while (s[++i])
 	{
 		if ((c != s[i]) && (i == 0 || c == s[i - 1]))
 		{
-			res[j] = ft_strndup(s + i, word_len(s + i, c));
-			j++;
+			res[++j] = ft_strndup(s + i, word_len(s + i, c));
+			if (res[j] == NULL)
+			{
+				while (--j >= 0)
+					free(res[j]);
+				free(res);
+				return (NULL);
+			}
 		}
-		i++;
 	}
-	res[j] = NULL;
+	res[++j] = NULL;
 	return (res);
 }
-/*
-#include <stdio.h>
-int main(int a, char **b) 
-{
-	(void)a;
-	char **l = ft_split(b[1], b[2]);
-	int i = 0 ;
-	while (l[i])
-		printf("->%s|\n", l[i++]);
-}
-*/
+// #include <stdio.h>
+// int main(int a, char **b) 
+// {
+// 	(void)a;
+// 	char **l = ft_split((const char *)b[1], b[2][0]);
+// 	int i = 0 ;
+// 	while (l[i])
+// 		printf("->%s|\n", l[i++]);
+
+// }
