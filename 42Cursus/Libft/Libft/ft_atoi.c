@@ -6,38 +6,25 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:45:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/30 12:23:19 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:24:14 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_num(char c)
+static int	is_num(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int	str_num_size(char *str)
-{
-	int	size;
-
-	size = 0;
-	while (is_num(*str))
-	{
-		size++;
-		str++;
-	}
-	return (size);
-}
-
-int	char_to_int(char c)
+static int	char_to_int(char c)
 {
 	return (c - '0');
 }
 
-int	ft_isspace(char c)
+static int	ft_isspace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\r' || c == '\v' || c == '\f');

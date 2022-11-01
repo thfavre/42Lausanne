@@ -6,13 +6,13 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:53:13 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/31 15:47:12 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:24:42 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s, int n)
+static char	*ft_strndup(const char *s, int n)
 {
 	char	*res;
 	int		i;
@@ -30,21 +30,7 @@ char	*ft_strndup(const char *s, int n)
 	return (res);
 }
 
-int	is_char_in_str(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	word_number(const char *str, char sep)
+static int	word_number(const char *str, char sep)
 {
 	int	count;
 	int	i;
@@ -57,7 +43,7 @@ int	word_number(const char *str, char sep)
 	return (count);
 }
 
-int	word_len(const char *str, char sep)
+static int	word_len(const char *str, char sep)
 {
 	int	i;
 

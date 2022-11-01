@@ -6,14 +6,14 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 05:15:21 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/30 15:52:26 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:22:58 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	get_start_index(const char *s1, char const *set)
+static int	get_start_index(const char *s1, char const *set)
 {
 	size_t	i;
 
@@ -23,7 +23,7 @@ int	get_start_index(const char *s1, char const *set)
 	return (i);
 }
 
-int	get_end_index(const char *s1, char const *set)
+static int	get_end_index(const char *s1, char const *set)
 {
 	size_t	len;
 	size_t	i;
