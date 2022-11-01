@@ -1,0 +1,1 @@
+https://codes-sources.commentcamarche.net/faq/877-les-fonctions-a-nombre-variable-d-arguments
