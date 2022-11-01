@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 04:03:13 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/30 13:22:37 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:48:31 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*array;
-	size_t	i;
 
 	array = malloc(nmemb * size);
 	if (array != NULL)

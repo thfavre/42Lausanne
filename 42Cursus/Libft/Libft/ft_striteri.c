@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:29:06 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/31 16:34:07 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:49:45 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*str;
 	size_t	i;
 
 	i = 0;

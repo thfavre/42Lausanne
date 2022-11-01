@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/01 16:54:27 by thfavre          ###   ########.fr       */
+/*   Created: 2022/11/01 15:49:40 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/01 15:52:54 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned char	*string;
-	size_t			i;
-
-	string = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	while (lst)
 	{
-		if (string[i] == (unsigned char)c)
-			return (&string[i]);
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (NULL);
 }
-
-/*
-#include <stdio.h>
-int main() { 
-	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
-    printf("%s", (char *)ft_memchr(tab, -1, 7));
-}*/

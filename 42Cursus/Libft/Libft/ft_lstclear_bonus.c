@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/01 16:54:27 by thfavre          ###   ########.fr       */
+/*   Created: 2022/11/01 14:27:22 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/01 17:14:51 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	unsigned char	*string;
-	size_t			i;
+	t_list	*next;
 
-	string = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	if (!*lst)
+		return ;
+	while (*lst)
 	{
-		if (string[i] == (unsigned char)c)
-			return (&string[i]);
-		i++;
+		next = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = next;
 	}
-	return (NULL);
+	free(*lst);
+	*lst = NULL;
 }
-
-/*
-#include <stdio.h>
-int main() { 
-	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
-    printf("%s", (char *)ft_memchr(tab, -1, 7));
-}*/

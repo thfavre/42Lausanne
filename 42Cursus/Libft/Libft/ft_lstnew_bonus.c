@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/01 16:54:27 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/31 17:46:45 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/01 16:55:38 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned char	*string;
-	size_t			i;
+	t_list	*lst;
 
-	string = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	lst = malloc(sizeof(*lst));
+	if (lst != NULL)
 	{
-		if (string[i] == (unsigned char)c)
-			return (&string[i]);
-		i++;
+		lst->content = content;
+		lst->next = NULL;
 	}
-	return (NULL);
+	return (lst);
 }
-
-/*
-#include <stdio.h>
-int main() { 
-	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
-    printf("%s", (char *)ft_memchr(tab, -1, 7));
-}*/

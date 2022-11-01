@@ -9,14 +9,15 @@ SRCS 	= 	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_memchr.c\
 			ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c\
 			ft_putendl_fd.c ft_putnbr_fd.c\
 			
-BONUS	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
-			ft_lstdelone.c
+BONUS	=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
+			ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 OBJS	= ${SRCS:.c=.o}
 
 BONUS_OBJS		= $(BONUS:.c=.o)
 
-CCAF 	= gcc -Wall -Wextra -Werror
+CC		= gcc
+FLAGS 	=  -Wall -Wextra -Werror
 
 RM		= rm -f
 
@@ -25,6 +26,8 @@ ${NAME}:	$(OBJS)
 
 
 #			${CCAF} -o ${NAME} ${SRC}
+%.o: %.c
+	$(CC) -I. $(FLAGS) -o $@ -c $?
 	
 all: 		${NAME}
 

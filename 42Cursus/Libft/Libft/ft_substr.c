@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 04:41:35 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/30 17:09:08 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:49:03 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
-	size_t	i;
 
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));

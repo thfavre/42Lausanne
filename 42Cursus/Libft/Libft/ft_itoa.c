@@ -6,14 +6,14 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 16:22:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/31 15:23:06 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:49:26 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	ten_power(int nb)
+static int	ten_power(int nb)
 {
 	int	res;
 
@@ -23,10 +23,9 @@ int	ten_power(int nb)
 	return (res);
 }
 
-int	digit_number(long n)
+static int	digit_number(long n)
 {
 	int	len;
-	int	i;
 
 	len = 0;
 	if (n < 0)

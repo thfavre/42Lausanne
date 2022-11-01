@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:57:30 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/26 16:04:33 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:48:48 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*srcdup;
 	size_t	i;
 
 	if (!dst && !src)
