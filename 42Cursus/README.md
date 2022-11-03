@@ -1,6 +1,4 @@
-All my project at the 42 Lausanne.
-
-Here's a list of all projects available in this repository with a status (Finished, Completed, Marked).
+# 42 projects
 
 | Project   | Status            | Language          | Grade          | Francinette                   | Comments |
 | --------- | ------------------ | ------------------ | --------------- | --------------------------- | ------------------ |
