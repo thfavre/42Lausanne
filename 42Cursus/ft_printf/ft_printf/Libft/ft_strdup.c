@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:35:47 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/03 17:19:28 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/25 16:42:57 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/26 16:26:40 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strdup(char *src)
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	char	*str;
+	size_t	size;
+
+	size = ft_strlen(src) + 1;
+	str = malloc(sizeof(*str) * size);
+	if (str == NULL)
+		return (NULL);
+	return (ft_memcpy(str, src, size));
 }

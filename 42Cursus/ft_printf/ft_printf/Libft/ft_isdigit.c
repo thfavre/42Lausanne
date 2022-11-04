@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:35:47 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/03 17:19:28 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:30:11 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/27 13:16:21 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+int	ft_isdigit(int c)
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	return (c >= '0' && c <= '9');
 }
+
+// #include <stdio.h>
+// int main() { printf("%d\n", ft_isdigit('o')); }

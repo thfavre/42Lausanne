@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:35:47 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/03 17:19:28 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 16:52:54 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/26 13:38:57 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+int	ft_isprint(int c)
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	return (((c >= 32) && (c <= 126)));
 }
+// #include <stdio.h>
+// int main(){printf("%d\n", ft_isprint(0));}

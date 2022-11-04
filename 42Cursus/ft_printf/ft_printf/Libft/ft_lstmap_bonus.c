@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:35:47 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/03 17:19:28 by thfavre          ###   ########.fr       */
+/*   Created: 2022/11/01 15:53:18 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/01 18:31:45 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	t_list	*newlst;
+	t_list	*newobj;
+	void	*newcontent;
+
+	if (!f || !del)
+		return (NULL);
+	newlst = NULL;
+	while (lst)
+	{
+		newcontent = f(lst->content);
+		newobj = ft_lstnew(newcontent);
+		if (!newobj)
+		{
+			free(newcontent);
+			ft_lstclear(&newlst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&newlst, newobj);
+		lst = lst->next;
+	}
+	return (newlst);
 }
