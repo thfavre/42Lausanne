@@ -1,39 +1,36 @@
-
 #include <unistd.h>
 
 char	*get_next_line(int fd)
 {
-	const int	BUFFER_SIZE = 4;
-	static char *stash;  // reserve
-	char	*buffer;
+	const int		BUFFER_SIZE = 4;
+	static t_list	*stash;  // reserve
+	char			*buffer;
 	
-	stash = "";
+	//1) find if there is a \n in the stash (and get the index)
 	
-	// remove the previously added sentense from the buffer
-	j = strchr(stash, '\n');
-	if (j != NULL)
-		stash += j;
 
-	// read only if there any sentense in the stash
-	while (ft_strchr(stash, '\n') == NULL && read(fd, buffer, BUFFER_SIZE) > 0 )
+
+}
+
+
+int	get_(t_list *stash)
+{
+	int	i;
+
+	while (stash->content)
 	{
-		read(fd, buffer, BUFFER_SIZE);
-
-		// add the buffer to the stash
-		strlcat(stash, buffer, strlen(stash) + BUFFER_SIZE);
+		if ((stash->content)[i] == '\n')
+			return (i);
+	i++;
 	}
-	j = strchr(stash, '\n');
-	if (j == NULL)
-		return (stash);
-
-
-	return (substr(stash, 0, j))
-
-	i = 0;
+	return (i);
 }
 
 
 int	main()
 {
+	t_list l1;
+	l1.
+
 
 }
