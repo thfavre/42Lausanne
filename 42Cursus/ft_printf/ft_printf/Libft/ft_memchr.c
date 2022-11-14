@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:35:47 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/03 17:19:28 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/01 16:54:27 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	unsigned char	*string;
+	size_t			i;
+
+	string = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (string[i] == (unsigned char)c)
+			return (&string[i]);
+		i++;
+	}
+	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main() { 
+	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
+    printf("%s", (char *)ft_memchr(tab, -1, 7));
+}*/
