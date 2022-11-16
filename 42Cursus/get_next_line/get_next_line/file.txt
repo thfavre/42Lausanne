@@ -1,0 +1,6 @@
+I'm the first l!
+The next 3 lines are very short!
+A
+B
+C
+The 3 previous lines where A, B and C!
