@@ -8,12 +8,14 @@ void	clean_stash(t_list **stash);
 
 char	*get_next_line(int fd)
 {
-	t_list	*stash = NULL;  // reserve
+	static t_list	*stash = NULL;  // reserve
 	int		line_len;
 	char	*line;
 
 	// 1) check if a '\n' is in the stash (can only in the first one if any)
-	
+	printf("mem %p\n", stash);
+	if (stash != NULL)
+		printf("1) First el : %s", stash->content);
 	if (!is_line_in_stash(stash))
 	{
 		// 2) if TRUE : skip this step 
@@ -22,6 +24,7 @@ char	*get_next_line(int fd)
 		while (add_buffer_to_stash(&stash, fd) == 0)
 			;
 	}
+	printf("\t2) First el : %s\n", stash->content);
 	// 3) count the size of the line
 	line_len = get_line_len(stash);
 	printf("line len : %d\n", line_len);
@@ -109,7 +112,7 @@ char	*create_line(t_list *stash, int line_len)
 		{
 			if ((stash->content)[j] == '\n')
 			{
-				//line[i] = '\0';
+				line[i] = '\0';
 				return (line);
 			}
 			line[i] = (stash->content)[j];
@@ -142,19 +145,21 @@ void	clean_stash(t_list **stash)
 		new_stash_len++;
 	new_stash
 	*/
-	new_stash = ft_lstnew(last->content + i);
+	new_stash = ft_lstnew(last->content + i + 1);
 
 	printf("new stash content : %s \n", new_stash->content);
-	
-	while (*stash)
+	printf("mem %p\n", stash);
+	while ((*stash))
 	{
 		next = (*stash)->next;
-
+		printf(" + 1 ");
 		free((*stash)->content);
 		free(*stash);
 		*stash = next;
 	}
-	*stash = new_stash;
+	stash = &new_stash;
+	printf("mem %p\n", stash);
+	printf("The new stash : %s", (*stash)->content);
 
 	/*
 	while (str[i])
