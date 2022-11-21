@@ -7,7 +7,7 @@
 
 int	ft_atoi(const char *str);
 
-struct	s_stack
+typedef struct	s_stack
 {
 	int	size;
 	int	*pile1;
