@@ -1,34 +1,52 @@
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(char *content)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*lst;
-
-	lst = malloc(sizeof(*lst));
-		if (lst != NULL)
-				{
-						lst->content = content;
-						lst->next = NULL;
-					}
-	return (lst);
+	if (!s)
+		return (NULL);
+	while (*s != '\0' && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+size_t	ft_strlen(const char *s)
 {
-	while (lst)
-			{
-					if (!lst->next)
-									return (lst);
-							lst = lst->next;
-								}
-		return (lst);
+	size_t	len;
+
+	if (!s)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_strcpy(char *dest, char *src)
 {
-	if (*lst)
-				ft_lstlast(*lst)->next = new;
-		else
-					*lst = new;
+	char	*dest_ptr;
+
+	dest_ptr = dest;
+	while (*src)
+	{
+		*dest = *src;
+		src++;
+		dest++;
+	}
+	*dest = '\0';
+	return (dest_ptr);
+}
+
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int	i;
+
+	i = -1;
+	while (++i < n && src[i])
+		dest[i] = src[i];
+	while (i < n)
+		dest[i++] = '\0';
+	return (dest);
 }

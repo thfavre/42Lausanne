@@ -3,4 +3,11 @@ The next 3 lines are very short!
 A
 B
 C
-The 3 previous lines where A, B and C!
+The 3 previous lines were A, B and C!
+TEST
+1 2
+1
+2
+
+
+THe 2 previous lines were EMPTY!
