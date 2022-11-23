@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/23 01:01:25 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/23 01:05:57 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -10,33 +21,6 @@ char	*ft_strchr(const char *s, int c)
 	if (*s == (char)c)
 		return ((char *)s);
 	return (NULL);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	if (!s)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	char	*dest_ptr;
-
-	dest_ptr = dest;
-	while (*src)
-	{
-		*dest = *src;
-		src++;
-		dest++;
-	}
-	*dest = '\0';
-	return (dest_ptr);
 }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
@@ -66,15 +50,18 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s;
 	size_t	s1_len;
 	size_t	s2_len;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
+	s1_len = 0;
+	while (s1[s1_len])
+		s1_len++;
+	s2_len = 0;
+	while (s2[s2_len])
+		s2_len++;
 	s = malloc(sizeof(*s) * (s1_len + s2_len + 1));
 	if (s != NULL)
 	{
@@ -85,27 +72,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (s);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i++;
-	}
-}
-
+// calloc with ft_bzero added
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*array;
+	char	*str;
+	size_t	i;
 
 	array = malloc(nmemb * size);
 	if (array != NULL)
-		ft_bzero(array, nmemb * size);
+	{
+		str = (char *)array;
+		i = 0;
+		while (i < nmemb * size)
+		{
+			str[i] = '\0';
+			i++;
+		}
+	}
 	return (array);
 }
-

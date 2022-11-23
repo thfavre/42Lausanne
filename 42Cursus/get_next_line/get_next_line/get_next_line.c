@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/23 01:01:13 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/23 01:07:21 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-
-
 
 char	*read_file(int fd, char *stash);
 char	*create_line(char *stash);
@@ -8,8 +18,7 @@ char	*clean_stash(char *stash);
 
 char	*get_next_line(int fd)
 {
-
-	static char	*stash;  // reserve
+	static char	*stash;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -22,11 +31,7 @@ char	*get_next_line(int fd)
 	if (!stash)
 		return (NULL);
 	line = create_line(stash);
-//	printf("Line : {%s} \n", line);
-//	printf("Stash befome clean: {%s} \n", stash);
 	stash = clean_stash(stash);
-	
-//	printf("Stash : {%s} \n", stash);
 	return (line);
 }
 
@@ -35,10 +40,10 @@ char	*read_file(int fd, char *stash)
 	char	*buffer;
 	int		read_nbr;
 	char	*temp;
+
 	if (!stash)
 		stash = ft_calloc(1, 1);
-
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));	
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	read_nbr = 1;
 	while (!ft_strchr(stash, '\n') && read_nbr > 0)
 	{
@@ -53,12 +58,8 @@ char	*read_file(int fd, char *stash)
 		temp = ft_strjoin(stash, buffer);
 		free(stash);
 		stash = temp;
-		//printf("\n|%s|\n", stash);
-		//if (ft_strchr(buffer, '\n'))
-		//	break ;
 	}
 	free(buffer);
-	//printf("->|%s|\n", stash);
 	return (stash);
 }
 
@@ -69,27 +70,18 @@ char	*create_line(char *stash)
 
 	if (!stash[0])
 		return (NULL);
-
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(*line)); // + 1??
-	//line = ft_strncpy(line, stash, line_len);
-	// line = buffer
-	
+	line = ft_calloc(i + 2, sizeof(*line));
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	//TODO
-	//printf("*%d*\n", line[]);
 	if (stash[i] && stash[i] == '\n')
 		line[i] = '\n';
-	//line[line_len + 0] = '\n';
-	//line[line_len + 1] = '\0';
-	
 	return (line);
 }
 
@@ -97,28 +89,28 @@ char	*clean_stash(char *stash)
 {
 	int		i;
 	int		j;
-	char	*line;
+	char	*new_stash;
+	int		stash_len;
 
 	i = 0;
-	// find len of first line
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	// if eol == \0 return NULL
 	if (!stash[i])
 	{
 		free(stash);
 		return (NULL);
 	}
-	// len of file - len of firstline + 1
-	line = malloc((ft_strlen(stash) - i + 1) * sizeof(char));
+	stash_len = 0;
+	while (stash[stash_len])
+		stash_len++;
+	new_stash = malloc((stash_len - i + 1) * sizeof(char));
 	i++;
 	j = 0;
-	// line == buffer
 	while (stash[i])
-		line[j++] = stash[i++];
-	line[j] = '\0';
+		new_stash[j++] = stash[i++];
+	new_stash[j] = '\0';
 	free(stash);
-	return (line);
+	return (new_stash);
 }
 
 /*
@@ -130,7 +122,4 @@ int	main()
 	while (i++ < 19)
 		//get_next_line(fd);
 		printf("RES : |%s|\n", get_next_line(fd));
-	//int i = 0;
-	//while (i++ < 20)
-	//	printf("->{%s}\n\n", get_next_line(fd));
 }*/
