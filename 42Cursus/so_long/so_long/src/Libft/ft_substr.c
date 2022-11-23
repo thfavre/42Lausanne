@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:23:38 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/30 14:35:48 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/29 04:41:35 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/01 16:49:03 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	while (*s != '\0' && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
-}
+	char	*str;
 
-//#include <stdio.h>
-//int main() {printf("%s\n", ft_strchr("teste", '\0'));}
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (start + len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	str = malloc(sizeof(*str) * (len + 1));
+	if (str != NULL)
+	{
+		ft_memcpy(str, s + start, len);
+		str[len] = '\0';
+	}
+	return (str);
+}

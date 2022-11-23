@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:23:38 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/30 14:35:48 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/25 16:57:30 by thfavre           #+#    #+#             */
+/*   Updated: 2022/11/01 16:48:48 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (*s != '\0' && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
-}
+	size_t	i;
 
-//#include <stdio.h>
-//int main() {printf("%s\n", ft_strchr("teste", '\0'));}
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	if (dst > src)
+	{
+		while (i < len)
+		{
+			((char *)dst)[len - i - 1] = ((char *)src)[len - i - 1];
+			i++;
+		}
+	}
+	else
+	{
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return (dst);
+}
