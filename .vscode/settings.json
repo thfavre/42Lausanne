@@ -33,6 +33,8 @@
         "type_traits": "c",
         "stdlib.h": "c",
         "ft_printf.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "data.h": "c",
+        "so_long.h": "c"
     }
 }

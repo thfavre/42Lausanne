@@ -10,7 +10,6 @@ void	init_keypressed(bool keypressed[200])
 		keypressed[i++] = false;
 }
 
-
 int	on_keypress(int keycode, t_data *data)
 {
 	data->keypressed[keycode] = true;

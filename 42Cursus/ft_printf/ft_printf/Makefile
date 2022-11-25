@@ -1,6 +1,6 @@
-NAME 	= libftprintf.a
+NAME 	= libftprintf
 
-SRCS 	= 	*/*.c# src/ft_printf.c Libft/*.c
+SRCS 	= 	ft_printf.c ft_putptr_fd.c ft_putunbr_fd.c ft_putxnbr_fd.c # src/ft_printf.c Libft/*.c
 			
 OBJS	= ${SRCS:.c=.o}
 

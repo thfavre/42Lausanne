@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/24 14:51:01 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/25 16:48:29 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,53 @@
 # include "keycodes.h"
 # include "events.h"
 
-// default settings
+// ---------- Default Settings ---------- //
 //	window
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
+//	All will be scaled acording this value
+# define TILE_SIZE 40
 //	player
 # define PLAYER_VELOCITY 5
+# define PLAYER_SIZE TILE_SIZE
 
-int		rgb(uint8_t red, uint8_t green, uint8_t blue);
-int		argb(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue);
-void	img_pix_put(t_img *img, int x, int y, int color);
-void	render_rect(t_img *img, t_rect rect);
-void	render_background(t_img *img, int color);
+// ---------- Functions ---------- //
+//	render.c
+/* Convert a rgb (red green blue) value to a int */
+int			rgb(uint8_t red, uint8_t green, uint8_t blue);
+/* Convert a argb (alpha red green blue) value to a int */
+int			argb(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue);
+/* Draw a pixel to the image */
+void		img_pix_put(t_img *img, int x, int y, int color);
+/* Draw a rect on the image */
+void		draw_rect(t_img *img, t_rect rect);
+/* Fill the img with the color */
+void		draw_background(t_img *img, int color);
+/*  */
 
+//	game.c
+/* Make all the game works, this function is called at each frame */
+int			on_update(t_data *data);
 
-int	on_update(t_data *data);
+//	keys.c
+/* Set all the key to false (it means that they are not pressed) */
+void		init_keypressed(bool keypressed[200]);
+/* Set the key that is pressed to true */
+int			on_keypress(int keycode, t_data *data);
+/* Set the key that is released to false */
+int			on_keyrelease(int keycode, t_data *data);
 
-void	init_keypressed(bool keypressed[200]);
-int		on_keypress(int keycode, t_data *data);
-int		on_keyrelease(int keycode, t_data *data);
+//	player.c
+/* Create a player with the rect data */
+t_player	create_player(t_rect rect);
 
-t_player create_player();
+// obstacle.c
+/* Create an obstacle with the rect data*/
+t_obstacle	create_obstacle(t_rect rect);
+
+// collision.c
+bool		colliderect(t_rect rect1, t_rect rect2);
+
 /*
 mlx_hook :
 	X11 events

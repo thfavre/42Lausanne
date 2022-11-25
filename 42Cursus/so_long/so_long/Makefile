@@ -13,7 +13,8 @@ NAME = so_long
 
 
 #FILES =	$(PATH_GAME)test.c
-FILES = $(PATH_GAME)game.c $(PATH_GAME)render.c $(PATH_GAME)keys.c $(PATH_GAME)player.c
+FILES = $(PATH_GAME)game.c $(PATH_GAME)render.c $(PATH_GAME)keys.c $(PATH_GAME)player.c \
+		$(PATH_GAME)obstacle.c $(PATH_GAME)collision.c
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))
 
 CC = clang
