@@ -20,5 +20,10 @@ My Piscine and Cursus at 42 Lausanne.
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
 </p>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=diabolo257&layout=compact&theme=material-palenight)](https://github.com/diabolo2457/42Lausanne/github-readme-stats)
+</div>
+
+  <p align="center">
+	  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=diabolo257&langs_count=4&show_icons=true&locale=en&layout=compact&theme=material-palenight" alt="stats" width="375" height="192px"/>
+  <br/>
+</p>
 
