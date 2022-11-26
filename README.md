@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Liberation+Mono&size=38&duration=6500&pause=20000&center=true&vCenter=true&width=435&lines=42Lausanne" alt="Typing SVG 42Lausanne" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Liberation+Mono&size=38&duration=5000&pause=4000&center=true&vCenter=true&width=435&lines=42Lausanne" alt="Typing SVG 42Lausanne" /></a>
 </p>
 
 <p align="center">
@@ -18,10 +18,4 @@ My Piscine and Cursus at 42 Lausanne.
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
 </p>
 
-</div>
-
-  <p align="center">
-	  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=diabolo257&langs_count=4&show_icons=true&locale=en&layout=compact&theme=material-palenight" alt="stats" width="375" height="192px"/>
-  <br/>
-</p>
 
