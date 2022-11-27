@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/25 16:48:29 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:32:17 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h> // TODO delete ethis
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdbool.h>
+# include <stdbool.h>
 
 # include "../mlx/mlx.h"
 # include "../src/Libft/libft.h"
@@ -32,7 +32,6 @@
 //	All will be scaled acording this value
 # define TILE_SIZE 40
 //	player
-# define PLAYER_VELOCITY 5
 # define PLAYER_SIZE TILE_SIZE
 
 // ---------- Functions ---------- //
@@ -66,11 +65,15 @@ int			on_keyrelease(int keycode, t_data *data);
 t_player	create_player(t_rect rect);
 
 // obstacle.c
-/* Create an obstacle with the rect data*/
+/* Create an obstacle with the rect data */
 t_obstacle	create_obstacle(t_rect rect);
 
 // collision.c
+/* Returns true if two rect are colliding */
 bool		colliderect(t_rect rect1, t_rect rect2);
+/* Handle the collision of the player, obstacles SHOULD be NULL terminated */
+void		player_collision_y(t_player *self, t_obstacle *obstacles);
+void		player_collision_x(t_player *self, t_obstacle *obstacles);
 
 /*
 mlx_hook :

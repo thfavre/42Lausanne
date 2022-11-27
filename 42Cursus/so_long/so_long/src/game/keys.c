@@ -1,18 +1,19 @@
 
 #include "../../include/so_long.h"
 
-void	init_keypressed(bool keypressed[200])
+void	init_keypressed(bool keypressed[400])
 {
 	int	i;
 
 	i = 0;
-	while (i < 200)
+	while (i < 400)
 		keypressed[i++] = false;
 }
 
 int	on_keypress(int keycode, t_data *data)
 {
-	data->keypressed[keycode] = true;
+	if (keycode < 400)
+		data->keypressed[keycode] = true;
 	//printf("PR : %d\n", keycode);
 	//write(1, "adasd", 1);
 	//putnbr_fd(keysym, 1);
@@ -36,7 +37,8 @@ int	on_keypress(int keycode, t_data *data)
 
 int	on_keyrelease(int keycode, t_data *data)
 {
-	data->keypressed[keycode] = false;
+	if (keycode < 400)
+		data->keypressed[keycode] = false;
 	//printf("Re : %d\n", keycode);
 	//write(1, "adasd", 1);
 	//putnbr_fd(keysym, 1);

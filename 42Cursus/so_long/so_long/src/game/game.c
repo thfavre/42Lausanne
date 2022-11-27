@@ -25,8 +25,10 @@ int	on_update(t_data *data)
 	//render_rect(&data->img, (t_rect){777, 77, 100, 100, rgb(111, 111, 100)});
 	// player
 	data->player.draw(&data->player, &data->img);
-	data->obstacle.draw(&data->obstacle, &data->img);
-	data->player.move(&data->player, data->obstacle, data->keypressed);
+
+	data->obstacles[0].draw(&(data->obstacles[0]), &data->img);
+	data->obstacles[1].draw(&data->obstacles[1], &data->img);
+	data->player.move(&data->player, data->obstacles, data->keypressed);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

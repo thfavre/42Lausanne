@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:45:00 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/25 17:36:40 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:30:08 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void	init_data(t_data *data)
 {
 	init_keypressed(data->keypressed);
-
 }
 
 int	main(void)
@@ -26,7 +25,7 @@ int	main(void)
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"SUPER GAME");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"Gravity controller");
 
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
@@ -34,7 +33,10 @@ int	main(void)
 	data.r1 = &((t_rect) {100, 100, 200, 200, rgb(100, 44, 0)});
 
 	data.player = create_player((t_rect){400, 400, TILE_SIZE, TILE_SIZE});
-	data.obstacle = create_obstacle((t_rect){0, 800, TILE_SIZE*40, TILE_SIZE*2});
+	data.obstacles = malloc(sizeof(*data.obstacles) * (2 + 1));
+	data.obstacles[0] = create_obstacle((t_rect){0, 800, TILE_SIZE*40, TILE_SIZE*2});
+	data.obstacles[1] = create_obstacle((t_rect){200, 700, TILE_SIZE*1, TILE_SIZE*3});
+	data.obstacles[2] = NULL;
 	//data.player.move((t_vector2){2, 2});
 
 	init_data(&data);

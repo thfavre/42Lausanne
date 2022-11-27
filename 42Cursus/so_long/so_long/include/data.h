@@ -27,27 +27,39 @@ typedef struct	s_obstacle
 	void		(*draw)(struct s_obstacle *self, t_img *img);
 }				t_obstacle;
 
+// gravity direction
+enum	e_grav
+{
+	GRAV_UP,
+	GRAV_LEFT,
+	GRAV_DOWN,
+	GRAV_RIGHT,
+	GRAV_DISABLE
+};
+
 typedef struct	s_player
 {
 	t_fvector2	pos;
 	t_rect		rect;
-	float		move_speed;
-	t_fvector2	velocity;
-	bool		on_ground;
-	void		(*move)(struct s_player *self, t_obstacle obstacle, bool *keypressed);
+	t_fvector2	vel;  //velocity
+	enum e_grav	gravity_dir;
+	float		gravity;
+	float		max_gravity;
+	void		(*move)(struct s_player *self, t_obstacle *obstacles, bool *keypressed);
 	void		(*draw)(struct s_player *self, t_img *img);
 }				t_player;
 
-typedef struct	s_data
+typedef struct		s_data
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-	t_rect		*r1;
-	bool		keypressed[200];
-	t_player	player;
-	t_obstacle	obstacle;
-}				t_data;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			img;
+	t_rect			*r1;
+	bool			keypressed[400];
+	t_player		player;
+	t_obstacle		*obstacles;
+	int				obstacles_
+}					t_data;
 
 
 #endif
