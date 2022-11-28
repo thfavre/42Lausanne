@@ -37,7 +37,7 @@ enum	e_grav
 	GRAV_DISABLE
 };
 
-typedef struct	s_player
+typedef struct s_player
 {
 	t_fvector2	pos;
 	t_rect		rect;
@@ -45,21 +45,46 @@ typedef struct	s_player
 	enum e_grav	gravity_dir;
 	float		gravity;
 	float		max_gravity;
-	void		(*move)(struct s_player *self, t_obstacle *obstacles, bool *keypressed);
+	void		(*move)(struct s_player *self, t_obstacle *obstacles, \
+					int obst_nb, bool *keypressed);
 	void		(*draw)(struct s_player *self, t_img *img);
 }				t_player;
 
-typedef struct		s_data
+enum e_tile
+{
+	TILE_ITEM = 'E',
+	TILE_WALL = '1',
+	TILE_EXIT = 'E',
+	TILE_EMPTY = '0'
+};
+
+typedef struct s_tile
+{
+	enum e_tile	type;
+	t_vector2	pos;
+}				t_tile;
+
+
+
+typedef struct s_map
+{
+	int			width;
+	int			height;
+	t_tile		*tiles;
+	int			tiles_nb;
+	int			obst_nb;
+	t_obstacle	*obstacles;
+}				t_map;
+
+typedef struct s_data
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			img;
-	t_rect			*r1;
 	bool			keypressed[400];
 	t_player		player;
-	t_obstacle		*obstacles;
-	int				obstacles_
+	t_map			map;
+	int				moves; // count the moves nbr
 }					t_data;
-
 
 #endif

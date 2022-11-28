@@ -1,7 +1,7 @@
 
 #include "../../include/so_long.h"
 
-void draw_obstacle(struct s_obstacle *self, t_img *img);
+void	draw_obstacle(struct s_obstacle *self, t_img *img);
 
 t_obstacle create_obstacle(t_rect rect)
 {
@@ -12,7 +12,7 @@ t_obstacle create_obstacle(t_rect rect)
 	return (obstacle);
 }
 
-void draw_obstacle(struct s_obstacle *self, t_img *img)
+void	draw_obstacle(struct s_obstacle *self, t_img *img)
 {
 	draw_rect(img, self->rect);
 }

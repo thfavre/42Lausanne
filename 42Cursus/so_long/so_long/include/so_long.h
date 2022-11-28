@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/27 13:32:17 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/27 15:52:35 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+#include <fcntl.h>
 
 # include "../mlx/mlx.h"
 # include "../src/Libft/libft.h"
+# include "../src/gnl/get_next_line.h"
 # include "vector2.h"
 # include "data.h"
 # include "keycodes.h"
@@ -27,7 +29,7 @@
 
 // ---------- Default Settings ---------- //
 //	window
-# define WINDOW_WIDTH 1920
+# define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 1080
 //	All will be scaled acording this value
 # define TILE_SIZE 40
@@ -72,8 +74,11 @@ t_obstacle	create_obstacle(t_rect rect);
 /* Returns true if two rect are colliding */
 bool		colliderect(t_rect rect1, t_rect rect2);
 /* Handle the collision of the player, obstacles SHOULD be NULL terminated */
-void		player_collision_y(t_player *self, t_obstacle *obstacles);
-void		player_collision_x(t_player *self, t_obstacle *obstacles);
+void		player_collision_y(t_player *self, t_obstacle *obstacles, int obst_nb);
+void		player_collision_x(t_player *self, t_obstacle *obstacles, int obst_nb);
+// map.c
+bool	init_map(t_data *data, char *map_path);
+
 
 /*
 mlx_hook :
