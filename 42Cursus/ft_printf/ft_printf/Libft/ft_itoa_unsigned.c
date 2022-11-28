@@ -1,31 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_itoa_unsigned.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:15:44 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/10 13:37:32 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/10/24 14:36:58 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/18 11:07:31 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	count_nblen_unsigned(unsigned int nb)
 {
-	int		i;
-	char	*smod;
+	int	i;
 
 	i = 0;
-	smod = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (smod == NULL)
-		return (NULL);
-	while (s[i])
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
 	{
-		smod[i] = (*f)(i, s[i]);
+		nb *= -1;
 		i++;
 	}
-	smod[i] = 0;
-	return (smod);
+	while (nb > 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa_unsigned(unsigned int nb)
+{
+	char	*nba;
+	int		i;
+	int		nblen;
+
+	nblen = count_nblen_unsigned(nb);
+	i = 0;
+	nba = ft_calloc(nblen + 1, sizeof(char));
+	if (nba == NULL)
+		return (NULL);
+	while (i < nblen)
+	{
+		nba[i++] = nb % 10 + '0';
+		nb /= 10;
+	}
+	return (ft_strrev(nba));
 }

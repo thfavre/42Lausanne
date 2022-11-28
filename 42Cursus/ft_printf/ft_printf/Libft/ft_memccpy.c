@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:15:44 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/10 13:37:32 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/10/24 14:36:03 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 14:36:51 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	int		i;
-	char	*smod;
+	unsigned int	i;
+	char			*desti;
+	char			*srci;
 
 	i = 0;
-	smod = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (smod == NULL)
-		return (NULL);
-	while (s[i])
+	desti = (char *)dest;
+	srci = (char *)src;
+	while (i < n)
 	{
-		smod[i] = (*f)(i, s[i]);
+		desti[i] = srci[i];
+		if (desti[i] == c)
+		{
+			dest = desti;
+			i++;
+			return (dest + i);
+		}
 		i++;
 	}
-	smod[i] = 0;
-	return (smod);
+	dest = desti;
+	return (dest);
 }

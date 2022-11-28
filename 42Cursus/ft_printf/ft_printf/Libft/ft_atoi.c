@@ -3,61 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 09:45:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/01 17:24:14 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 11:52:16 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/01 01:18:20 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static int	is_num(char c)
+int	ft_isspace(const char c)
 {
-	if (c >= '0' && c <= '9')
+	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+		|| c == ' ')
 		return (1);
 	return (0);
 }
 
-static int	char_to_int(char c)
+int	ft_atoi(const char *nptr)
 {
-	return (c - '0');
-}
-
-static int	ft_isspace(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\r' || c == '\v' || c == '\f');
-}
-
-int	ft_atoi(const char *str)
-{
+	int	sign;
+	int	i;
 	int	res;
-	int	res_sign;
 
+	sign = 1;
+	i = 0;
 	res = 0;
-	res_sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
+	while (ft_isspace(nptr[i]))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (*str == '-')
-			res_sign *= -1;
-		str++;
+		if (nptr[i] == '-')
+			sign = -sign;
+		i++;
 	}
-	while (is_num(*str))
+	while (ft_isdigit(nptr[i]))
 	{
-		res *= 10;
-		res += char_to_int(*str);
-		str++;
+		res = 10 * res + (nptr[i] - '0');
+		i++;
 	}
-	return (res_sign * res);
+	return (sign * res);
 }
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-int main() {char str[]="\t \n +508"; 
-printf("%i\n", ft_atoi(str)); 
-printf("%i", atoi(str));}
-*/

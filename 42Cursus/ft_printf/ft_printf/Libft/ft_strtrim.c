@@ -3,54 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 05:15:21 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/01 17:22:58 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 11:57:53 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/09 18:15:59 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "./libft.h"
 
-static int	get_start_index(const char *s1, char const *set)
+int	isset(char c, const char *set)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
-		i++;
-	return (i);
+	while (set[i])
+		if (set[i++] == c)
+			return (1);
+	return (0);
 }
 
-static int	get_end_index(const char *s1, char const *set)
+char	*trim_one_char(char const *s1, int start)
 {
-	size_t	len;
-	size_t	i;
+	char	*trimmed;
 
-	len = ft_strlen(s1);
-	i = 0;
-	while (i < len && ft_strchr(set, s1[len - i - 1]) != NULL)
-		i++;
-	return (len - i);
+	trimmed = ft_calloc(2, sizeof(char));
+	trimmed[0] = s1[start];
+	trimmed[1] = 0;
+	return (trimmed);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
+	char	*trimmed;
 	size_t	start;
 	size_t	end;
 
-	start = get_start_index(s1, set);
-	end = get_end_index(s1, set);
-	if (start >= end)
+	if (s1[0] == 0)
 		return (ft_strdup(""));
-	str = malloc(sizeof(*str) * (end - start + 1));
-	if (str != NULL)
-		ft_strlcpy(str, s1 + start, (end - start + 1));
-	return (str);
+	if (!set)
+	{
+		trimmed = ft_strdup(s1);
+		return (trimmed);
+	}
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (isset(s1[start], set))
+		++start;
+	while (isset(s1[end], set))
+		--end;
+	if (start == end)
+		trimmed = trim_one_char(s1, start);
+	else
+		trimmed = ft_substr(s1, start, end - start + 1);
+	return (trimmed);
 }
-
-// int main(){
-// 	char s1[] = "abaZa";
-// 	printf("|%s|", ft_strtrim(s1, "ab"));}

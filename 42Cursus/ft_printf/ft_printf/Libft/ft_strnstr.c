@@ -3,39 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:22:06 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/26 15:05:45 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 13:49:01 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/01 01:02:26 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int	screen(const char *big, const char *little, unsigned int *it)
 {
-	size_t	i;
-	size_t	j;
-
-	if (needle[0] == 0)
-		return ((char *)haystack);
-	i = 0;
-	while (haystack[i] && i < len)
+	while (little[it[1]])
 	{
-		j = 0;
-		while (i + j < len && haystack[i + j] == needle[j])
+		if (!(big[it[0]++] == little[it[1]++]))
 		{
-			j++;
-			if (needle[j] == 0)
-				return ((char *)(haystack + i));
-			if (haystack[i + j] == 0)
-				break ;
+			it[1]--;
+			return (0);
 		}
-		i++;
+	}
+	return (1);
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	unsigned int	it[3];
+
+	it[0] = 0;
+	if (little[0] == 0)
+		return ((char *)big);
+	while (big[it[0]] && it[0] < len)
+	{
+		it[1] = 0;
+		if (big[it[0]] == little[it[1]++])
+		{
+			it[2] = it[0]++;
+			screen(big, little, it);
+			if (!little[it[1]] && (it[0] <= len))
+				return ((char *)big + it[2]);
+			it[0] = it[2];
+		}
+		it[0]++;
 	}
 	return (NULL);
 }
-
-//  #include <stdio.h>
-//  int main() { 
-// printf(" %s ", ft_strnstr("lorem ipsum dolor sit amet", "sit", 0));}

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 15:04:00 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:28:22 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:42:42 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 14:42:50 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return ((c <= 127) && (c >= 0));
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }
-
-// #include <stdio.h>
-// int main(){printf("%d\n", ft_isascii('a'));}

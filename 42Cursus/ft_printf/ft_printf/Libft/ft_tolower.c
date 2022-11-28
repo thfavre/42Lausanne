@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:10:45 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/24 17:22:09 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 11:56:04 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/25 16:07:15 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,3 @@ int	ft_tolower(int c)
 		return (c + ('a' - 'A'));
 	return (c);
 }
-
-// #include <stdio.h>
-// int main(){printf("%c\n", ft_tolower('A'));}

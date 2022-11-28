@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:15:44 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/10 13:37:32 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/10/24 11:54:13 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 11:55:20 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strrev(char *s)
 {
+	int		len;
 	int		i;
-	char	*smod;
+	char	tmp;
 
 	i = 0;
-	smod = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (smod == NULL)
-		return (NULL);
-	while (s[i])
+	len = ft_strlen(s);
+	while (i < len / 2)
 	{
-		smod[i] = (*f)(i, s[i]);
+		tmp = s[i];
+		s[i] = s[len - 1 - i];
+		s[len - 1 - i] = tmp;
 		i++;
 	}
-	smod[i] = 0;
-	return (smod);
+	return (s);
 }

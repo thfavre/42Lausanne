@@ -3,34 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:25:32 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/01 16:54:27 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:35:11 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/10 13:05:20 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*string;
-	size_t			i;
+	unsigned char		*sc;
+	unsigned int		i;
 
-	string = (unsigned char *)s;
 	i = 0;
+	sc = (unsigned char *)s;
 	while (i < n)
 	{
-		if (string[i] == (unsigned char)c)
-			return (&string[i]);
+		if (sc[i] == (unsigned char)c)
+			return (sc + i);
 		i++;
 	}
 	return (NULL);
 }
-
-/*
-#include <stdio.h>
-int main() { 
-	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
-    printf("%s", (char *)ft_memchr(tab, -1, 7));
-}*/

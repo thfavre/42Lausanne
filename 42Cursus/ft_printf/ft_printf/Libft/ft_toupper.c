@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:03:01 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/26 13:51:53 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 11:55:28 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/25 16:05:30 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,3 @@ int	ft_toupper(int c)
 		return (c - ('a' - 'A'));
 	return (c);
 }
-
-//#include <stdio.h>
-// int main(){printf("%c\n", ft_toupper('a'));}
