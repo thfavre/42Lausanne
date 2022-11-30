@@ -1,5 +1,5 @@
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 t_stack	create_stack(int stackc, char **unformated_stack);
 void	push_swap(t_stack stack);
@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 {
 	if (--argc >= 1)
 		push_swap(create_stack(argc, ++argv));
-	
+
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int	*create_pile(int stackc, char **unformated_stack)
 t_stack	create_stack(int stackc, char **unformated_stack)
 {
 	t_stack stack;
-	
+
 	stack.size = stackc;
 	stack.pile1 = create_pile(stackc, unformated_stack);
 	stack.pile1_size = stackc;
@@ -113,10 +113,6 @@ bool	is_1_in_pile_shifted(int *pile, int shifts_bits, int pile_size)
 	return (false);
 }
 
-void	pb(t_stack stack)
-{
-	
-}
 
 void	push_swap(t_stack stack)
 {
@@ -128,9 +124,9 @@ void	push_swap(t_stack stack)
 		return ;
 	}
 	// simplify pile
-	
+
 	i = 0;
-	//tant que (un nbr de pile1) >> i & 1 == 1 
+	//tant que (un nbr de pile1) >> i & 1 == 1
 	while (is_1_in_pile_shifted(stack.pile1, i, stack.pile1_size))
 	{
 		// tant que (un nbr de pile1) >> i & 1 == 0
@@ -139,18 +135,18 @@ void	push_swap(t_stack stack)
 			// if (top pile1) >> i & 1 == 0
 			if (stack.pile1_size > 0 && stack.pile1[0] >> i & 1 == 0)
 				// pb
-				pb(stack);
+				pb(&stack);
 			// else
 			else
 				// ra
-				ra(stack);
+				ra(&stack);
 		}
 		// put add pile2 inside pile 1
 		while (stack.pile2_size > 0)
-			pa(stack);
+			pa(&stack);
 		i++;
 	}
-	
+
 
 }
 
