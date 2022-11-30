@@ -4,6 +4,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 int	ft_atoi(const char *str);
 

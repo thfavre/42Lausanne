@@ -62,13 +62,95 @@ t_stack	create_stack(int stackc, char **unformated_stack)
 	stack.size = stackc;
 	stack.pile1 = create_pile(stackc, unformated_stack);
 	stack.pile1_size = stackc;
-	stack.pile2 = malloc(sizeof(int) * stackc);
+	stack.pile2 = malloc(sizeof(*stack.pile2) * stackc);
 	stack.pile2_size = 0;
 	return (stack);
 }
 
-void	push_swap(t_stack stack)
+bool is_pile_storted(int *pile, int pile_size)
+{
+	int	i;
+
+	i = 0;
+	if (pile_size > 1)
+	{
+		while (i < pile_size - 1)
+		{
+			if (pile[i] > pile[i + 1])
+				return (false);
+			i++;
+		}
+	}
+	return (true);
+}
+
+// TODO make the pile looks like 0 1 2 ,...
+void	simplify_pile(int *pile, int pile_size)
+{
+	int	i;
+	int	j;
+	int nb;
+	int	*smaller_nb;
+	int	*simplified_pile;
+
+	simplified_pile = malloc(sizeof(*simplify_pile) * pile_size);
+	i = 0;
+	while (i < pile_size)
+	{
+		while (j < pile_size)
+		i++;
+	}
+}
+
+bool	is_1_in_pile_shifted(int *pile, int shifts_bits, int pile_size)
+{
+	int	i;
+
+	i = 0;
+	while (i < pile_size)
+		if (pile[i++] >> shifts_bits == 1)
+			return (true);
+	return (false);
+}
+
+void	pb(t_stack stack)
 {
 	
+}
+
+void	push_swap(t_stack stack)
+{
+	int	i;
+
+	if (is_pile_storted(stack.pile1, stack.pile1_size))
+	{
+		printf("THE STACK IS SORTED!\n");
+		return ;
+	}
+	// simplify pile
+	
+	i = 0;
+	//tant que (un nbr de pile1) >> i & 1 == 1 
+	while (is_1_in_pile_shifted(stack.pile1, i, stack.pile1_size))
+	{
+		// tant que (un nbr de pile1) >> i & 1 == 0
+		while (is_1_in_pile_shifted(stack.pile1, i, stack.pile1_size))
+		{
+			// if (top pile1) >> i & 1 == 0
+			if (stack.pile1_size > 0 && stack.pile1[0] >> i & 1 == 0)
+				// pb
+				pb(stack);
+			// else
+			else
+				// ra
+				ra(stack);
+		}
+		// put add pile2 inside pile 1
+		while (stack.pile2_size > 0)
+			pa(stack);
+		i++;
+	}
+	
+
 }
 
