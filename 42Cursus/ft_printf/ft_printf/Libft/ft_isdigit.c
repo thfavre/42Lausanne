@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:30:11 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/27 13:16:21 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:43:02 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 17:46:54 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	return (c >= '0' && c <= '9');
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
-
-// #include <stdio.h>
-// int main() { printf("%d\n", ft_isdigit('o')); }

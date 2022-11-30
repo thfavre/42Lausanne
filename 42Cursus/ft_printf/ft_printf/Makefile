@@ -1,32 +1,34 @@
-NAME 	= libftprintf
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+NAME = libftprintf.a
+LIBFT = ./libft/libft.a
+SRCSDIR = ./srcs/
+HEADERDIR = ./includes
+SRCS = ./srcs/ft_printf.c ./srcs/ft_process.c ./srcs/ft_process_2.c ./srcs/ft_parse.c ./srcs/ft_convert.c
+OBJS = ${SRCS:.c=.o}
 
-SRCS 	= 	ft_printf.c ft_putptr_fd.c ft_putunbr_fd.c ft_putxnbr_fd.c # src/ft_printf.c Libft/*.c
-			
-OBJS	= ${SRCS:.c=.o}
-
-
-CC		= gcc
-FLAGS 	= # -Wall -Wextra -Werror
-
-RM		= rm -f
-
-${NAME}:	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+.c.o:	
+	${CC} ${CFLAGS} -c -I ${HEADERDIR} $< -o ${<:.c=.o}
 
 
-%.o: %.c
-	$(CC) -I. $(FLAGS) -o $@ -c $?
+${NAME}:	${OBJS}
+			make -C libft
+			cp ${LIBFT} .
+			mv libft.a libftprintf.a
+			ar rcs ${NAME} ${OBJS}
+all:	${NAME}
 	
-all: 		${NAME}
+test:	${NAME}
+	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
+	./libftprintf
 
-clean:		
-			${RM} ${OBJS}
+clean: 
+	rm -rf ${OBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:	clean
+	rm -rf ${NAME}
 
-re:			fclean all
+re: fclean ${NAME}
 
-
-.PHONY:		all clean fclean re .c.o
+.PHONY: all fclean clean re test
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 01:01:13 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/23 01:07:21 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/28 14:41:26 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ char	*clean_stash(char *stash)
 	return (new_stash);
 }
 
-/*
-#include <fcntl.h>
-int	main()
-{
-	int	fd = open("file2.txt", O_RDWR);
-	int i = 0;
-	while (i++ < 19)
-		//get_next_line(fd);
-		printf("RES : |%s|\n", get_next_line(fd));
-}*/
+// # include <stdio.h>
+// #include <fcntl.h>
+// int	main()
+// {
+// 	int	fd = open("file2.txt", O_RDWR);
+// 	int i = 0;
+// 	while (i++ < 19)
+// 		//get_next_line(fd);
+// 		printf("RES : |%s|\n", get_next_line(fd));
+// }

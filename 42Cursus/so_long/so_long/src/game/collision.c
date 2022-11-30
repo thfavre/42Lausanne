@@ -12,7 +12,7 @@ bool	colliderect(t_rect rect1, t_rect rect2)
 	return (false);
 }
 
-void	player_collision_y(t_player *self, t_obstacle *obstacles)
+void	player_collision_y(t_player *self, t_obstacle *obstacles, int obst_nb)
 {
 	int	i;
 	if (self->vel.y != 0)
@@ -20,7 +20,7 @@ void	player_collision_y(t_player *self, t_obstacle *obstacles)
 		self->pos.y += self->vel.y;
 		self->rect.y = (int)self->pos.y;
 		i = 0;
-		while (i < 2)
+		while (i < obst_nb)
 		{
 			if (colliderect(self->rect, obstacles[i].rect))
 			{
@@ -36,7 +36,7 @@ void	player_collision_y(t_player *self, t_obstacle *obstacles)
 	}
 }
 
-void	player_collision_x(t_player *self, t_obstacle *obstacles)
+void	player_collision_x(t_player *self, t_obstacle *obstacles, int obst_nb)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	player_collision_x(t_player *self, t_obstacle *obstacles)
 		self->pos.x += self->vel.x;
 		self->rect.x = (int)self->pos.x;
 		i = 0;
-		while (i < 2)
+		while (i < obst_nb)
 		{
 			if (colliderect(self->rect, obstacles[i].rect))
 			{

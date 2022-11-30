@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 17:46:45 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/01 18:31:21 by thfavre          ###   ########.fr       */
+/*   Created: 2022/11/10 16:02:51 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/10 16:16:24 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*lst;
+	t_list	*newelement;
 
-	lst = malloc(sizeof(*lst));
-	if (lst != NULL)
-	{
-		lst->content = content;
-		lst->next = NULL;
-	}
-	return (lst);
+	newelement = ft_calloc(1, sizeof(t_list));
+	if (newelement == NULL)
+		return (NULL);
+	newelement->content = content;
+	newelement->next = NULL;
+	return (newelement);
 }

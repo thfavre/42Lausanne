@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 18:27:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/31 18:50:30 by thfavre          ###   ########.fr       */
+/*   Created: 2022/11/10 23:35:57 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/10 23:46:41 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	while (lst)
+	t_list	*lstlast;
+
+	lstlast = lst;
+	if (lst)
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		while (lstlast->next)
+			lstlast = lstlast->next;
 	}
-	return (lst);
+	return (lstlast);
 }

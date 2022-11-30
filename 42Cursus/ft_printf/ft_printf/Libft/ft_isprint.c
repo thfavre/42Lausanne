@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 16:52:54 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/26 13:38:57 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:38:02 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 18:05:54 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return (((c >= 32) && (c <= 126)));
+	if (c >= 32 && c < 127)
+		return (1);
+	return (0);
 }
-// #include <stdio.h>
-// int main(){printf("%d\n", ft_isprint(0));}

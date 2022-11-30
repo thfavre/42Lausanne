@@ -3,134 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 16:22:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/01 16:49:26 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:36:58 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/10 12:13:07 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "./libft.h"
 
-static int	ten_power(int nb)
+int	count_nblen(int nb)
 {
-	int	res;
+	int	i;
 
-	res = 1;
-	while (nb--)
-		res *= 10;
-	return (res);
+	i = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+	{
+		nb *= -1;
+		i++;
+	}
+	while (nb > 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
 }
 
-static int	digit_number(long n)
+void	check_sign(int *nb, int *sign)
 {
-	int	len;
-
-	len = 0;
-	if (n < 0)
+	if (*nb < 0)
 	{
-		n *= -1;
-		len++;
+		*nb *= -1;
+		*sign = -1;
 	}
-	while (n > 0)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
+	else
+		*sign = 1;
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int nb)
 {
-	long	nbr;
+	char	*nba;
 	int		i;
-	int		digit_nbr;
-	char	*str;
+	int		nblen;
+	int		sign;
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	nbr = (long)n;
-	digit_nbr = digit_number(nbr);
-	str = malloc(sizeof(*str) * (digit_nbr + 1));
-	if (str != NULL)
+	nblen = count_nblen(nb);
+	i = 0;
+	if (nb == INT_MIN)
 	{
-		i = 0;
-		if (nbr < 0)
-			str[i++] = '-';
-		if (nbr < 0)
-			nbr *= -1;
-		while (i < digit_nbr)
-		{
-			str[i] = nbr / ten_power(digit_nbr - i - 1) + '0';
-			nbr %= ten_power(digit_nbr - i++ - 1);
-		}
-		str[i] = 0;
+		nba = ft_strdup("-2147483648");
+		return (nba);
 	}
-	return (str);
-}
-
-/*
-int	ten_power(int nb)
-{
-	int res;
-
-	res = 1;
-	while (nb--)
-		res *= 10;
-	return (res);
-}
-
-
-char	*ft_itoa(int n)
-{
-	long	i;
-	long	b;
-	char	*res;
-	int		is_negativ;
-
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n == 0)
-		return (ft_strdup("0"));
-	is_negativ = 0;
-	if (n < 0)
+	nba = ft_calloc(nblen + 1, sizeof(char));
+	if (nba == NULL)
+		return (NULL);
+	check_sign(&nb, &sign);
+	while (i < nblen)
 	{
-		is_negativ = 1;
-		n *= -1;
+		nba[i++] = nb % 10 + '0';
+		nb /= 10;
 	}
-	i = 1;
-	b = 0;
-
-	while (n / i > 0)
-	{
-		i *= 10;
-		b++;
-	}
-	
-	
-	res = malloc(sizeof(*res) * (b + 1 + is_negativ));
-	if (res != NULL)
-	{	
-		i = 0;
-		if (is_negativ)
-		{
-			res[i++] = '-';
-			//b--;
-		}
-
-		
-		while (--b >= 0)
-		{
-			res[i++] = n/ten_power(b) + '0';
-			n %= ten_power(b);
-
-		}
-		res[i] = 0;
-	}
-	return (res);
+	if (sign < 0)
+		nba[nblen - 1] = '-';
+	return (ft_strrev(nba));
 }
-*/
-// int main(){
-//  	printf("\nres:%s\n", ft_itoa(2147483647));
-//  }

@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 16:29:06 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/01 16:49:45 by thfavre          ###   ########.fr       */
+/*   Created: 2022/10/24 14:19:09 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/07 12:56:06 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		f(i, &s[i]);
+		(*f)(i, &s[i]);
 		i++;
 	}
+	s[i] = 0;
 }
