@@ -19,5 +19,7 @@ typedef struct	s_stack
 	int	temp2;
 }		t_stack;
 
-
+void	pb(t_stack *stack);
+void	pa(t_stack *stack);
+void	ra(t_stack *stack);
 #endif
