@@ -7,3 +7,4 @@
 | [get_next_line](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/get_next_line) | :construction:     | C        | :x:     | :white_check_mark:                                  |          |
 | [Born2beroot](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Born2beroot)     | :construction:     | /        | :x:     | :x:                                  |          |
 | [so_long](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/so_long)             | :construction:     | C        | :x:     | :x:                                  |          |
+| [push_swap](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/push_swap)             | :construction:     | C        | :x:     | :x:                                  |          |
