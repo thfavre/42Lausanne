@@ -19,8 +19,9 @@ int main(int argc, char **argv)
 			usleep(10);
 			//printf("j : %d ", j);
 			kill(pid, SIGUSR1); // every SIGUSR1 means that it is the next ascii
-			usleep(10);
 		}
+
+		usleep(10);
 		kill(pid, SIGUSR2); // correct ascii
 		i++;
 	}
