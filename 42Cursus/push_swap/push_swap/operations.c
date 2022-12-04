@@ -27,7 +27,7 @@ void	pb(t_stack *stack)
 	}
 	stack->pile2[0] = pile1_first_el;
 	stack->pile1[stack->pile1_size] = -1;
-	//write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }
 
 void	pa(t_stack *stack)
@@ -56,7 +56,7 @@ void	pa(t_stack *stack)
 	}
 	stack->pile1[0] = pile2_first_el;
 	stack->pile2[stack->pile2_size] = -1;
-	//write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
 void	ra(t_stack *stack)
@@ -72,5 +72,5 @@ void	ra(t_stack *stack)
 		i++;
 	}
 	stack->pile1[stack->pile1_size - 1] = pile1_first_el;
-	//write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
