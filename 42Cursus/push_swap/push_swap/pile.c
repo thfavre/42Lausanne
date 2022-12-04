@@ -37,7 +37,7 @@ unsigned int	*simplify_pile(int *pile, int pile_size)
 		current_smallest_nb = INT_MAX;
 		while (j < pile_size)
 		{
-			if (pile[j] <= current_smallest_nb && pile[j] > previous_nb)
+			if (pile[j] <= current_smallest_nb && pile[j] > previous_nb) // TEST WITH INT MIN AND MAX
 			{
 				current_smallest_nb = pile[j];
 				current_smallest_nb_index = j;
