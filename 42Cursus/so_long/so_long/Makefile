@@ -14,8 +14,8 @@ NAME = so_long
 
 
 #FILES =	$(PATH_GAME)test.c
-FILES = $(PATH_GAME)game.c $(PATH_GAME)render.c $(PATH_GAME)keys.c $(PATH_GAME)player.c \
-		$(PATH_GAME)obstacle.c $(PATH_GAME)collision.c $(PATH_GAME)map.c \
+FILES = $(PATH_GAME)game.c $(PATH_GAME)render.c $(PATH_GAME)keys.c $(PATH_GAME)player.c $(PATH_GAME)sprite.c\
+		$(PATH_GAME)obstacle.c $(PATH_GAME)collision.c $(PATH_GAME)map.c $(PATH_GAME)collectible.c \
 		$(PATH_GNL)get_next_line.c $(PATH_GNL)get_next_line_utils.c
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))
 

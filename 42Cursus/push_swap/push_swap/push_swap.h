@@ -5,7 +5,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
-
+# include <unistd.h>
 int	ft_atoi(const char *str);
 
 typedef struct	s_stack

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/27 15:52:35 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/01 09:53:09 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 1080
 //	All will be scaled acording this value
-# define TILE_SIZE 40
+# define TILE_SIZE 80
 //	player
 # define PLAYER_SIZE TILE_SIZE
 
@@ -64,19 +64,24 @@ int			on_keyrelease(int keycode, t_data *data);
 
 //	player.c
 /* Create a player with the rect data */
-t_player	create_player(t_rect rect);
+t_player	create_player(t_rect rect, void *mlx);
 
-// obstacle.c
+// sprite.c
+t_img create_sprite(void *mlx, char *path);
+
+//	obstacle.c
 /* Create an obstacle with the rect data */
 t_obstacle	create_obstacle(t_rect rect);
 
-// collision.c
+//	collision.c
 /* Returns true if two rect are colliding */
 bool		colliderect(t_rect rect1, t_rect rect2);
+
 /* Handle the collision of the player, obstacles SHOULD be NULL terminated */
 void		player_collision_y(t_player *self, t_obstacle *obstacles, int obst_nb);
 void		player_collision_x(t_player *self, t_obstacle *obstacles, int obst_nb);
-// map.c
+
+//	map.c
 bool	init_map(t_data *data, char *map_path);
 
 

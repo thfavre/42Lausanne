@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:45:00 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/28 16:46:59 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/11/29 13:24:01 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	init_data(t_data *data, char *map_path)
 	if (!init_map(data, map_path))
 		return (false);
 	init_keypressed(data->keypressed);
+	data->has_win = false;
 
 
 	return (true);
@@ -40,7 +41,7 @@ int	main(void)
 	char *map_path = "maps/map1.ber";
 	init_data(&data, map_path);
 
-	data.player = create_player((t_rect){400, 400, TILE_SIZE, TILE_SIZE});
+	//data.player = create_player((t_rect){400, 400, TILE_SIZE, TILE_SIZE});
 	//data.map.obstacles = malloc(sizeof(*data.map.obstacles) * data.map.obst_nb);
 	// data.map.obstacles[0] = create_obstacle((t_rect){0, 800, TILE_SIZE*40, TILE_SIZE*2});
 	// data.map.obstacles[1] = create_obstacle((t_rect){200, 100, TILE_SIZE*1, TILE_SIZE*18});

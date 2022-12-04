@@ -10,6 +10,7 @@ typedef struct	s_img
 	int			bpp;
 	int			line_len;
 	int			endian;
+	t_vector2	size;
 }				t_img;
 
 typedef struct	s_rect
@@ -41,6 +42,7 @@ typedef struct s_player
 {
 	t_fvector2	pos;
 	t_rect		rect;
+	t_img		img;
 	t_fvector2	vel;  //velocity
 	enum e_grav	gravity_dir;
 	float		gravity;
@@ -50,11 +52,19 @@ typedef struct s_player
 	void		(*draw)(struct s_player *self, t_img *img);
 }				t_player;
 
+typedef struct s_collectible
+{
+	bool		is_collected;
+	t_rect		rect;
+	void		(*draw)(struct s_collectible *self, t_img *img);
+}				t_collectible;
+
 enum e_tile
 {
-	TILE_ITEM = 'E',
+	TILE_ITEM = 'C',
 	TILE_WALL = '1',
 	TILE_EXIT = 'E',
+	TILE_PLAYER = 'P',
 	TILE_EMPTY = '0'
 };
 
@@ -70,10 +80,13 @@ typedef struct s_map
 {
 	int			width;
 	int			height;
-	t_tile		*tiles;
 	int			tiles_nb;
+	t_tile		*tiles;
+	int			player_nb;
+	t_player	*players;
 	int			obst_nb;
 	t_obstacle	*obstacles;
+	int			collectibles_nb;
 }				t_map;
 
 typedef struct s_data
@@ -82,9 +95,9 @@ typedef struct s_data
 	void			*win_ptr;
 	t_img			img;
 	bool			keypressed[400];
-	t_player		player;
 	t_map			map;
 	int				moves; // count the moves nbr
+	bool 			has_win;
 }					t_data;
 
 #endif

@@ -129,45 +129,67 @@ void	push_swap(t_stack stack)
 {
 	int	i;
 
-	if (is_pile_storted(stack.pile1, stack.pile1_size))
-	{
-		printf("THE STACK IS SORTED!\n");
-		return ;
-	}
+	// if (is_pile_storted(stack.pile1, stack.pile1_size))
+	// {
+	// 	return ;
+	// }
 	// simplify pile
 
 	i = 0;
+	int j;
+	int op_nb = 0;
+	int tot = 0; // TODO delete
 
 	//tant que (un nbr de pile1) >> i & 1 == 1
-	while (is_1_in_pile_shifted(stack.pile1, i, stack.pile1_size))
+	// while (is_1_in_pile_shifted(stack.pile1, i, stack.pile1_size))
+	// {
+	while (!is_pile_storted(stack.pile1, stack.pile1_size))
 	{
 		// tant que (un nbr de pile1) >> i & 1 == 0
-		printf("->%d\n", stack.pile1_size);
-		while (stack.pile1_size > 0 && is_0_in_pile_shifted(stack.pile1, i, stack.pile1_size))
+		//printf("->%d\n", stack.pile1_size);
+		op_nb = 0;
+		while (op_nb < stack.size)
 		{
+			op_nb++;
 			// if (top pile1) >> i & 1 == 0
 			//printf("->%d\n", stack.pile1_size);
 			if (((stack.pile1[0] >> i) & 1) == 0)
-				{
-					printf("\t !here\n");
 					pb(&stack);
-				}
-			// else
 			else
-			{
 				ra(&stack);
-				printf("\t@%d  %d  %d\n", stack.pile1[0], stack.pile1[1], stack.pile1[2]);
-			}
 				// ra
-
+			tot++;
 		}
-		printf("res1 : %d  %d  %d %d\n", stack.pile1[0], stack.pile1[1], stack.pile1[2], stack.pile2_size );
-		// put add pile2 inside pile 1
-		while (stack.pile2_size > 0)
-			pa(&stack);
-		i++;
-		printf("res 2 : %d  %d  %d\n", stack.pile1[0], stack.pile1[1], stack.pile1[2]);
-	}
+		// j = -1;
+		// printf("\n");
+		// while (++j < stack.pile1_size)
+		// 	printf("pile1-> %d : %d  \t", j, stack.pile1[j]);
+		// j = -1;
+		// printf("\n");
+		// while (++j < stack.pile2_size)
+		// 	printf("pile2-> %d : %d  \t", j, stack.pile2[j]);
+		// printf("\n");
+		// printf("\nres1 : %d  %d  %d %d\n", stack.pile1[0], stack.pile1[1], stack.pile1[2], stack.pile2_size );
+		// // put add pile2 inside pile 1
+			while (stack.pile2_size > 0)
+				{pa(&stack); tot++;}
+			i++;
+		//printf("res 2 : %d  %d  %d\n", stack.pile1[0], stack.pile1[1], stack.pile1[2]);
+		}
+	//}
+	printf("\n\nRES\n");
+	j = -1;
+
+// 	while (++j < stack.pile1_size - 0)
+// 	{
+// 		// if (stack.pile1[j] > stack.pile1[j + 1])
+// //			printf("WRONG\n");
+// 		printf(" %d  \t", stack.pile1[j]);
+
+// 	}
+	printf("\nTotal nb of operations : %d\n", tot);
+	free(stack.pile1);
+	free(stack.pile2);
 
 
 }

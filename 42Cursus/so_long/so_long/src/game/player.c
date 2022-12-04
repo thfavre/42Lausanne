@@ -4,12 +4,13 @@
 void draw_player(struct s_player *self, t_img *img);
 void move_player(struct s_player *self, t_obstacle *obstacles, int obst_nb, bool *keypressed);
 
-t_player create_player(t_rect rect)
+t_player create_player(t_rect rect, void *mlx)
 {
 	t_player	player;
 
 	player.pos = (t_fvector2){rect.x, rect.y};
 	player.rect = (t_rect){rect.x, rect.y, rect.width, rect.height, rgb(200, 2, 2)};
+	//player.img = create_sprite(mlx, "../../assets/80/bread_down.xpm");
 	player.vel = (t_fvector2){0, 0};
 	player.gravity_dir = GRAV_DISABLE;
 	player.gravity = 0.15;
