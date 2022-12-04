@@ -4,18 +4,38 @@
 #include <strings.h>
 #include <sys/wait.h>
 
+void modify_bit(int *nb, int pos, int bit_value)
+{
+    int mask = 1 << pos;
+    *nb = (*nb & ~mask) | (bit_value << pos);
+}
+
+typedef struct s_letter
+{
+	unsigned int	current_bit;
+	int				letter;
+}		t_letter;
 
 void	handle_sigusr(int sig)
 {
-	static char	letter;
+	static t_letter	letter = {0, 0};
+		
 	if (sig == SIGUSR1)
-		letter++;
+		modify_bit(&letter.letter, letter.current_bit, 1);
+		//(letter.letter >> letter.current_bit) = 1;
 	else if (sig == SIGUSR2)
+		modify_bit(&letter.letter, letter.current_bit, 0);
+		//(letter.letter >> letter.current_bit) = 0;
+
+	if (letter.current_bit == 8 - 1)
 	{
-		write(1, &letter, 1);
-		letter = 0;
+		//printf("\nnb : %d\n", letter.letter);
+		write(1, &letter.letter, 1);
+		letter.current_bit = 0;
 	}
-	//printf("cuurrent letter : %c \n", letter);
+	else
+		letter.current_bit++;
+	//printf("\ncurrent bit : %d\n", letter.current_bit);
 }
 
 int	main(void)
@@ -35,7 +55,7 @@ int	main(void)
 
 	while(1)
 	{
-		continue ;
+		pause();
 	}
 
 	return (0);

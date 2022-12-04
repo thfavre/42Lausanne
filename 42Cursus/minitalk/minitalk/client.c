@@ -14,15 +14,17 @@ int main(int argc, char **argv)
 	while (message[i])
 	{
 		j = 0;
-		while (j++ < message[i])
+		while (j < 8)
 		{
+			if ((message[i] >> j) & 1)
+				kill(pid, SIGUSR1); // every SIGUSR1 means that it is the next ascii
+			else
+				kill(pid, SIGUSR2); // correct ascii
 			usleep(10);
 			//printf("j : %d ", j);
-			kill(pid, SIGUSR1); // every SIGUSR1 means that it is the next ascii
+			j++;
 		}
 
-		usleep(10);
-		kill(pid, SIGUSR2); // correct ascii
 		i++;
 	}
 
