@@ -35,6 +35,8 @@
         "ft_printf.h": "c",
         "unistd.h": "c",
         "data.h": "c",
-        "so_long.h": "c"
+        "so_long.h": "c",
+        "signal.h": "c",
+        "ostream": "c"
     }
 }

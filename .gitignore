@@ -1,3 +1,6 @@
+# Added myself
+.vscode
+.DS_Store
 # Prerequisites
 *.d
 
