@@ -5,6 +5,12 @@
 #include <sys/wait.h>
 
 char letter;
+// typedef struct s_message
+// {
+// 	char	letter;
+// 	char	word[100];
+
+// }	t_message;
 
 void	handle_sigusr1(int sig)
 {
