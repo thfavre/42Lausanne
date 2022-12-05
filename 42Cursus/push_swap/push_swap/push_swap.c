@@ -6,8 +6,22 @@ void	push_swap(t_stack stack);
 
 int	main(int argc, char **argv)
 {
-	if (--argc >= 1)
-		push_swap(create_stack(argc, ++argv));
+	int	i;
+
+	if (argc == 1)
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	i = 1;
+	while (i < argc)
+		if (!is_str_integer_number(argv[i++]))
+		{
+			write(2, "Error\n", 6);
+			return (1);
+		}
+	if (argc > 2)
+		push_swap(create_stack(--argc, ++argv));
 
 	return (0);
 }
@@ -20,7 +34,6 @@ t_stack	create_stack(int stackc, char **unformated_stack)
 	unsigned int	*u_int_pile1;
 
 	stack.size = stackc;
-
 	int_pile1 = create_pile(stackc, unformated_stack);
 	// check pile validiyy (no dup, ...)
 	u_int_pile1 = simplify_pile(int_pile1, stackc);
@@ -35,8 +48,8 @@ void	push_swap(t_stack stack)
 {
 	int	i;
 
-	if (!is_pile_storted(stack.pile1, stack.pile1_size))
-
+	// if (!is_pile_storted(stack.pile1, stack.pile1_size))
+	// 	{}
 	i = 0;
 	int op_nb = 0;
 	int tot = 0; // TODO delete

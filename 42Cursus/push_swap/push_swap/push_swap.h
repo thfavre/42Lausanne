@@ -22,6 +22,7 @@ typedef struct	s_stack
 
 /* utils.c */
 int				ascii_to_int(char *str);
+bool	is_str_integer_number(char *str);
 /* pile */
 int				*create_pile(int stackc, char **unformated_stack);
 bool			is_pile_storted(unsigned int *pile, int pile_size);
