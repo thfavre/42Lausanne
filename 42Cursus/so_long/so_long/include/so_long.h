@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/01 09:53:09 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/04 13:59:01 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			on_keyrelease(int keycode, t_data *data);
 t_player	create_player(t_rect rect, void *mlx);
 
 // sprite.c
-t_img create_sprite(void *mlx, char *path);
+t_img		create_sprite(void *mlx, char *path);
 
 //	obstacle.c
 /* Create an obstacle with the rect data */
@@ -82,7 +82,7 @@ void		player_collision_y(t_player *self, t_obstacle *obstacles, int obst_nb);
 void		player_collision_x(t_player *self, t_obstacle *obstacles, int obst_nb);
 
 //	map.c
-bool	init_map(t_data *data, char *map_path);
+bool		init_map(t_data *data, char *map_path);
 
 
 /*

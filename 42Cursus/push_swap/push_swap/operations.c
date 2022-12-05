@@ -74,3 +74,8 @@ void	ra(t_stack *stack)
 	stack->pile1[stack->pile1_size - 1] = pile1_first_el;
 	write(1, "ra\n", 3);
 }
+
+void	add_operation(t_stack stack, char *text)
+{
+
+}

@@ -48,8 +48,6 @@ void	push_swap(t_stack stack)
 {
 	int	i;
 
-	// if (!is_pile_storted(stack.pile1, stack.pile1_size))
-	// 	{}
 	i = 0;
 	int op_nb = 0;
 	int tot = 0; // TODO delete
