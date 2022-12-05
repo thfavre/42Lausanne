@@ -11,13 +11,12 @@ int	ft_atoi(const char *str);
 
 typedef struct	s_stack
 {
-	int	size;
+	int				size;
 	unsigned int	*pile1;
-	int	pile1_size;
+	int				pile1_size;
 	unsigned int	*pile2;
-	int	pile2_size;
-	int	temp1;
-	int	temp2;
+	int				pile2_size;
+	char			**operations;
 }		t_stack;
 
 /* utils.c */
