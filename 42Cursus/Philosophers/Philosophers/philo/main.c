@@ -27,23 +27,13 @@ typedef struct s_philosopher
 	enum e_state		state;
 	struct timeval		start_time;
 	struct timeval		last_eat_time;
+	struct timeval		program_start_time;
 	int					eat_count;
 	t_activities_times	activities_times;
 	pthread_mutex_t		*can_speak_mutex;
+	
 }						t_philosopher;
 
-void	eat(t_philosopher *philosopher)
-{
-	philosopher->state = EATING;
-	
-	pthread_mutex_lock(philosopher->can_speak_mutex);
-	printf("miam miam, I am eating (id=%d)\n", philosopher->id);
-	pthread_mutex_unlock(philosopher->can_speak_mutex);
-	
-	usleep(philosopher->activities_times.eat);
-	philosopher->eat_count++;
-	gettimeofday(&(philosopher->last_eat_time), NULL);
-}
 
 double	get_time_in_ms(struct timeval time)
 {
@@ -52,6 +42,24 @@ double	get_time_in_ms(struct timeval time)
 
 	time_in_ms = time.tv_sec * 1000.0 + time.tv_usec / 1000.0;
 	return (time_in_ms); // remove the variable
+}
+
+void	eat(t_philosopher *philosopher)
+{
+	
+	struct timeval	current_time;
+	
+	philosopher->state = EATING;
+
+	pthread_mutex_lock(philosopher->can_speak_mutex);
+	gettimeofday(&current_time, NULL);
+	printf("%f %d is eating\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
+	pthread_mutex_unlock(philosopher->can_speak_mutex);
+	
+	usleep(philosopher->activities_times.eat * 1000);
+	
+	philosopher->eat_count++;
+	gettimeofday(&(philosopher->last_eat_time), NULL);
 }
 
 double	get_elapsed_time_in_ms_between_two_times(struct timeval time1, struct timeval time2)
@@ -66,6 +74,7 @@ double	get_elapsed_time_in_ms_between_two_times(struct timeval time1, struct tim
 
 bool isDead(t_philosopher *philosopher)
 {
+	struct timeval	current_time;
 	double elapsed_time_in_ms;
 	struct timeval start;
 	struct timeval now;
@@ -78,6 +87,10 @@ bool isDead(t_philosopher *philosopher)
 	if (get_time_in_ms(philosopher->last_eat_time) + philosopher->activities_times.die < get_time_in_ms(now))
 	{
 		philosopher->state = DEAD;
+		pthread_mutex_lock(philosopher->can_speak_mutex);
+		gettimeofday(&current_time, NULL);
+		printf("%f %d died\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
+		pthread_mutex_unlock(philosopher->can_speak_mutex);
 		return (true);
 	}
 	return (false);
@@ -88,9 +101,12 @@ void	sleep_(t_philosopher *philosopher)
 	struct timeval	current_time;
 
 	philosopher->state = SLEEPING;
+	
 	pthread_mutex_lock(philosopher->can_speak_mutex);
-	printf("Zzz.. I am sleeping (id=%d)\n", philosopher->id);
+	gettimeofday(&current_time, NULL);
+	printf("%f %d is sleeping\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
 	pthread_mutex_unlock(philosopher->can_speak_mutex);
+	
 	gettimeofday(&philosopher->start_time, NULL);
 	while (!isDead(philosopher))
 	{
@@ -100,15 +116,21 @@ void	sleep_(t_philosopher *philosopher)
 		{
 			break ;
 		}
+		
 		// should I sleep 5 ms?
 	}
 }
+
+
 void	think(t_philosopher *philosopher)
 {
+	struct timeval	current_time;
 	
 	pthread_mutex_lock(philosopher->can_speak_mutex);
-	printf("I am genuis and thinking... (id=%d)\n", philosopher->id);
+	gettimeofday(&current_time, NULL);
+	printf("%f %d is thinking\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
 	pthread_mutex_unlock(philosopher->can_speak_mutex);
+	
 	// while 2 forks are not available, sleep 
 	
 }
@@ -122,29 +144,26 @@ void	*ft_philosopher(void *arg)
 	{
 		think(philosopher);
 		if (isDead(philosopher))
-		{
-			pthread_mutex_lock(philosopher->can_speak_mutex);
-			printf("Philo (id = %d) just die...\n", philosopher->id);
-			pthread_mutex_unlock(philosopher->can_speak_mutex);
-	//		break;
-		}
+			break;
+		
 		eat(philosopher);
+
 		if (isDead(philosopher))
 		{
-			pthread_mutex_lock(philosopher->can_speak_mutex);
-			printf("Philo (id = %d) just die...\n", philosopher->id);
-			pthread_mutex_unlock(philosopher->can_speak_mutex);
-	//		break;
+			break;
 		}
+
 		sleep_(philosopher);
 		if (isDead(philosopher))
 		{
-			pthread_mutex_lock(philosopher->can_speak_mutex);
-			printf("Philo (id = %d) just die...\n", philosopher->id);
-			pthread_mutex_unlock(philosopher->can_speak_mutex);
-	//		break;
+			break;
 		}
+		
 	}
+
+	pthread_mutex_lock(philosopher->can_speak_mutex);
+	printf("Amen (id=%d)\n", philosopher->id);
+	pthread_mutex_unlock(philosopher->can_speak_mutex);
 }
 
 
@@ -155,7 +174,7 @@ int main(int argc, char **argv)
 	// in miliseconds
 	int time_to_die = 4000; 
 	int time_to_eat = 1000;
-	int time_to_sleep = 1000;
+	int time_to_sleep = 10000;
 	// number_of_times_each_philosopher_must_eat // optional
 	
 	t_philosopher	*philosophers_data = malloc(sizeof(*philosophers_data) * number_of_philosophers);
@@ -163,10 +182,11 @@ int main(int argc, char **argv)
 	pthread_mutex_t	*forks_mutexes = malloc(sizeof(*forks_mutexes) * number_of_philosophers);
 	int i = 0;
 	int res;
-	pthread_mutex_t	can_speak_mutex = PTHREAD_MUTEX_INITIALIZER;
+	pthread_mutex_t	can_speak_mutex;// = PTHREAD_MUTEX_INITIALIZER;
 	while (i < number_of_philosophers)
 	{
 		pthread_mutex_init(&(forks_mutexes[i]), NULL);
+		pthread_mutex_init(&(can_speak_mutex), NULL);
 		philosophers_data[i].id = i;
 		philosophers_data[i].state = SLEEPING;
 		gettimeofday(&(philosophers_data[i].start_time), NULL); // needed?
@@ -174,6 +194,7 @@ int main(int argc, char **argv)
 		philosophers_data[i].eat_count = 0;
 		philosophers_data[i].activities_times = (t_activities_times){time_to_eat, time_to_sleep, time_to_die};
 		philosophers_data[i].can_speak_mutex = &can_speak_mutex;
+		gettimeofday(&philosophers_data[i].program_start_time, NULL);
 		res = pthread_create(&(threads[i]), NULL, ft_philosopher, &(philosophers_data[i]));
 		printf("i%d\n", i);
 		if (res !=0) {//handle error
@@ -181,8 +202,10 @@ int main(int argc, char **argv)
 		i++;
 	}
 	// wait for the threads to finish
+	i = 0;
 	while (i < number_of_philosophers)
-		pthread_join(threads[i], NULL);
+		pthread_detach(threads[i]);
+		//pthread_join(threads[i], NULL);
 
 	printf("end\n");
 	return (0);
