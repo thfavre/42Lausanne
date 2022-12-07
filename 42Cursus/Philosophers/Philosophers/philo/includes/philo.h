@@ -66,4 +66,6 @@ void	eat(t_philosopher *philosopher);
 void	sleep_(t_philosopher *philosopher);
 void	think(t_philosopher *philosopher);
 void	*ft_philosopher(void *arg);
+//	time_.c
+double	get_time_in_ms(struct timeval time);
 #endif

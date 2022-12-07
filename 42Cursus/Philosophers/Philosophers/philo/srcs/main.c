@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		philosophers_data[i].can_speak_mutex = &can_speak_mutex;
 		gettimeofday(&philosophers_data[i].program_start_time, NULL);
 		res = pthread_create(&(threads[i]), NULL, ft_philosopher, &(philosophers_data[i]));
-		printf("i%d\n", i);
+		//printf("i%d\n", i);
 		if (res !=0) {//handle error
 		}
 		i++;
