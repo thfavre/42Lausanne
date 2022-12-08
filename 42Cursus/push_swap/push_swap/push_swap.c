@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/08 16:47:30 by thfavre           #+#    #+#             */
+/*   Updated: 2022/12/08 18:15:28 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "push_swap.h"
 
 t_stack	create_stack(int stackc, char **unformated_stack);
-void	push_swap(t_stack stack);
+void	small_push_swap(t_stack stack);
+void	big_push_swap(t_stack stack);
 
 int	main(int argc, char **argv)
 {
@@ -20,12 +33,14 @@ int	main(int argc, char **argv)
 			write(2, "Error\n", 6);
 			return (1);
 		}
-	if (argc > 2)
-		push_swap(create_stack(--argc, ++argv));
-
+	if (argc == 2)
+		return (0);
+	if (argc <=5)
+		small_push_swap(create_stack(--argc, ++argv));
+	else
+		big_push_swap(create_stack(--argc, ++argv));
 	return (0);
 }
-
 
 t_stack	create_stack(int stackc, char **unformated_stack)
 {
@@ -44,7 +59,38 @@ t_stack	create_stack(int stackc, char **unformated_stack)
 	return (stack);
 }
 
-void	push_swap(t_stack stack)
+char	*sortthree(t_stack *a)
+{
+	char	*mark;
+	char	*moves;
+
+	mark = stack_getmark(a);
+	if (!ft_strncmp(mark, "1 2 3", 5))
+		moves = ft_strdup("");
+	else if (!ft_strncmp(mark, "1 3 2", 5))
+		moves = ft_strdup("rra\nsa\n");
+	else if (!ft_strncmp(mark, "2 1 3", 5))
+		moves = ft_strdup("sa\n");
+	else if (!ft_strncmp(mark, "2 3 1", 5))
+		moves = ft_strdup("rra\n");
+	else if (!ft_strncmp(mark, "3 1 2", 5))
+		moves = ft_strdup("ra\n");
+	else
+		moves = ft_strdup("ra\nsa\n");
+	free(mark);
+	return (moves);
+}
+// will sort less than 6 numbers
+void	small_push_swap(t_stack stack)
+{
+
+
+	free(stack.pile1);
+	free(stack.pile2);
+}
+
+// will sort more than 5 numbers
+void	big_push_swap(t_stack stack)
 {
 	int	i;
 
