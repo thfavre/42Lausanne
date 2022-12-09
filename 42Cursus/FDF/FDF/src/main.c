@@ -3,6 +3,10 @@
 bool	init_data(t_data *data, char *map_path)
 {
 	init_keypressed(data->keypressed);
+	data->map = parse(map_path);
+	t_vector3	offset = {40 * 10, 50 * 5, 0};
+	move_cells(data->map, offset);
+	data->map.zoom_factor = 3;
 	return (true);
 }
 
@@ -12,13 +16,13 @@ int main()
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"FDF");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"FDF    move : wasd");
 
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, \
 						&data.img.line_len, &data.img.endian);
 
-	init_data(&data, "maps/test_map/42.fdf");
+	init_data(&data, "maps/test_maps/42_1.fdf");
 
 	// /* Setup hooks */
 	mlx_hook(data.win_ptr, EVENT_KEYDOWN, 0, &on_keypress, &data);

@@ -45,42 +45,46 @@ void	draw_background(t_img *img, int color)
 	draw_rect(img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, color});
 }
 
-void draw_line(int x0, int y0, int x1, int y1, t_img *img, int color)
+void draw_line(t_img *img, t_vector2 start_pos, t_vector2 end_pos, int line_width, int color)
 {
 	bool steep = false;
-	if (abs(x0-x1)<abs(y0-y1)) {
-		int tmp = x0;
-		x0 = y0;
-		y0 = tmp;
-		tmp = x1;
-		x1 = y1;
-		y1 = tmp;
+	if (abs(start_pos.x-end_pos.x)<abs(start_pos.y-end_pos.y)) {
+		int tmp = start_pos.x;
+		start_pos.x = start_pos.y;
+		start_pos.y = tmp;
+		tmp = end_pos.x;
+		end_pos.x = end_pos.y;
+		end_pos.y = tmp;
 		steep = true;
 	}
-	if (x0>x1) {
-		int tmp = x0;
-		x0 = x1;
-		x1 = tmp;
-		tmp = y0;
-		y0 = y1;
-		y1 = tmp;
+	if (start_pos.x>end_pos.x) {
+		int tmp = start_pos.x;
+		start_pos.x = end_pos.x;
+		end_pos.x = tmp;
+		tmp = start_pos.y;
+		start_pos.y = end_pos.y;
+		end_pos.y = tmp;
 	}
-	int dx = x1-x0;
-	int dy = y1-y0;
+	int dx = end_pos.x-start_pos.x;
+	int dy = end_pos.y-start_pos.y;
 	int derror2 = abs(dy)*2;
 	int error2 = 0;
-	int y = y0;
-	for (int x=x0; x<=x1; x++) {
-		if (steep) {
-		img_pix_put(img, y, x, color);
-		// image->set(y, x, color);
-		} else {
-		//   image->set(x, y, );
-		img_pix_put(img, x, y, color);
+	int y = start_pos.y;
+	for (int x=start_pos.x; x<=end_pos.x; x++)
+	{
+		for (int i = -line_width/2; i <= line_width/2; i++)
+		{
+			if (steep) {
+			img_pix_put(img, y + i, x, color);
+			// image->set(y, x, color);
+			} else {
+			//   image->set(x, y, );
+			img_pix_put(img, x, y + i, color);
+			}
 		}
 		error2 += derror2;
 		if (error2 > dx) {
-			y += (y1>y0?1:-1);
+			y += (end_pos.y>start_pos.y?1:-1);
 			error2 -= dx*2;
 		}
 	}

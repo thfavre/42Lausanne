@@ -14,6 +14,7 @@ int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode < 400)
 		data->keypressed[keycode] = true;
+	//printf("%d\n", keycode);
 	if (keycode == K_ESC)
 		{
 			mlx_destroy_window(data->mlx_ptr, data->win_ptr);

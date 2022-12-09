@@ -1,26 +1,21 @@
 #ifndef VECTOR_H
 # define VECTOR_H
 
-// int
+// ---------- Vector 2 ---------- //
+//	int
 typedef struct s_vector2
 {
 	int x;
 	int y;
 }	t_vector2;
 
-// unsigned int
-typedef struct s_uvector2
+// ---------- Vector 3 ---------- //
+// int
+typedef struct s_vector3
 {
-	unsigned int x;
-	unsigned int y;
-}	t_uvector2;
-
-// float
-typedef struct s_fvector2
-{
-	float x;
-	float y;
-}	t_fvector2;
-
+	int x;
+	int y;
+	int z;
+}	t_vector3;
 
 #endif

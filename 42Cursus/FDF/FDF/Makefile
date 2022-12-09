@@ -14,7 +14,7 @@ NAME = fdf
 
 
 #FILES =	$(PATH_GAME)test.c
-FILES = $(PATH_GAME)keys.c $(PATH_GAME)update.c $(PATH_GAME)render.c \
+FILES = $(PATH_GAME)keys.c $(PATH_GAME)update.c $(PATH_GAME)render.c $(PATH_GAME)parse.c $(PATH_GAME)draw_isometric.c $(PATH_GAME)vector.c $(PATH_GAME)move.c $(PATH_GAME)zoom.c \
 		$(PATH_GNL)get_next_line.c $(PATH_GNL)get_next_line_utils.c
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))
 

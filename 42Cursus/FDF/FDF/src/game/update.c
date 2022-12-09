@@ -5,9 +5,17 @@ int	on_update(t_data *data)
 {
 	draw_background(&data->img, rgb(45, 69, 113));
 
-	draw_rect(&data->img, (t_rect){100, 100, 100, 100});
-	draw_line(200, 200, 400, 400, &data->img, rgb(170, 149, 57));
+	// draw_rect(&data->img, (t_rect){100, 100, 100, 100});
+	// draw_line(&data->img, (t_vector2){200, 200}, (t_vector2){500, 400}, 3, rgb(170, 149, 57));
 
+	// actions
+	move(data->keypressed, data->map);
+	if (data->keypressed[K_Z] && !data->keypressed[K_SHIFT])
+		zoom(data->map, 1.1);
+	else if (data->keypressed[K_Z])
+		zoom(data->map, 0.9);
+
+	draw_isometric(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
