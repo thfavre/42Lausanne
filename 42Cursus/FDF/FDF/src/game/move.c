@@ -21,7 +21,7 @@ void	move(bool *keypressed, t_map map)
 {
 	t_vector3	move_value;
 
-	int	speed = 1;
+	int	speed = 12;
 	move_value = (t_vector3){0, 0, 0};
 	if (keypressed[K_W])
 		move_value.y -= speed;

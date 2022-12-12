@@ -44,6 +44,8 @@
 #  define K_Z 6
 #  define K_SHIFT 257
 # define K_SPACE 49
+#  define K_Q 12
+#  define K_E 14
 # endif
 
 #endif

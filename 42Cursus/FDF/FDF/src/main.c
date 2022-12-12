@@ -6,7 +6,9 @@ bool	init_data(t_data *data, char *map_path)
 	data->map = parse(map_path);
 	t_vector3	offset = {40 * 10, 50 * 5, 0};
 	move_cells(data->map, offset);
-	data->map.zoom_factor = 3;
+	data->attributes.zoom_factor = 0.4;
+	data->attributes.line_width = 1;
+	//data->need_redraw = true;
 	return (true);
 }
 

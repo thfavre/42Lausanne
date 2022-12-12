@@ -36,16 +36,24 @@ typedef struct s_map
 {
 	t_vector2	size;
 	t_cell		**cells;
-	int			zoom_factor;
 }					t_map;
+
+typedef struct s_attributes
+{
+	double		zoom_factor;
+	int			line_width;
+	double		angle;
+}				t_attributes;
 
 typedef struct s_data
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	//bool			need_redraw;
 	t_img			img;
 	bool			keypressed[400];
 	t_map			map;
+	t_attributes	attributes;
 
 }					t_data;
 

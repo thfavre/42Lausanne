@@ -18,9 +18,9 @@
 
 // ---------- Default Settings ---------- //
 //	window
-# define WINDOW_WIDTH 1080
+# define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define DEFAULT_ZOOM_FACTOR 40
+# define DEFAULT_ZOOM_FACTOR 100
 
 // ---------- Functions ---------- //
 //	keys.c

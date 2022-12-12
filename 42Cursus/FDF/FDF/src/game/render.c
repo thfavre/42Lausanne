@@ -15,7 +15,7 @@ int	argb(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue)
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
-	if (x >= 0 && x <= WINDOW_WIDTH && y >= 0 && y <= WINDOW_HEIGHT)
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
 	{
 		pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 		*(unsigned int *)pixel = color;

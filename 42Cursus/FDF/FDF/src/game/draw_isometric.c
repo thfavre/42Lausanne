@@ -3,7 +3,7 @@
 t_vector2	convert_vector3_to_isometric(t_vector3 vect3)
 {
 	t_vector2	vect2;
-	double			angle;
+	static double			angle;
 
 	angle = 0.5;
 	// u = x*cos(α) + y*cos(α+120°) + z*cos(α-120°);
@@ -33,11 +33,15 @@ void	draw_isometric(t_data *data)
 				// end_pos = (t_vector2){data->map.cells[curr_pos.y][curr_pos.x + 1].x, data->map.cells[curr_pos.y][curr_pos.x + 1].y};
 				start_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x].vect3);
 				end_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x + 1].vect3);
+				start_pos.x *= data->attributes.zoom_factor;
+				start_pos.y *= data->attributes.zoom_factor;
+				end_pos.x *= data->attributes.zoom_factor;
+				end_pos.y *= data->attributes.zoom_factor;
 				//mult_vector2_int(&start_pos, data->map.zoom_factor);
 				//mult_vector2_int(&end_pos, data->map.zoom_factor);
 				// printf("start %d %d\n", start_pos.x, start_pos.y);
-				// printf("end %d %d\n\n", end_pos.x, end_pos.y);
-				draw_line(&data->img, start_pos, end_pos, 1, rgb(170, 149, 57));
+				//printf("end %d %d\n\n", curr_pos.x, curr_pos.y);
+				draw_line(&data->img, start_pos, end_pos, data->attributes.line_width, rgb(222-curr_pos.y*15, 149, 57+curr_pos.y*15));
 			}
 			// draw the segment going to the down
 			if (curr_pos.y < data->map.size.y - 1)
@@ -46,9 +50,14 @@ void	draw_isometric(t_data *data)
 				// end_pos = (t_vector2){data->map.cells[curr_pos.y + 1][curr_pos.x].x, data->map.cells[curr_pos.y + 1][curr_pos.x].y};
 				start_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x].vect3);
 				end_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y + 1][curr_pos.x].vect3);
+				start_pos.x *= data->attributes.zoom_factor;
+				start_pos.y *= data->attributes.zoom_factor;
+				end_pos.x *= data->attributes.zoom_factor;
+				end_pos.y *= data->attributes.zoom_factor;
+
 				//mult_vector2_int(&start_pos, data->map.zoom_factor);
 				//mult_vector2_int(&end_pos, data->map.zoom_factor);
-				draw_line(&data->img, start_pos, end_pos, 1, rgb(170, 149, 57));
+				draw_line(&data->img, start_pos, end_pos,  data->attributes.line_width, rgb(222-curr_pos.y*15, 149, 57+curr_pos.y*15));
 			}
 			curr_pos.x++;
 		}

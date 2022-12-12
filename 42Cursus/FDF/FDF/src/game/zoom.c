@@ -14,7 +14,8 @@ void	zoom(t_map map, double zoom_factor) // TODO create a function to apply a fu
 			curr_pos.x++;
 			map.cells[curr_pos.y][curr_pos.x].vect3.x *= zoom_factor;
 			map.cells[curr_pos.y][curr_pos.x].vect3.y *= zoom_factor;
-			printf("%d, \n", map.cells[curr_pos.y][curr_pos.x].vect3.y);
+			map.cells[curr_pos.y][curr_pos.x].vect3.z *= zoom_factor;
+			//printf("%d, \n", map.cells[curr_pos.y][curr_pos.x].vect3.y);
 		}
 		curr_pos.y++;
 	}
