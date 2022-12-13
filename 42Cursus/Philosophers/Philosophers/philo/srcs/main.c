@@ -1,8 +1,6 @@
 
 #include "../includes/philo.h"
 
-
-
 int main(int argc, char **argv)
 {
 	// this should be parse from the argv
