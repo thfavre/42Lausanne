@@ -54,7 +54,7 @@ unsigned int	*simplify_pile(int *pile, int pile_size)
 	// i = 0;
 	// while (i < pile_size)
 	// 	printf("=%d ", u_pile[i++]);
-	free(pile);
+	//free(pile);
 	return (u_pile);
 }
 

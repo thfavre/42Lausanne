@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:32 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/09 16:47:55 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/13 12:41:55 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,22 +114,22 @@ void	print_operations(t_stack stack)
 {
 	size_t	i;
 
-	i = 0;
-	while (i < stack.operations_numbers)
-	{
-		if (i < stack.operations_numbers && stack.operations[i] == PB && stack.operations[i + 1] == PA)
-		{
-			stack.operations[i] = 99;
-			stack.operations[i + 1] = 99;
-		}
-		if (i < stack.operations_numbers && stack.operations[i] == PA && stack.operations[i + 1] == PB)
-		{
-			stack.operations[i] = 99;
-			stack.operations[i + 1] = 99;
-		}
-		i++;
+	// i = 0;
+	// while (i < stack.operations_numbers)
+	// {
+	// 	if (i < stack.operations_numbers && stack.operations[i] == PB && stack.operations[i + 1] == PA)
+	// 	{
+	// 		stack.operations[i] = 99;
+	// 		stack.operations[i + 1] = 99;
+	// 	}
+	// 	if (i < stack.operations_numbers && stack.operations[i] == PA && stack.operations[i + 1] == PB)
+	// 	{
+	// 		stack.operations[i] = 99;
+	// 		stack.operations[i + 1] = 99;
+	// 	}
+	// 	i++;
 
-	}
+	// }
 	i = 0;
 	while (i < stack.operations_numbers)
 	{

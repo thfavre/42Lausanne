@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:39:18 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/09 15:51:23 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/13 14:04:51 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 
 void	sortthree(unsigned int *pile)
 {
+	if (pile[0] == 0 && pile[1] == 1 && pile[2] == 2)
+		write(1, "\n", 0);
+	// convert all the lines below like the line abow
+	else if (pile[0] == 0 && pile[1] == 1 && pile[2] == 2)
+		write(1, "", 0);
+	else if (pile[0] == 0 && pile[1] == 2 && pile[2] == 1)
+		write(1, "rra\nsa\n", 7);
+	else if (pile[0] == 1 && pile[1] == 0 && pile[2] == 2)
+		write(1, "sa\n", 3);
+	else if (pile[0] == 1 && pile[1] == 2 && pile[2] == 0)
+		write(1, "rra\n", 4);
+	else if (pile[0] == 2 && pile[1] == 0 && pile[2] == 1)
+		write(1, "ra\n", 3);
+	else
+		write(1, "ra\nsa\n", 6);
 	// if (!ft_strncmp(mark, "1 2 3", 5))
 	// 	moves = ft_strdup("");
 	// else if (!ft_strncmp(mark, "1 3 2", 5))
@@ -32,7 +47,23 @@ void	sortthree(unsigned int *pile)
 // will sort less than 6 numbers
 t_stack	small_push_swap(t_stack stack)
 {
+	if (stack.pile1_size == 2)
+	{
+		if (stack.pile1[0] > stack.pile1[1])
+			write(1, "ra\n", 3);
+	}
+	else if (stack.pile1_size == 3)
+		sortthree(stack.pile1);
+	else if (stack.pile1_size == 4)
+	{
+		while (stack.pile1[0] != 3)
+			ra(&stack);
+		pb(&stack);
+		sortthree(stack.pile1);
+		pa(&stack);
+		write(1, "ra\n", 3);
 
+	}
 
 	free(stack.pile1);
 	free(stack.pile2);
