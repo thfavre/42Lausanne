@@ -31,12 +31,14 @@ void	draw_isometric(t_data *data)
 			{
 				// start_pos = (t_vector2){data->map.cells[curr_pos.y][curr_pos.x].x, data->map.cells[curr_pos.y][curr_pos.x].y};
 				// end_pos = (t_vector2){data->map.cells[curr_pos.y][curr_pos.x + 1].x, data->map.cells[curr_pos.y][curr_pos.x + 1].y};
-				start_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x].vect3);
-				end_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x + 1].vect3);
-				start_pos.x *= data->attributes.zoom_factor;
-				start_pos.y *= data->attributes.zoom_factor;
-				end_pos.x *= data->attributes.zoom_factor;
-				end_pos.y *= data->attributes.zoom_factor;
+				start_pos = convert_vector3_to_isometric(mult_vector3(data->map.cells[curr_pos.y][curr_pos.x].vect3, data->attributes.zoom_factor));
+				end_pos = convert_vector3_to_isometric(mult_vector3(data->map.cells[curr_pos.y][curr_pos.x + 1].vect3, data->attributes.zoom_factor));
+				add_vector2_ip(&start_pos, data->attributes.offset);
+				add_vector2_ip(&end_pos, data->attributes.offset);
+				// start_pos.x *= data->attributes.zoom_factor;
+				// start_pos.y *= data->attributes.zoom_factor;
+				// end_pos.x *= data->attributes.zoom_factor;
+				// end_pos.y *= data->attributes.zoom_factor;
 				//mult_vector2_int(&start_pos, data->map.zoom_factor);
 				//mult_vector2_int(&end_pos, data->map.zoom_factor);
 				// printf("start %d %d\n", start_pos.x, start_pos.y);
@@ -48,12 +50,14 @@ void	draw_isometric(t_data *data)
 			{
 				// start_pos = (t_vector2){data->map.cells[curr_pos.y][curr_pos.x].x, data->map.cells[curr_pos.y][curr_pos.x].y};
 				// end_pos = (t_vector2){data->map.cells[curr_pos.y + 1][curr_pos.x].x, data->map.cells[curr_pos.y + 1][curr_pos.x].y};
-				start_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y][curr_pos.x].vect3);
-				end_pos = convert_vector3_to_isometric(data->map.cells[curr_pos.y + 1][curr_pos.x].vect3);
-				start_pos.x *= data->attributes.zoom_factor;
-				start_pos.y *= data->attributes.zoom_factor;
-				end_pos.x *= data->attributes.zoom_factor;
-				end_pos.y *= data->attributes.zoom_factor;
+				start_pos = convert_vector3_to_isometric(mult_vector3(data->map.cells[curr_pos.y][curr_pos.x].vect3, data->attributes.zoom_factor));
+				end_pos = convert_vector3_to_isometric(mult_vector3(data->map.cells[curr_pos.y + 1][curr_pos.x].vect3, data->attributes.zoom_factor));
+				add_vector2_ip(&start_pos, data->attributes.offset);
+				add_vector2_ip(&end_pos, data->attributes.offset);
+				// start_pos.x *= data->attributes.zoom_factor;
+				// start_pos.y *= data->attributes.zoom_factor;
+				// end_pos.x *= data->attributes.zoom_factor;
+				// end_pos.y *= data->attributes.zoom_factor;
 
 				//mult_vector2_int(&start_pos, data->map.zoom_factor);
 				//mult_vector2_int(&end_pos, data->map.zoom_factor);

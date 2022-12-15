@@ -43,6 +43,7 @@ typedef struct s_attributes
 	double		zoom_factor;
 	int			line_width;
 	double		angle;
+	t_vector2	offset;
 }				t_attributes;
 
 typedef struct s_data

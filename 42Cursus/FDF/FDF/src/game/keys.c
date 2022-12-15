@@ -38,3 +38,11 @@ int	on_keyrelease(int keycode, t_data *data)
 		data->keypressed[keycode] = false;
 	return (0);
 }
+
+int	get_mouse_input(int key, int x, int y, t_fract *f)
+{
+	if (key == M_ZOOM_IN || key == M_ZOOM_OUT)
+		zoom(key, x, y, f);
+	draw(f);
+	return (0);
+}

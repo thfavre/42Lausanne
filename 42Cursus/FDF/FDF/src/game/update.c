@@ -9,13 +9,21 @@ int	on_update(t_data *data)
 	// draw_line(&data->img, (t_vector2){200, 200}, (t_vector2){500, 400}, 3, rgb(170, 149, 57));
 
 	// actions
-	move(data->keypressed, data->map);
+	//move(data->keypressed, data->map);
+	if (data->keypressed[K_W])
+		data->attributes.offset.y -= MOVE_SPEED;
+	if (data->keypressed[K_S])
+		data->attributes.offset.y += MOVE_SPEED;
+	if (data->keypressed[K_A])
+		data->attributes.offset.x -= MOVE_SPEED;
+	if (data->keypressed[K_D])
+		data->attributes.offset.x += MOVE_SPEED;
 
 	if (data->keypressed[K_Z] && !data->keypressed[K_SHIFT])
-		data->attributes.zoom_factor += 0.01;
+		data->attributes.zoom_factor += 0.1;
 		//zoom(data->map, 1.1);
 	else if (data->keypressed[K_Z])
-		data->attributes.zoom_factor -= 0.01;
+		data->attributes.zoom_factor -= 0.1;
 		//zoom(data->map, 0.9);
 
 	if (data->keypressed[K_Q])

@@ -22,9 +22,9 @@ t_map	parse(char *map_path)
 		while (curr_pos.x < map.size.x)
 		{
 			// TODO check if number
-			map.cells[curr_pos.y][curr_pos.x].vect3.x = curr_pos.x * DEFAULT_ZOOM_FACTOR;
-			map.cells[curr_pos.y][curr_pos.x].vect3.y = curr_pos.y * DEFAULT_ZOOM_FACTOR;
-			map.cells[curr_pos.y][curr_pos.x].vect3.z = ft_atoi(splited_line[curr_pos.x]) * DEFAULT_ZOOM_FACTOR;
+			map.cells[curr_pos.y][curr_pos.x].vect3.x = curr_pos.x; // * DEFAULT_ZOOM_FACTOR;
+			map.cells[curr_pos.y][curr_pos.x].vect3.y = curr_pos.y;// * DEFAULT_ZOOM_FACTOR;
+			map.cells[curr_pos.y][curr_pos.x].vect3.z = ft_atoi(splited_line[curr_pos.x]);// * DEFAULT_ZOOM_FACTOR;
 			curr_pos.x++;
 		}
 		curr_pos.y++;

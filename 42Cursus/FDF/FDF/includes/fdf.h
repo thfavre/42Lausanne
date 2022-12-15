@@ -20,7 +20,8 @@
 //	window
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define DEFAULT_ZOOM_FACTOR 100
+# define DEFAULT_ZOOM_FACTOR 5
+# define MOVE_SPEED 1
 
 // ---------- Functions ---------- //
 //	keys.c
@@ -55,8 +56,11 @@ void draw_line(t_img *img, t_vector2 start_pos, t_vector2 end_pos, int line_widt
 void	draw_isometric(t_data *data);
 
 //	vector.c
-void	move_vector3(t_vector3 *vect3, t_vector3 move_vect3);
-void	mult_vector2_int(t_vector2 *vect2, int mult);
+void	move_vector3_ip(t_vector3 *vect3, t_vector3 move_vect3);
+	// in place
+void	mult_vector2_int_ip(t_vector2 *vect2, int mult);
+t_vector3	mult_vector3(t_vector3 vect3, int mult);
+void	add_vector2_ip(t_vector2 *vect, t_vector2 add_vect);
 
 //	move.c
 void	move_cells(t_map map, t_vector3 move_value);

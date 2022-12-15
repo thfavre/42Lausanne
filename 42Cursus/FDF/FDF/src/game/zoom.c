@@ -20,3 +20,4 @@ void	zoom(t_map map, double zoom_factor) // TODO create a function to apply a fu
 		curr_pos.y++;
 	}
 }
+

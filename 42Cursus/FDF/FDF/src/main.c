@@ -4,10 +4,11 @@ bool	init_data(t_data *data, char *map_path)
 {
 	init_keypressed(data->keypressed);
 	data->map = parse(map_path);
-	t_vector3	offset = {40 * 10, 50 * 5, 0};
-	move_cells(data->map, offset);
-	data->attributes.zoom_factor = 0.4;
+	//t_vector3	offset = {0, 0}; //{40 * 10, 50 * 5, 0};
+	//move_cells(data->map, offset);
+	data->attributes.zoom_factor = DEFAULT_ZOOM_FACTOR;
 	data->attributes.line_width = 1;
+	data->attributes.offset = (t_vector2){0, 0};
 	//data->need_redraw = true;
 	return (true);
 }
