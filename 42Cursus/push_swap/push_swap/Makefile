@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 SRCS = push_swap.c pile.c operations.c utils.c sort.c
 OBJS = ${SRCS:.c=.o}

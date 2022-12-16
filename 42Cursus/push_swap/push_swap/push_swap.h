@@ -6,20 +6,17 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/09 16:02:15 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/16 23:32:21 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
-#include <limits.h>
-int	ft_atoi(const char *str);
+# include <limits.h>
 
 enum e_operation
 {
@@ -36,7 +33,7 @@ enum e_operation
 	RRR,
 }	;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int					size;
 	unsigned int		*pile1;
@@ -44,10 +41,8 @@ typedef struct	s_stack
 	unsigned int		*pile2;
 	int					pile2_size;
 	enum e_operation	*operations;
-	unsigned int 		operations_numbers;
+	unsigned int		operations_numbers;
 }		t_stack;
-
-
 
 /* utils.c */
 int				ascii_to_int(char *str);
@@ -60,7 +55,6 @@ unsigned int	*simplify_pile(int *pile, int pile_size);
 void			pb(t_stack *stack);
 void			pa(t_stack *stack);
 void			ra(t_stack *stack);
-void			print_operations(t_stack stack);
 /* sort.c */
 t_stack			small_push_swap(t_stack stack);
 t_stack			big_push_swap(t_stack stack);
