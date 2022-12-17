@@ -52,6 +52,7 @@ typedef struct s_philosopher
 	int					eat_count;
 	t_activities_times	activities_times;
 	pthread_mutex_t		*can_speak_mutex;
+	pthread_mutex_t		*forks;
 
 }						t_philosopher;
 
@@ -66,6 +67,7 @@ void	eat(t_philosopher *philosopher);
 void	sleep_(t_philosopher *philosopher);
 void	think(t_philosopher *philosopher);
 void	*ft_philosopher(void *arg);
-//	time_.c
+//	utils.c
 double	get_time_in_ms(struct timeval time);
+void	logs(char *msg, int id);
 #endif

@@ -23,12 +23,12 @@ void	*ft_philosopher(void *arg)
 		{
 			break;
 		}
-
 	}
 
 	pthread_mutex_lock(philosopher->can_speak_mutex);
 	printf("Amen (id=%d)\n", philosopher->id);
 	pthread_mutex_unlock(philosopher->can_speak_mutex);
+	return (NULL);
 }
 
 void	eat(t_philosopher *philosopher)
@@ -71,6 +71,7 @@ void	sleep_(t_philosopher *philosopher)
 		}
 
 		// should I sleep 5 ms?
+
 	}
 }
 
@@ -84,6 +85,7 @@ void	think(t_philosopher *philosopher)
 	pthread_mutex_unlock(philosopher->can_speak_mutex);
 
 	// while 2 forks are not available, sleep
+
 
 }
 

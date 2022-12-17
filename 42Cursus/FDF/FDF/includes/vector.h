@@ -18,4 +18,11 @@ typedef struct s_vector3
 	int z;
 }	t_vector3;
 
+typedef struct s_dvector3
+{
+	double x;
+	double y;
+	double z;
+}	t_dvector3;
+
 #endif

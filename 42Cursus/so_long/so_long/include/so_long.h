@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:15 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/04 13:59:01 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/09 20:15:27 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		img_pix_put(t_img *img, int x, int y, int color);
 void		draw_rect(t_img *img, t_rect rect);
 /* Fill the img with the color */
 void		draw_background(t_img *img, int color);
-/*  */
+
 
 //	game.c
 /* Make all the game works, this function is called at each frame */

@@ -43,12 +43,14 @@ int	main(int argc, char **argv)
 	char	*message;
 	int		pid;
 
-	if (argc < 3)
+	if (argc != 3)
 	{
 		ft_putstr_fd("The first arg should be the server pid, \
 						the second one the message.\n", 1);
 		return (1);
 	}
+	if (argv[2][0] == '\0')
+		return (0);
 	pid = ft_atoi(argv[1]);
 	message = argv[2];
 	send_str_to_server(pid, message);

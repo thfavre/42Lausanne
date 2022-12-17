@@ -46,6 +46,7 @@
 # define K_SPACE 49
 #  define K_Q 12
 #  define K_E 14
+#  define K_H 4
 # endif
 
 #endif

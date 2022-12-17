@@ -49,7 +49,7 @@ typedef struct s_player
 	float		max_gravity;
 	void		(*move)(struct s_player *self, t_obstacle *obstacles, \
 					int obst_nb, bool *keypressed);
-	void		(*draw)(struct s_player *self, t_img *img, void *mlx_ptr);
+	void		(*draw)(struct s_player *self, t_img *img, void *mlx_ptr, void *win_ptr);
 }				t_player;
 
 typedef struct s_collectible

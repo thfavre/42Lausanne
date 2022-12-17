@@ -2,22 +2,22 @@ SOURCES = server.c client.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = # -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 all: server client
 
 bonus: server client
 
-server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+server: server.o libft/libft.a
+	$(CC) -o $@ $^
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+client: client.o libft/libft.a
+	$(CC) -o $@ $^ 
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
-libft:
+libft/libft.a:
 	make -C libft
 
 clean:
@@ -29,4 +29,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all bonus clean fclean re
+

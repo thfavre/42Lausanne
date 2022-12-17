@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 	// in miliseconds
 	int time_to_die = 4000;
 	int time_to_eat = 1000;
-	int time_to_sleep = 10000;
+	int time_to_sleep = 1000;
 	// number_of_times_each_philosopher_must_eat // optional
 
 	t_philosopher	*philosophers_data = malloc(sizeof(*philosophers_data) * number_of_philosophers);
@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 	while (i < number_of_philosophers)
 	{
 		pthread_mutex_init(&(forks_mutexes[i]), NULL);
+		philosophers_data[i].forks = forks_mutexes;
 		pthread_mutex_init(&(can_speak_mutex), NULL);
 		philosophers_data[i].id = i;
 		philosophers_data[i].state = SLEEPING;
@@ -38,7 +39,7 @@ int main(int argc, char **argv)
 	// wait for the threads to finish
 	i = 0;
 	while (i < number_of_philosophers)
-		pthread_detach(threads[i]);
+		pthread_detach(threads[i++]);
 		//pthread_join(threads[i], NULL);
 
 	printf("end\n");

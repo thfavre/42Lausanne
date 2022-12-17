@@ -20,13 +20,17 @@
 //	window
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define DEFAULT_ZOOM_FACTOR 5
-# define MOVE_SPEED 1
+# define DEFAULT_ZOOM_FACTOR 20
+# define ZOOM_SPEED 10
+# define HEIGHT_ZOOM_SPEED 8
+# define MOVE_SPEED 4
+# define ROTATE_SPEED 3
 
 // ---------- Functions ---------- //
 //	keys.c
 /* Set all the key to false (it means that they are not pressed) */
 void		init_keypressed(bool keypressed[200]);
+int			close_mlx(t_data *data);
 /* Set the key that is pressed to true */
 int			on_keypress(int keycode, t_data *data);
 /* Set the key that is released to false */
@@ -58,14 +62,20 @@ void	draw_isometric(t_data *data);
 //	vector.c
 void	move_vector3_ip(t_vector3 *vect3, t_vector3 move_vect3);
 	// in place
-void	mult_vector2_int_ip(t_vector2 *vect2, int mult);
-t_vector3	mult_vector3(t_vector3 vect3, int mult);
-void	add_vector2_ip(t_vector2 *vect, t_vector2 add_vect);
+void		mult_vector2_int_ip(t_vector2 *vect2, int mult);
+t_vector3	mult_vector3_float(t_vector3 vect3, float mult);
+t_vector3	mult_vector3_dvector3(t_vector3 vect3, t_dvector3 mult_vect3);
+void		add_vector2_ip(t_vector2 *vect, t_vector2 add_vect);
 
 //	move.c
-void	move_cells(t_map map, t_vector3 move_value);
-void	move(bool *keypressed, t_map map);
+void	move(t_data *data);
 
 //	zoom.c
-void	zoom(t_map map, double zoom_factor);
+void	zoom(t_data *data);
+
+//	rotate.c
+void	rotate(t_data *data);
+
+//	transform.c
+t_vector3	apply_transformations(t_data *data, int x, int y);
 #endif

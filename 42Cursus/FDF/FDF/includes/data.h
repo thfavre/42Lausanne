@@ -41,6 +41,7 @@ typedef struct s_map
 typedef struct s_attributes
 {
 	double		zoom_factor;
+	double		height_zoom;
 	int			line_width;
 	double		angle;
 	t_vector2	offset;

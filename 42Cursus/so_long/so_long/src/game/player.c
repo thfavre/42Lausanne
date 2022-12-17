@@ -1,7 +1,7 @@
 
 #include "../../include/so_long.h"
 
-void draw_player(struct s_player *self, t_img *img, void *mlx_ptr);
+void draw_player(struct s_player *self, t_img *img, void *mlx_ptr, void *win_ptr);
 void move_player(struct s_player *self, t_obstacle *obstacles, int obst_nb, bool *keypressed);
 
 t_player create_player(t_rect rect, void *mlx)
@@ -11,7 +11,7 @@ t_player create_player(t_rect rect, void *mlx)
 	player.pos = (t_fvector2){rect.x, rect.y};
 	player.rect = (t_rect){rect.x, rect.y, rect.width, rect.height, rgb(200, 2, 2)};
 	printf("111\n");
-	player.img = create_sprite(mlx, "../../assets/80/bread_down.xpm");
+	player.img = create_sprite(mlx, "p.xmp");//"../../assets/80/meat.xpm"); //bread_down
 	printf("222\n");
 	player.vel = (t_fvector2){0, 0};
 	player.gravity_dir = GRAV_DISABLE;
@@ -22,10 +22,10 @@ t_player create_player(t_rect rect, void *mlx)
 	return (player);
 }
 
-void	draw_player(struct s_player *self, t_img *img, void *mlx_ptr)
+void	draw_player(struct s_player *self, t_img *img, void *mlx_ptr, void *win_ptr)
 {
-	//draw_rect(img, self->rect);
-	mlx_put_image_to_window(mlx_ptr, img->mlx_img, self->img.mlx_img, self->pos.x, self->pos.y);
+	draw_rect(img, self->rect);
+	//mlx_put_image_to_window(mlx_ptr, win_ptr, img, self->rect.x, self->rect.y);
 }
 
 // void	jump_player(t_player *self)

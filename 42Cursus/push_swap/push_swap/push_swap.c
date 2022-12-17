@@ -18,7 +18,8 @@ t_stack	create_stack(int stackc, char **unformated_stack);
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
-
+	if (argc == 1)
+		return (0);
 	if (!correct_args(argc, argv))
 	{
 		write(2, "Error\n", 6);

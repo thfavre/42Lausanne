@@ -15,7 +15,8 @@ int	on_update(t_data *data)
 	// player
 	i = -1;
 	while (++i < data->map.player_nb)
-		data->map.players[i].draw(&data->map.players[i], &data->img, data->mlx_ptr);
+	//	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, &data->map.players.img.mlx_img, 110, 110);
+		data->map.players[i].draw(&data->map.players[i], &data->img, data->mlx_ptr, data->win_ptr);
 	i = -1;
 	while (++i < data->map.obst_nb)
 		data->map.obstacles[i].draw(&(data->map.obstacles[i]), &data->img);

@@ -17,8 +17,8 @@ int	on_keypress(int keycode, t_data *data)
 	//printf("%d\n", keycode);
 	if (keycode == K_ESC)
 		{
-			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-			data->win_ptr = NULL;
+			close_mlx(data);
+			//data->win_ptr = NULL;
 		}
 	// if (keycode == K_W) // W
 	// 	data->r1->x -= speed;
@@ -39,10 +39,18 @@ int	on_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-int	get_mouse_input(int key, int x, int y, t_fract *f)
+// int	get_mouse_input(int key, int x, int y, t_fract *f)
+// {
+// 	if (key == M_ZOOM_IN || key == M_ZOOM_OUT)
+// 		zoom(key, x, y, f);
+// 	draw(f);
+// 	return (0);
+// }
+
+int	close_mlx(t_data *data)
 {
-	if (key == M_ZOOM_IN || key == M_ZOOM_OUT)
-		zoom(key, x, y, f);
-	draw(f);
-	return (0);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free(data->mlx_ptr);
+	exit(0);
+	return (1);
 }
