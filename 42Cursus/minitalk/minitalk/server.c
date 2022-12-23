@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:33:43 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/08 15:33:53 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/22 14:01:02 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,36 @@ char	*ft_join_char_to_str(char *s, char c)
 
 void	handle_sigusr(int sig)
 {
-	static t_word	word = {(t_letter){0, 0}, ""};
+	static t_data	data = {(t_letter){0, 0}, "", 0};
 
 	if (sig == SIGUSR1)
-		modify_bit(&word.letter.letter, word.letter.current_bit, 1);
+		modify_bit(&data.letter.ascii, data.letter.current_bit, 1);
 	else if (sig == SIGUSR2)
-		modify_bit(&word.letter.letter, word.letter.current_bit, 0);
-	if (word.letter.current_bit == 8 - 1)
+		modify_bit(&data.letter.ascii, data.letter.current_bit, 0);
+	if (data.letter.current_bit == BIT_NB - 1)
 	{
-		if (word.letter.letter == 255)
+		if (data.letter.ascii == 0)
 		{
-			write(1, "\n", 1);
-			write(1, word.word, ft_strlen(word.word));
-			free(word.word);
-			word.word = "";
+			if (++data.sentense_nb % 2 != 0)
+				write(1, data.sentense, ft_strlen(data.sentense));
+			else
+				kill(ft_atoi(data.sentense), SIGUSR1);
+			free(data.sentense);
+			data.sentense = "";
 		}
 		else
-			word.word = ft_join_char_to_str(word.word, word.letter.letter);
-		word.letter.current_bit = 0;
+			data.sentense = ft_join_char_to_str(data.sentense, data.letter.ascii);
+		data.letter.current_bit = 0;
 	}
 	else
-		word.letter.current_bit++;
+		data.letter.current_bit++;
 }
+
 
 int	main(void)
 {
 	char				*pid;
-	struct sigaction	sa1;
-	struct sigaction	sa2;
+	struct sigaction	sa;
 
 	pid = ft_itoa(getpid());
 	if (pid == NULL)
@@ -75,16 +77,13 @@ int	main(void)
 	write(1, "Server PID : ", 13);
 	ft_putstr_fd(pid, 1);
 	free(pid);
-	sa1 = (struct sigaction){0};
-	sigemptyset(&sa1.sa_mask);
-	sigaddset(&sa1.sa_mask, SIGUSR2);
-	sa1.sa_handler = &handle_sigusr;
-	sigaction(SIGUSR1, &sa1, NULL);
-	sa2 = (struct sigaction){0};
-	sigemptyset(&sa2.sa_mask);
-	sigaddset(&sa2.sa_mask, SIGUSR1);
-	sa2.sa_handler = &handle_sigusr;
-	sigaction(SIGUSR2, &sa2, NULL);
+	sa = (struct sigaction){0};
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaddset(&sa.sa_mask, SIGUSR2);
+	sa.sa_handler = &handle_sigusr;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
 	return (0);

@@ -12,7 +12,7 @@ server: server.o libft/libft.a
 	$(CC) -o $@ $^
 
 client: client.o libft/libft.a
-	$(CC) -o $@ $^ 
+	$(CC) -o $@ $^
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?

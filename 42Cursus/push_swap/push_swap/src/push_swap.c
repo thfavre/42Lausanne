@@ -6,11 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:30 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/16 23:29:00 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/21 15:44:24 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 bool	correct_args(int argc, char **argv);
 t_stack	create_stack(int stackc, char **unformated_stack);
@@ -39,8 +39,7 @@ bool	correct_args(int argc, char **argv)
 	int		i;
 	int		j;
 
-	if (argc == 1)
-		return (false);
+	// if (argc == 2)
 	i = 1;
 	while (i < argc)
 		if (!is_str_integer_number(argv[i++]))

@@ -14,7 +14,7 @@ int	on_update(t_data *data)
 		data->attributes.line_width = 1;
 	if (data->keypressed[K_E])
 		data->attributes.line_width++;
-	printf("%d\n", data->attributes.line_width);
+	//printf("%d\n", data->attributes.line_width);
 
 
 

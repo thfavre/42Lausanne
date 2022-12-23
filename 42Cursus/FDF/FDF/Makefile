@@ -14,7 +14,7 @@ NAME = fdf
 
 
 #FILES =	$(PATH_GAME)test.c
-FILES = $(PATH_GAME)keys.c $(PATH_GAME)update.c $(PATH_GAME)render.c $(PATH_GAME)parse.c $(PATH_GAME)draw_isometric.c $(PATH_GAME)vector.c $(PATH_GAME)transform.c\
+FILES = $(PATH_SRC)main.c $(PATH_GAME)keys.c $(PATH_GAME)update.c $(PATH_GAME)render.c $(PATH_GAME)parse.c $(PATH_GAME)draw_isometric.c $(PATH_GAME)vector.c $(PATH_GAME)transform.c\
 		$(PATH_GNL)get_next_line.c $(PATH_GNL)get_next_line_utils.c
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))
 
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@echo objects done!!
 	@$(MAKE) -C $(PATH_MLX)
 	@$(MAKE) -C $(PATH_LIBFT)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(PATH_SRC)main.c $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
 	@echo program done!
 
 $(PATH_OBJS)%.o:	$(PATH_SRC)%.c

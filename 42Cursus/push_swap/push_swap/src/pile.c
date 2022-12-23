@@ -6,11 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:23:41 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/16 23:22:04 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/21 15:44:21 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	*create_pile(int stackc, char **unformated_stack)
 {

@@ -6,11 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:35 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/16 21:44:05 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/21 15:44:22 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	ascii_to_int(char *str)
 {

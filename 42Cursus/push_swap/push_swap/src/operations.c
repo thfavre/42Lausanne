@@ -6,11 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:32 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/16 23:17:18 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/21 16:17:42 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	add_operation(t_stack *stack, enum e_operation new_op);
 

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:33:50 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/08 15:36:13 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/22 17:27:25 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	send_char_to_server(int pid, int c)
 	int	j;
 
 	j = 0;
-	while (j < 8)
+	while (j < BIT_NB)
 	{
 		if ((c >> j) & 1)
 			kill(pid, SIGUSR1);
@@ -35,24 +35,41 @@ void	send_str_to_server(int pid, char *str)
 	i = 0;
 	while (str[i])
 		send_char_to_server(pid, str[i++]);
-	send_char_to_server(pid, 255);
+	send_char_to_server(pid, 0);
+}
+
+void	handle_sigusr(int sig)
+{
+	(void)sig;
+	write(1, "\n📩 Confirmation", 18);
+	exit(1);
 }
 
 int	main(int argc, char **argv)
 {
-	char	*message;
-	int		pid;
-
+	int		server_pid;
+	char	*client_pid;
+	struct sigaction	sa;
 	if (argc != 3)
 	{
 		ft_putstr_fd("The first arg should be the server pid, \
 						the second one the message.\n", 1);
 		return (1);
 	}
+	sa = (struct sigaction){0};
+	sa.sa_handler = &handle_sigusr;
+	sigaction(SIGUSR1, &sa, NULL);
 	if (argv[2][0] == '\0')
+	{
+		write(1, "\n(Empty message)", 16);
 		return (0);
-	pid = ft_atoi(argv[1]);
-	message = argv[2];
-	send_str_to_server(pid, message);
-	return (0);
+	}
+	server_pid = ft_atoi(argv[1]);
+	client_pid = ft_itoa(getpid());
+	if (client_pid == NULL)
+		return (1);
+	send_str_to_server(server_pid, argv[2]);
+	send_str_to_server(server_pid, client_pid);
+	while (1)
+		pause();
 }
