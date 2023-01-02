@@ -38,8 +38,15 @@ typedef struct s_map
 	t_cell		**cells;
 }					t_map;
 
+enum e_perspective_type
+{
+	conical,
+	isometric
+};
+
 typedef struct s_attributes
 {
+	enum e_perspective_type perspective_type;
 	double		zoom_factor;
 	double		height_zoom;
 	int			line_width;

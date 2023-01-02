@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:37 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/21 17:54:34 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/01/02 13:19:15 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ void			ra(t_stack *stack);
 /* sort.c */
 t_stack			small_push_swap(t_stack stack);
 t_stack			big_push_swap(t_stack stack);
+/* ft_split.c */
+char			**ft_split(char const *s, char c);
 #endif

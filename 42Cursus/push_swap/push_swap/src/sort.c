@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:39:18 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/21 15:44:19 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/29 15:23:08 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ t_stack	big_push_swap(t_stack stack)
 	while (!is_pile_storted(stack.pile1, stack.pile1_size))
 	{
 		op_nb = 0;
-		while (op_nb < stack.size)
+		while (op_nb < stack.size && \
+				!is_pile_storted(stack.pile1, stack.pile1_size))
 		{
 			op_nb++;
 			if (((stack.pile1[0] >> i) & 1) == 0)

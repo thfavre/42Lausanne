@@ -33,8 +33,7 @@ t_vector2 convert_vector3_to_conical(t_vector3 vect3, double angle)
 	return (vect2);
 }
 
-
-void	draw_isometric(t_data *data)
+void draw_conical(t_data *data)
 {
 	t_vector2	curr_pos;
 	t_vector2	start_pos;
@@ -57,18 +56,64 @@ void	draw_isometric(t_data *data)
 				end_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x + 1, curr_pos.y), data->attributes.angle);
 				add_vector2_ip(&start_pos, data->attributes.offset);
 				add_vector2_ip(&end_pos, data->attributes.offset);
-
 				draw_line(&data->img, start_pos, end_pos, data->attributes.line_width, rgb(222 - curr_pos.y*15, 149, 57 + curr_pos.y * 15));
+
 			}
 			// draw the segment going to the down
 			if (curr_pos.y < data->map.size.y - 1)
 			{
-				// start_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
-				// end_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y + 1), data->attributes.angle);
+				//start_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
+				//end_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y + 1), data->attributes.angle);
 				// add_vector2_ip(&start_pos, data->attributes.offset);
 				// add_vector2_ip(&end_pos, data->attributes.offset);
 				start_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
 				end_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x, curr_pos.y + 1), data->attributes.angle);
+				add_vector2_ip(&start_pos, data->attributes.offset);
+				add_vector2_ip(&end_pos, data->attributes.offset);
+				draw_line(&data->img, start_pos, end_pos,  data->attributes.line_width, rgb(222 - curr_pos.y*15, 149, 57 + curr_pos.y * 15));
+			}
+			curr_pos.x++;
+		}
+		curr_pos.y++;
+	}
+}
+
+
+void	draw_isometric(t_data *data)
+{
+	t_vector2	curr_pos;
+	t_vector2	start_pos;
+	t_vector2	end_pos;
+
+	curr_pos.y = 0;
+	while (curr_pos.y < data->map.size.y)
+	{
+		curr_pos.x = 0;
+		while (curr_pos.x < data->map.size.x)
+		{
+			// draw the segment going to the right
+			if (curr_pos.x < data->map.size.x - 1)
+			{
+				start_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
+				end_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x + 1, curr_pos.y), data->attributes.angle);
+				//add_vector2_ip(&start_pos, data->attributes.offset);
+				//add_vector2_ip(&end_pos, data->attributes.offset);
+				//start_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
+				//end_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x + 1, curr_pos.y), data->attributes.angle);
+				add_vector2_ip(&start_pos, data->attributes.offset);
+				add_vector2_ip(&end_pos, data->attributes.offset);
+				draw_line(&data->img, start_pos, end_pos, data->attributes.line_width, rgb(222 - curr_pos.y*15, 149, 57 + curr_pos.y * 15));
+
+			}
+			// draw the segment going to the down
+			if (curr_pos.y < data->map.size.y - 1)
+			{
+				start_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
+				end_pos = convert_vector3_to_isometric(apply_transformations(data, curr_pos.x, curr_pos.y + 1), data->attributes.angle);
+				// add_vector2_ip(&start_pos, data->attributes.offset);
+				// add_vector2_ip(&end_pos, data->attributes.offset);
+				//start_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x, curr_pos.y), data->attributes.angle);
+				//end_pos = convert_vector3_to_conical(apply_transformations(data, curr_pos.x, curr_pos.y + 1), data->attributes.angle);
 				add_vector2_ip(&start_pos, data->attributes.offset);
 				add_vector2_ip(&end_pos, data->attributes.offset);
 				draw_line(&data->img, start_pos, end_pos,  data->attributes.line_width, rgb(222 - curr_pos.y*15, 149, 57 + curr_pos.y * 15));

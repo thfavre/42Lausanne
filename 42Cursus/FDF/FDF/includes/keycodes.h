@@ -38,15 +38,17 @@
 #  define K_U 32
 #  define K_J 38
 #  define K_I 34
+#  define K_C 8
 #  define K_K 40
 #  define K_O 31
 #  define K_L 37
 #  define K_Z 6
 #  define K_SHIFT 257
-# define K_SPACE 49
+#  define K_SPACE 49
 #  define K_Q 12
 #  define K_E 14
 #  define K_H 4
+#  define K_T 17
 # endif
 
 #endif

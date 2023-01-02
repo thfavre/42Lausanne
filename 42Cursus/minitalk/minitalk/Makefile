@@ -1,12 +1,22 @@
-SOURCES = server.c client.c
+SOURCES = server.c client.c client_bonus.c server_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
+NAME = minitalk
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-all: server client
+all:	$(NAME)
 
-bonus: server client
+${NAME}:	server client
+
+
+server_bonus: server_bonus.o libft/libft.a
+	$(CC) -o $@ $^
+
+client_bonus: client_bonus.o libft/libft.a
+	$(CC) -o $@ $^
+
+bonus: server_bonus client_bonus
 
 server: server.o libft/libft.a
 	$(CC) -o $@ $^
@@ -25,7 +35,7 @@ clean:
 	make -C libft clean
 
 fclean: clean
-	rm -f server client libft/libft.a
+	rm -f server client client_bonus server_bonus libft/libft.a
 
 re: fclean all
 

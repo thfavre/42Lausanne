@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:33:40 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/29 16:06:26 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/29 16:06:22 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include <signal.h>
 # include <unistd.h>
@@ -37,6 +37,7 @@ typedef struct s_data
 {
 	t_letter	letter;
 	char		*sentense;
+	int			sentense_nb;
 }					t_data;
 
 #endif

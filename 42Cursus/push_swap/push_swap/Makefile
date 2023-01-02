@@ -43,7 +43,8 @@ FILES = $(PATH_SRC)push_swap.c	\
 		$(PATH_SRC)pile.c		\
 		$(PATH_SRC)utils.c		\
 		$(PATH_SRC)operations.c	\
-		$(PATH_SRC)sort.c
+		$(PATH_SRC)sort.c		\
+		$(PATH_SRC)ft_split.c
 
 
 

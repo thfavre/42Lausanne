@@ -11,6 +11,7 @@ bool	init_data(t_data *data, char *map_path)
 	data->attributes.offset = (t_vector2){0, 0};
 	data->attributes.angle = 0.5;
 	data->attributes.height_zoom = 1;
+	data->attributes.perspective_type = isometric;
 	//data->need_redraw = true;
 	return (true);
 }
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"Move : wasd | Zoom: zZ | Zoom height: hH | Line width: qe | Rotate: rR");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"Move : wasd | Zoom: zZ | Zoom height: hH | Line width: qe | Rotate: rR | Isometric: i | Conical: c");
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, \
 						&data.img.line_len, &data.img.endian);

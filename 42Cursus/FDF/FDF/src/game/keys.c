@@ -28,6 +28,7 @@ int	on_keypress(int keycode, t_data *data)
 	// 	data->r1->y += speed;
 	// if (keycode == K_D) // D
 	// 	data->r1->x += speed;
+	
 
 	return (0);
 }

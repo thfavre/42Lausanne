@@ -58,6 +58,7 @@ void draw_line(t_img *img, t_vector2 start_pos, t_vector2 end_pos, int line_widt
 
 //	draw_isometric.c
 void	draw_isometric(t_data *data);
+void	draw_conical(t_data *data);
 
 //	vector.c
 void	move_vector3_ip(t_vector3 *vect3, t_vector3 move_vect3);

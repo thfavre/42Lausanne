@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:33:43 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/02 16:08:12 by thfavre          ###   ########.fr       */
+/*   Updated: 2022/12/29 14:58:52 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "./minitalk_bonus.h"
 
 void	modify_bit(int *nb, int pos, int bit_value)
 {
@@ -38,7 +38,7 @@ char	*ft_join_char_str(char *s, char c)
 
 void	handle_sigusr(int sig)
 {
-	static t_data	data = {(t_letter){0, 0}, ""};
+	static t_data	data = {(t_letter){0, 0}, "", 0};
 
 	if (sig == SIGUSR1)
 		modify_bit(&data.letter.ascii, data.letter.current_bit, 1);
@@ -48,7 +48,11 @@ void	handle_sigusr(int sig)
 	{
 		if (data.letter.ascii == 0)
 		{
-			write(1, data.sentense, ft_strlen(data.sentense));
+			if (++data.sentense_nb % 2 != 0)
+				write(1, data.sentense, ft_strlen(data.sentense));
+			else
+				kill(ft_atoi(data.sentense), SIGUSR1);
+			free(data.sentense);
 			data.sentense = "";
 		}
 		else

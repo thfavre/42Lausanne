@@ -6,50 +6,58 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:30 by thfavre           #+#    #+#             */
-/*   Updated: 2022/12/21 15:44:24 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/01/02 15:07:07 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-bool	correct_args(int argc, char **argv);
+bool	correct_input(int input_nb, char **input);
 t_stack	create_stack(int stackc, char **unformated_stack);
 
 int	main(int argc, char **argv)
 {
-	t_stack	stack;
+	char	**input;
+	int		input_nb;
+
 	if (argc == 1)
 		return (0);
-	if (!correct_args(argc, argv))
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
 	if (argc == 2)
-		return (0);
-	if (argc <= 6)
-		stack = small_push_swap(create_stack(--argc, ++argv));
+	{
+		input = ft_split(argv[1], ' ');
+		input_nb = 0;
+		while (input[input_nb])
+			input_nb++;
+	}
 	else
-		stack = big_push_swap(create_stack(--argc, ++argv));
-	return (0);
+	{
+		input = argv + 1;
+		input_nb = argc - 1;
+	}
+	if (!correct_input(input_nb, input))
+		write(2, "Error\n", 6);
+	else if (input_nb <= 6)
+		small_push_swap(create_stack(input_nb, input));
+	else
+		big_push_swap(create_stack(input_nb, input));
+	exit(1);
 }
 
-bool	correct_args(int argc, char **argv)
+bool	correct_input(int input_nb, char **input)
 {
 	int		i;
 	int		j;
 
-	// if (argc == 2)
-	i = 1;
-	while (i < argc)
-		if (!is_str_integer_number(argv[i++]))
+	i = 0;
+	while (i < input_nb)
+		if (!is_str_integer_number(input[i++]))
 			return (false);
 	i = 0;
-	while (i < argc)
+	while (i < input_nb)
 	{
 		j = i + 1;
-		while (j < argc)
-			if (ascii_to_int(argv[i]) == ascii_to_int(argv[j++]))
+		while (j < input_nb)
+			if (ascii_to_int(input[i]) == ascii_to_int(input[j++]))
 				return (false);
 		i++;
 	}
