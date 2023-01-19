@@ -1,35 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/16 16:19:15 by thfavre           #+#    #+#             */
+/*   Updated: 2023/01/19 10:24:16 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
 bool	init_data(t_data *data, char *map_path)
 {
 	init_keypressed(data->keypressed);
-	data->map = parse(map_path);
-	//t_vector3	offset = {0, 0}; //{40 * 10, 50 * 5, 0};
-	//move_cells(data->map, offset);
+	parse(map_path, &data->map);
 	data->attributes.zoom_factor = (float)DEFAULT_ZOOM_FACTOR;
 	data->attributes.line_width = 1;
 	data->attributes.offset = (t_vector2){0, 0};
 	data->attributes.angle = 0.5;
 	data->attributes.height_zoom = 1;
 	data->attributes.perspective_type = isometric;
-	//data->need_redraw = true;
+	data->attributes.color_disco = 0;
+	data->attributes.moving_colors = false;
+	data->attributes.moving_wave = false;
+	data->attributes.wave_pos = 3;
 	return (true);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		test_fd;
 
 	if (argc == 1)
-		{
-			write(1, "You must include the map path (ex: maps/42.fdf)\n", 49);
-			return (1);
-		}
-
+	{
+		write(1, "You must include the map path (ex: maps/42.fdf)\n", 49);
+		return (1);
+	}
+	test_fd = open(argv[1], O_RDWR);
+	if (test_fd == -1)
+		return (1);
+	close(test_fd);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,"Move : wasd | Zoom: zZ | Zoom height: hH | Line width: qe | Rotate: rR | Isometric: i | Conical: c");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "\
+	Move : wasd | Zoom: zZ | Zoom height: hH | Line width: qe | Rotate: rR | \
+	Isometric: i | Conical: c | Disco: Space | Wave: mn");
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, \
 						&data.img.line_len, &data.img.endian);
@@ -39,5 +58,4 @@ int main(int argc, char **argv)
 	mlx_loop_hook(data.mlx_ptr, &on_update, &data);
 	mlx_hook(data.win_ptr, EVENT_DESTROY, 0, &close_mlx, &data);
 	mlx_loop(data.mlx_ptr);
-	return (0);
 }

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 14:03:08 by thfavre           #+#    #+#             */
+/*   Updated: 2023/01/19 10:33:23 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
@@ -14,22 +25,8 @@ int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode < 400)
 		data->keypressed[keycode] = true;
-	//printf("%d\n", keycode);
 	if (keycode == K_ESC)
-		{
-			close_mlx(data);
-			//data->win_ptr = NULL;
-		}
-	// if (keycode == K_W) // W
-	// 	data->r1->x -= speed;
-	// if (keycode == K_A) // A
-	// 	data->r1->y -= speed;
-	// if (keycode == K_S) // S
-	// 	data->r1->y += speed;
-	// if (keycode == K_D) // D
-	// 	data->r1->x += speed;
-	
-
+		close_mlx(data);
 	return (0);
 }
 
@@ -40,18 +37,16 @@ int	on_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-// int	get_mouse_input(int key, int x, int y, t_fract *f)
-// {
-// 	if (key == M_ZOOM_IN || key == M_ZOOM_OUT)
-// 		zoom(key, x, y, f);
-// 	draw(f);
-// 	return (0);
-// }
-
 int	close_mlx(t_data *data)
 {
+	int	i;
+
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	free(data->mlx_ptr);
-	exit(0);
+	i = 0;
+	while (i < data->map.size.y)
+		free(data->map.cells[i++]);
+	free(data->map.cells);
+	exit(1);
 	return (1);
 }

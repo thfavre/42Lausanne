@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 19:08:02 by thfavre           #+#    #+#             */
+/*   Updated: 2023/01/17 21:07:25 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
@@ -8,7 +19,7 @@ int	rgb(uint8_t red, uint8_t green, uint8_t blue)
 
 int	argb(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue)
 {
-	return (alpha << 24 |red << 16 | green << 8 | blue);
+	return (alpha << 24 | red << 16 | green << 8 | blue);
 }
 
 // like mlx_pixel_put but faster
@@ -23,9 +34,9 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	}
 }
 
-void draw_rect(t_img *img, t_rect rect)
+void	draw_rect(t_img *img, t_rect rect)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -44,49 +55,4 @@ void draw_rect(t_img *img, t_rect rect)
 void	draw_background(t_img *img, int color)
 {
 	draw_rect(img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, color});
-}
-
-void draw_line(t_img *img, t_vector2 start_pos, t_vector2 end_pos, int line_width, int color)
-{
-	bool steep = false;
-	if (abs(start_pos.x-end_pos.x)<abs(start_pos.y-end_pos.y)) {
-		int tmp = start_pos.x;
-		start_pos.x = start_pos.y;
-		start_pos.y = tmp;
-		tmp = end_pos.x;
-		end_pos.x = end_pos.y;
-		end_pos.y = tmp;
-		steep = true;
-	}
-	if (start_pos.x>end_pos.x) {
-		int tmp = start_pos.x;
-		start_pos.x = end_pos.x;
-		end_pos.x = tmp;
-		tmp = start_pos.y;
-		start_pos.y = end_pos.y;
-		end_pos.y = tmp;
-	}
-	int dx = end_pos.x-start_pos.x;
-	int dy = end_pos.y-start_pos.y;
-	int derror2 = abs(dy)*2;
-	int error2 = 0;
-	int y = start_pos.y;
-	for (int x=start_pos.x; x<=end_pos.x; x++)
-	{
-		for (int i = -line_width/2; i <= line_width/2; i++)
-		{
-			if (steep) {
-			img_pix_put(img, y + i, x, color);
-			// image->set(y, x, color);
-			} else {
-			//   image->set(x, y, );
-			img_pix_put(img, x, y + i, color);
-			}
-		}
-		error2 += derror2;
-		if (error2 > dx) {
-			y += (end_pos.y>start_pos.y?1:-1);
-			error2 -= dx*2;
-		}
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:30 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/02 15:07:07 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/01/11 13:00:06 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	}
 	if (!correct_input(input_nb, input))
 		write(2, "Error\n", 6);
-	else if (input_nb <= 6)
+	else if (input_nb < 6)
 		small_push_swap(create_stack(input_nb, input));
 	else
 		big_push_swap(create_stack(input_nb, input));

@@ -1,39 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 19:07:16 by thfavre           #+#    #+#             */
+/*   Updated: 2023/01/17 19:07:16 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 t_vector2	get_map_size(char *map_path);
 
-t_map	parse(char *map_path)
+void	parse(char *map_path, t_map *map)
 {
 	int			fd;
 	char		*line;
 	char		**splited_line;
-	t_vector2	curr_pos;
-	t_map		map;
+	t_vector2	pos;
 
-	curr_pos.y = 0;
+	pos.y = -1;
 	fd = open(map_path, O_RDWR);
-	map.size = get_map_size(map_path);;
-
-	map.cells = malloc(sizeof(*map.cells) * map.size.y);
-
-	while (curr_pos.y < map.size.y)
+	map->size = get_map_size(map_path);
+	map->cells = malloc(sizeof(*map->cells) * map->size.y);
+	while (++pos.y < map->size.y)
 	{
 		line = get_next_line(fd);
 		splited_line = ft_split(line, ' ');
-		map.cells[curr_pos.y] = malloc(sizeof(**map.cells) * map.size.x);
-		curr_pos.x = 0;
-		while (curr_pos.x < map.size.x)
+		free(line);
+		map->cells[pos.y] = malloc(sizeof(**map->cells) * map->size.x);
+		pos.x = -1;
+		while (++pos.x < map->size.x)
 		{
-			// TODO check if number
-			map.cells[curr_pos.y][curr_pos.x].vect3.x = curr_pos.x;
-			map.cells[curr_pos.y][curr_pos.x].vect3.y = curr_pos.y;
-			map.cells[curr_pos.y][curr_pos.x].vect3.z = ft_atoi(splited_line[curr_pos.x]);
-			curr_pos.x++;
+			map->cells[pos.y][pos.x].vect3.x = pos.x;
+			map->cells[pos.y][pos.x].vect3.y = pos.y;
+			map->cells[pos.y][pos.x].vect3.z = ft_atoi(splited_line[pos.x]);
+			free(splited_line[pos.x]);
 		}
-		curr_pos.y++;
+		free(splited_line);
 	}
-	close(fd);
-	return (map);
 }
 
 t_vector2	get_map_size(char *map_path)
@@ -55,6 +62,7 @@ t_vector2	get_map_size(char *map_path)
 	}
 	while (line)
 	{
+		free(line);
 		line = get_next_line(fd);
 		size.y++;
 	}
