@@ -5,9 +5,9 @@
 int main(int argc, char **argv)
 {
 	int philos_numbers = 4;
-	int time_to_die = 4000;
-	int time_to_eat = 3000;
-	int time_to_sleep = 10020;
+	int time_to_die = 310;
+	int time_to_eat = 200;
+	int time_to_sleep = 100;
 
 
 	t_philo			*philos = malloc(sizeof(*philos) * philos_numbers);
@@ -25,6 +25,7 @@ int main(int argc, char **argv)
 		philos[i].time_to_die = time_to_die;
 		philos[i].time_to_eat = time_to_eat;
 		philos[i].time_to_sleep = time_to_sleep;
+		philos[i].philos_numbers = philos_numbers;
 		pthread_create(&(threads[i]), NULL, brain, &(philos[i]));
 		i++;
 	}
@@ -33,5 +34,5 @@ int main(int argc, char **argv)
 	while (i < philos_numbers)
 		pthread_join(threads[i++], NULL);
 		//pthread_detach(threads[i]);
-
+	// USEFUL ?int pthread_mutex_destroy(pthread_mutex_t *mutex);
 }

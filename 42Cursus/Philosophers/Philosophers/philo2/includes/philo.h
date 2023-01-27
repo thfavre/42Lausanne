@@ -34,12 +34,14 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int					id;
+	int					philos_numbers;
 	t_fork				*forks;
 	int					last_eat_time;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
 	bool				is_dead;
+	int					fork_in_hand_numbers;
 
 }						t_philo;
 
@@ -56,5 +58,5 @@ void	eat(t_philo *philo);
 void	dream(t_philo *philo);
 //	utils.c
 void	logs(char *msg, int id);
-int	get_time_in_ms();
+int		get_time_in_ms();
 #endif

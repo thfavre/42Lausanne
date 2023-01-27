@@ -3,7 +3,7 @@
 
 void	logs(char *msg, int id)
 {
-	printf("%i %d %s\n", get_time_in_ms(), id, msg);
+	printf("%i %d %s\n", get_time_in_ms(), ++id, msg);
 }
 
 int	get_time_in_ms(void)
