@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-My [Piscine](https://github.com/diabolo257/42Lausanne/tree/main/42Piscine) and [Cursus](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus) at 42 Lausanne.
+My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscine</a> and <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Cursus</a> at 42 Lausanne.
 </p>
 <br>
 
