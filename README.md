@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-My Piscine and Cursus at 42 Lausanne.
+My [Piscine](https://github.com/diabolo257/42Lausanne/tree/main/42Piscine) and [Cursus](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus) at 42 Lausanne.
 </p>
 <br>
 
