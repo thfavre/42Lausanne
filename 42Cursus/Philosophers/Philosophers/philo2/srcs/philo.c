@@ -1,6 +1,14 @@
 
 #include "../includes/philo.h"
 
+bool	should_stop(t_philo *philo)
+{
+	pthread_mutex_lock(philo->stop_mutex);
+
+	pthread_mutex_unlock(philo->stop_mutex);
+	return (false);
+}
+
 void	*brain(void *args)
 {
 	t_philo	*philo = (t_philo*)args;

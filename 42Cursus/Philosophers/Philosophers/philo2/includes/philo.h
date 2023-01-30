@@ -35,6 +35,7 @@ typedef struct s_philo
 {
 	int					id;
 	int					philos_numbers;
+	pthread_mutex_t		*stop_mutex;
 	t_fork				*forks;
 	int					last_eat_time;
 	int					time_to_die;
@@ -42,6 +43,7 @@ typedef struct s_philo
 	int					time_to_sleep;
 	bool				is_dead;
 	int					fork_in_hand_numbers;
+	unsigned int		meal_number;
 
 }						t_philo;
 
