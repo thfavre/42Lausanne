@@ -3,10 +3,25 @@
 
 bool	should_stop(t_philo *philo)
 {
-	pthread_mutex_lock(philo->stop_mutex);
+	bool	return_value;
 
-	pthread_mutex_unlock(philo->stop_mutex);
-	return (false);
+	//pthread_mutex_lock(&philo->stop->mutex);
+	if (philo->stop->status)
+	{
+		philo->is_dead = true;
+		return_value = true;
+	}
+	else
+		return_value = false;
+	// pthread_mutex_unlock(&philo->stop->mutex);
+	return (return_value);
+}
+
+void	stooop(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->stop->mutex);
+	philo->stop->status = true;
+	pthread_mutex_unlock(&philo->stop->mutex);
 }
 
 void	*brain(void *args)
@@ -35,7 +50,8 @@ void	die(t_philo *philo)
 	if (philo->last_eat_time + philo->time_to_die < get_time_in_ms())
 	{
 		philo->is_dead = true;
-		logs("\033[0;31mdied\033[0m", philo->id);
+		logs("\033[0;31mdied\033[0m", philo);
+		stooop(philo);
 	}
 }
 
@@ -75,12 +91,12 @@ void	think(t_philo *philo)
 		if (take_fork(&philo->forks[philo->id]))
 			{
 				philo->fork_in_hand_numbers++;
-				logs("\033[0;36mhas taken a fork\033[0m", philo->id);
+				logs("\033[0;36mhas taken a fork\033[0m", philo);
 			}
 		if (take_fork(&philo->forks[(philo->id + 1) % philo->philos_numbers]))
 		{
 			philo->fork_in_hand_numbers++;
-			logs("\033[0;36mhas taken a fork\033[0m", philo->id);
+			logs("\033[0;36mhas taken a fork\033[0m", philo);
 		}
 		if (philo->fork_in_hand_numbers != 2 && !is_thinking)
 		// if (take_fork(&philo->forks[philo->id]))
@@ -104,14 +120,14 @@ void	eat(t_philo *philo)
 		return ;
 
 	start_eat_time = get_time_in_ms();
-	logs("\033[0;32mis eating\033[0m", philo->id);
+	logs("\033[0;32mis eating\033[0m", philo);
 	philo->last_eat_time = get_time_in_ms();
 	while (!philo->is_dead && start_eat_time + philo->time_to_eat > get_time_in_ms())
 		die(philo);
 	release_fork(&philo->forks[philo->id]);
-	logs("has release a fork", philo->id);
+	logs("has release a fork", philo);
 	release_fork(&philo->forks[(philo->id + 1) % philo->philos_numbers]);
-	logs("has release a fork", philo->id);
+	logs("has release a fork", philo);
 
 	// usleep(philo->time_to_eat * 1000);
 }
@@ -124,7 +140,7 @@ void	dream(t_philo *philo)
 	if (philo->is_dead)
 		return ;
 	start_sleep_time = get_time_in_ms();
-	logs("\033[0;30mis sleeping\033[0m", philo->id);
+	logs("\033[0;30mis sleeping\033[0m", philo);
 	while (!philo->is_dead && start_sleep_time + philo->time_to_sleep > get_time_in_ms())
 		die(philo);
 }

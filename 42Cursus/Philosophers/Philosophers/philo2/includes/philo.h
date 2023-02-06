@@ -31,11 +31,18 @@ typedef struct s_fork
 	bool			is_taken;
 }					t_fork;
 
+typedef struct s_stop
+{
+	pthread_mutex_t	mutex;
+	bool			status;
+}					t_stop;
+
+
 typedef struct s_philo
 {
 	int					id;
 	int					philos_numbers;
-	pthread_mutex_t		*stop_mutex;
+	//pthread_mutex_t		*stop_mutex;
 	t_fork				*forks;
 	int					last_eat_time;
 	int					time_to_die;
@@ -44,6 +51,7 @@ typedef struct s_philo
 	bool				is_dead;
 	int					fork_in_hand_numbers;
 	unsigned int		meal_number;
+	t_stop				*stop;
 
 }						t_philo;
 
@@ -58,7 +66,8 @@ void	die(t_philo *philo);
 void	think(t_philo *philo);
 void	eat(t_philo *philo);
 void	dream(t_philo *philo);
+bool	should_stop(t_philo *philo);
 //	utils.c
-void	logs(char *msg, int id);
+void	logs(char *msg, t_philo *philo);
 int		get_time_in_ms();
 #endif

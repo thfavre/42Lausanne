@@ -1,9 +1,12 @@
 
 #include "../includes/philo.h"
 
-void	logs(char *msg, int id)
+void	logs(char *msg, t_philo *philo)
 {
-	printf("%i %d %s\n", get_time_in_ms(), ++id, msg);
+	pthread_mutex_lock(&philo->stop->mutex);
+	if (!should_stop(philo))
+		printf("%i %d %s\n", get_time_in_ms(), philo->id + 1, msg);
+	pthread_mutex_unlock(&philo->stop->mutex);
 }
 
 int	get_time_in_ms(void)
