@@ -34,6 +34,7 @@ typedef struct s_fork
 typedef struct s_stop
 {
 	pthread_mutex_t	mutex;
+	int				finish_counter;
 	bool			status;
 }					t_stop;
 
@@ -51,6 +52,7 @@ typedef struct s_philo
 	bool				is_dead;
 	int					fork_in_hand_numbers;
 	unsigned int		meal_number;
+	int					meal_goal;
 	t_stop				*stop;
 
 }						t_philo;
