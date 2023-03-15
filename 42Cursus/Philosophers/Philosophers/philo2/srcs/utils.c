@@ -3,10 +3,11 @@
 
 void	logs(char *msg, t_philo *philo)
 {
-	pthread_mutex_lock(&philo->stop->mutex);
+	// pthread_mutex_lock(&philo->stop->mutex);
 	if (!should_stop(philo))
-		printf("%i %d %s, %d\n", get_time_in_ms(), philo->id + 1, msg, philo->meal_number);
-	pthread_mutex_unlock(&philo->stop->mutex);
+	// if (!philo->is_dead)
+		printf("%i\t %d\t %s, %d\n", get_time_in_ms(), philo->id + 1, msg, philo->meal_number);
+	// pthread_mutex_unlock(&philo->stop->mutex);
 }
 
 int	get_time_in_ms(void)

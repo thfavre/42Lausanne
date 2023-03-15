@@ -4,8 +4,8 @@
 bool	should_stop(t_philo *philo)
 {
 	bool	return_value;
-
-	// pthread_mutex_lock(&philo->stop->mutex);
+	// if (lock_mutex)
+	pthread_mutex_lock(&philo->stop->mutex);
 	if (philo->stop->status)
 	{
 		philo->is_dead = true;
@@ -13,8 +13,8 @@ bool	should_stop(t_philo *philo)
 	}
 	else
 		return_value = false;
-	// pthread_mutex_unlock(&philo->stop->mutex);
-
+	// if (lock_mutex)
+	pthread_mutex_unlock(&philo->stop->mutex);
 	return (return_value);
 }
 
@@ -26,12 +26,16 @@ void	*brain(void *args)
 	if (philo->id % 2)
 		usleep(3000);
 	philo->last_eat_time = get_time_in_ms();
+	pthread_mutex_lock(&philo->stop->mutex);
 	while (!philo->is_dead)
 	{
-		die(philo);
-		think(philo);
-		eat(philo);
-		dream(philo);
+			printf("%d\n", philo->id);
+			//logs(" New philo created ", philo);
+
+		// die(philo);
+		// think(philo);
+		// eat(philo);
+		// dream(philo);
 	}
 
 	return (NULL);
@@ -43,9 +47,12 @@ void	die(t_philo *philo)
 		return ;
 	if (philo->last_eat_time + philo->time_to_die < get_time_in_ms())
 	{
-		philo->is_dead = true;
-		logs("\033[0;31mdied\033[0m", philo);
 		pthread_mutex_lock(&philo->stop->mutex);
+		pthread_mutex_lock(&philo->stop->mutex);
+		// should_stop(philo);
+		logs("\033[0;31mdied\033[0m", philo);
+		philo->is_dead = true;
+
 		philo->stop->status = true;
 		pthread_mutex_unlock(&philo->stop->mutex);
 	}

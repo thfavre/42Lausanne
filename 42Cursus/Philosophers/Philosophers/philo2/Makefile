@@ -32,7 +32,7 @@ PATH_SRC =			./srcs/
 PATH_OBJS =			./objs/
 
 #---Compilation flags---#
-CC = gcc
+CC = gcc -fsanitize=address# -fsanitize=thread
 CFLAGS = #-Wall -Wextra -Werror
 
 # NB_FILES			=	$(shell ls -l $(PATH_SRC) | grep -F .c | wc -l)
