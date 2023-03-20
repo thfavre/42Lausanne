@@ -23,7 +23,8 @@ t_philo	*init_philos(t_philos_stats stats)
 	int	i;
 
 	pthread_mutex_init(&stop_mutex, NULL);
-	stop = (t_stop){stop_mutex, 0, false};
+	stop = (t_stop){&stop_mutex, 0, false};
+	// return philos;
 	i = -1;
 	while (++i < stats.philos_numbers)
 	{
@@ -72,7 +73,7 @@ int main(int argc, char **argv)
 	t_philo			*philos;
 	unsigned int number_of_times_each_philosopher_must_eat = 40;
 
-	philos_stats = (t_philos_stats){6, 400, 200, 200, 0};
+	philos_stats = (t_philos_stats){6, 100, 20, 20, 0};
 	philos = init_philos(philos_stats);
 	start_philos(philos_stats, philos);
 	return (0);

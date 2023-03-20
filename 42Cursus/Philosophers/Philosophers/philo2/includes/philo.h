@@ -33,7 +33,7 @@ typedef struct s_fork
 
 typedef struct s_stop
 {
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	*mutex;
 	int				finish_counter;
 	bool			status;
 }					t_stop;
@@ -70,6 +70,6 @@ void	eat(t_philo *philo);
 void	dream(t_philo *philo);
 bool	should_stop(t_philo *philo);
 //	utils.c
-void	logs(char *msg, t_philo *philo);
+void	logs(char *msg, t_philo *philo, bool kill);
 int		get_time_in_ms();
 #endif

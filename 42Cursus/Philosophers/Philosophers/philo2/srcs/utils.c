@@ -1,13 +1,21 @@
 
 #include "../includes/philo.h"
 
-void	logs(char *msg, t_philo *philo)
+void	logs(char *msg, t_philo *philo, bool kill)
 {
 	// pthread_mutex_lock(&philo->stop->mutex);
-	if (!should_stop(philo))
+	// if (!should_stop())
+	// should_stop(philo);
+	pthread_mutex_lock(philo->stop->mutex);
+	if (philo->stop->status == false)
 	// if (!philo->is_dead)
 		printf("%i\t %d\t %s, %d\n", get_time_in_ms(), philo->id + 1, msg, philo->meal_number);
-	// pthread_mutex_unlock(&philo->stop->mutex);
+	if (kill)
+	{
+		philo->is_dead = true;
+		philo->stop->status = true;
+	}
+	pthread_mutex_unlock(philo->stop->mutex);
 }
 
 int	get_time_in_ms(void)
