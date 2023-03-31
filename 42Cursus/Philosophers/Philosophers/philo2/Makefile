@@ -32,10 +32,8 @@ PATH_SRC =			./srcs/
 PATH_OBJS =			./objs/
 
 #---Compilation flags---#
-CC = gcc -fsanitize=address# -fsanitize=thread
-CFLAGS = #-Wall -Wextra -Werror
-
-# NB_FILES			=	$(shell ls -l $(PATH_SRC) | grep -F .c | wc -l)
+CC = gcc #-g -fsanitize=thread # -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = philo
 
@@ -43,19 +41,13 @@ FILES = $(PATH_SRC)main.c		\
 		$(PATH_SRC)philo.c		\
 		$(PATH_SRC)routine.c	\
 		$(PATH_SRC)utils.c		\
-
+		$(PATH_SRC)fork.c		\
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))
 
-
-
 all:	${NAME}
 
-#pr :
-#	@printf "\n${_BOLD}${_WHITE}1 ${_YELLOW}2${_END}\n"
-
 ${NAME}:	${OBJS}
-#	@printf "\n${_BOLD}${_WHITE}Compiling ${_YELLOW}everything${_END}\n"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@printf "\n${_BOLD}${_GREEN}OK! ${_WHITE}(./${NAME})${_END}\n\n"
 

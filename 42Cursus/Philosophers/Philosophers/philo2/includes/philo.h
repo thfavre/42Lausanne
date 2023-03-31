@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 16:27:01 by thfavre           #+#    #+#             */
+/*   Updated: 2023/03/31 16:57:59 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -7,12 +19,12 @@
 ** =============================================================================
 */
 
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
-#include <stdbool.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <stdbool.h>
 
 /*
 ** =============================================================================
@@ -25,6 +37,17 @@
 ** Struct Type Definitions
 ** =============================================================================
 */
+
+typedef struct s_philos_stats
+{
+	int	philos_numbers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	meal_goal;
+
+}	t_philos_stats;
+
 typedef struct s_fork
 {
 	pthread_mutex_t	mutex;
@@ -38,12 +61,10 @@ typedef struct s_stop
 	bool			status;
 }					t_stop;
 
-
 typedef struct s_philo
 {
 	int					id;
 	int					philos_numbers;
-	//pthread_mutex_t		*stop_mutex;
 	t_fork				*forks;
 	int					last_eat_time;
 	int					time_to_die;
@@ -51,7 +72,7 @@ typedef struct s_philo
 	int					time_to_sleep;
 	bool				is_dead;
 	int					fork_in_hand_numbers;
-	unsigned int		meal_number;
+	int					meal_number;
 	int					meal_goal;
 	t_stop				*stop;
 
@@ -68,8 +89,11 @@ void	die(t_philo *philo);
 void	think(t_philo *philo);
 void	eat(t_philo *philo);
 void	dream(t_philo *philo);
-bool	should_stop(t_philo *philo);
+// fork.c
+bool	take_fork(t_philo *philo, t_fork *fork);
+void	release_fork(t_fork *fork);
 //	utils.c
 void	logs(char *msg, t_philo *philo, bool kill);
-int		get_time_in_ms();
+int		get_time_ms(void);
+int		ft_atoi(char *str);
 #endif
