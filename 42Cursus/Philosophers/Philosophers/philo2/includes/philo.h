@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:27:01 by thfavre           #+#    #+#             */
-/*   Updated: 2023/03/31 16:57:59 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/31 18:05:20 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	release_fork(t_fork *fork);
 void	logs(char *msg, t_philo *philo, bool kill);
 int		get_time_ms(void);
 int		ft_atoi(char *str);
+void	free_all(t_philo *philos);
 #endif

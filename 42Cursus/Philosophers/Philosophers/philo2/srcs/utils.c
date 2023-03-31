@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:49:05 by thfavre           #+#    #+#             */
-/*   Updated: 2023/03/31 16:56:37 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/31 18:05:24 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,18 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (nbr);
+}
+
+void	free_all(t_philo *philos)
+{
+	int	i;
+
+	i = -1;
+	while (++i < philos->philos_numbers)
+		pthread_mutex_destroy(&(philos[i].forks[i].mutex));
+	free(philos[0].forks);
+	pthread_mutex_destroy(philos[0].stop->mutex);
+	free(philos[0].stop->mutex);
+	free(philos[0].stop);
+	free(philos);
 }
