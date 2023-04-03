@@ -5,6 +5,5 @@
 - https://github.com/S-LucasSerrano/miniLibX_sample
 
 # Result
+<img src="../../../assets/fdf_wave.gif" width="500" height="500" />
 
-
-![wave](https://raw.githubusercontent.com/thfavre/42Lausanne/assets/fdf_wave.gif?raw=true&w=100&h=100)
