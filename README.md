@@ -18,4 +18,17 @@ My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscin
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
 </p>
 
+## Strange
+### 1)
+```C
+int a[6] = { [4] = 29, [2] = 15 };
+// Is the same as 
+int a[6] = { 0, 0, 15, 0, 29, 0 };
+```
+### 2)
+```C
+lst[i];
+// Is the same as
+i[lst];
+```
 
