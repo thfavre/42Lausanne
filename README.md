@@ -39,3 +39,23 @@ label:
 ...
 goto label;
 ```
+
+### 4) fast swap
+```C
+a ^= b ;
+b ^= a;
+a ^= b;
+```
+
+### 5) any-order structure initialization
+```C
+struct foo{
+  int x;
+  char* name;
+};
+
+void main(){
+  struct foo f = { .name = "awesome", .x = -38 };
+}
+
+```
