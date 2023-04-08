@@ -19,7 +19,7 @@ My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscin
 </p>
 
 ## Strange
-### 1)
+### 1) Designated Initializers
 ```C
 int a[6] = { [4] = 29, [2] = 15 };
 // Is the same as 
@@ -31,4 +31,11 @@ lst[i];
 // Is the same as
 i[lst];
 ```
+Why? Because `lst[i]` means `*(lst+i)`
 
+### 3) goto
+```C
+label:
+...
+goto label;
+```
