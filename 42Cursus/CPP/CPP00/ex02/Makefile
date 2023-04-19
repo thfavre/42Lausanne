@@ -11,13 +11,13 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SOURCES = Contact.cpp PhoneBook.cpp main.cpp
+SOURCES = Account.cpp tests.cpp
 
 # Object files
 OBJECTS = $(addprefix objs/, $(notdir $(SOURCES:.cpp=.o)))
 
 # Target executable
-TARGET = phoneBook
+TARGET = test
 
 all: $(TARGET)
 	@echo "$(COLOR_GREEN)Compilation completed successfully!$(COLOR_RESET)"
