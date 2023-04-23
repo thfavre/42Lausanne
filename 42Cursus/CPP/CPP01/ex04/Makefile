@@ -11,13 +11,13 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SOURCES = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
+SOURCES = main.cpp
 
 # Object files
 OBJECTS = $(addprefix objs/, $(notdir $(SOURCES:.cpp=.o)))
 
 # Target executable
-TARGET = a.out
+TARGET = sed
 
 all: $(TARGET)
 	@echo "$(COLOR_GREEN)Compilation completed successfully!$(COLOR_RESET)"
