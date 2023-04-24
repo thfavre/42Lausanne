@@ -17,7 +17,9 @@ std::string	readFile(std::ifstream& file) {
 }
 
 std::string replace(std::string str, std::string s1, std::string s2) {
-	return ("blaa");
+	std::string	new_string;
+	size_t		pos;
+
 }
 
 int	main(int argc, char **argv) {
@@ -44,7 +46,4 @@ int	main(int argc, char **argv) {
 	infileContent = readFile(infile);
 
 	outfile << replace(infileContent, argv[2], argv[3]);
-
-
-
 }
