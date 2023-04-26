@@ -1,114 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 16:31:31 by thfavre           #+#    #+#             */
+/*   Updated: 2023/04/25 13:37:59 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	*ft_philosopher(void *arg)
+void	*brain(void *args)
 {
-	t_philosopher	*philosopher = (t_philosopher*)arg;
-	printf("A new philosopher thread has been created! (id = %d)\n", philosopher->id);
-	while (1)
+	t_philo	*philo;
+
+	philo = (t_philo *)args;
+	philo->is_dead = false;
+	if (philo->id % 2 == 0)
+		usleep(3000);
+	philo->last_eat_time = get_time_ms();
+	while (!philo->is_dead)
 	{
-		think(philosopher);
-		if (isDead(philosopher))
-			break;
-
-		eat(philosopher);
-
-		if (isDead(philosopher))
-		{
-			break;
-		}
-
-		sleep_(philosopher);
-		if (isDead(philosopher))
-		{
-			break;
-		}
+		die(philo);
+		think(philo);
+		eat(philo);
+		dream(philo);
 	}
-
-	pthread_mutex_lock(philosopher->can_speak_mutex);
-	printf("Amen (id=%d)\n", philosopher->id);
-	pthread_mutex_unlock(philosopher->can_speak_mutex);
 	return (NULL);
 }
 
-void	eat(t_philosopher *philosopher)
+void	die(t_philo *philo)
 {
-
-	struct timeval	current_time;
-
-	philosopher->state = EATING;
-
-	pthread_mutex_lock(philosopher->can_speak_mutex);
-	gettimeofday(&current_time, NULL);
-	printf("%f %d is eating\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
-	pthread_mutex_unlock(philosopher->can_speak_mutex);
-
-	usleep(philosopher->activities_times.eat * 1000);
-
-	philosopher->eat_count++;
-	gettimeofday(&(philosopher->last_eat_time), NULL);
+	if (philo->is_dead)
+		return ;
+	if (philo->last_eat_time + philo->time_to_die < get_time_ms())
+		logs("\033[1;31mdied\033[0m", philo, true);
 }
 
-void	sleep_(t_philosopher *philosopher)
+void	think(t_philo *philo)
 {
-	struct timeval	current_time;
+	bool	is_thinking;
 
-	philosopher->state = SLEEPING;
-
-	pthread_mutex_lock(philosopher->can_speak_mutex);
-	gettimeofday(&current_time, NULL);
-	printf("%f %d is sleeping\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
-	pthread_mutex_unlock(philosopher->can_speak_mutex);
-
-	gettimeofday(&philosopher->start_time, NULL);
-	while (!isDead(philosopher))
+	if (philo->is_dead)
+		return ;
+	logs("\033[1;30mis thinking\033[0m", philo, false);
+	is_thinking = false;
+	philo->fork_in_hand_numbers = 0;
+	while (!philo->is_dead && philo->fork_in_hand_numbers != 2)
 	{
-		// checks if his task is finished
-		gettimeofday(&current_time, NULL);
-		if (get_time_in_ms(philosopher->start_time) + philosopher->activities_times.sleep < get_time_in_ms(current_time)) // the task is finished
+		if (take_fork(philo, &philo->forks[philo->id]))
+				philo->fork_in_hand_numbers++;
+		if (take_fork(philo, &philo->forks[(philo->id + 1) % \
+				philo->philos_numbers]))
+			philo->fork_in_hand_numbers++;
+		if (philo->fork_in_hand_numbers != 2 && !is_thinking)
+			is_thinking = true;
+		die(philo);
+	}
+}
+
+void	eat(t_philo *philo)
+{
+	int	eat_time;
+
+	if (philo->is_dead)
+		return ;
+	eat_time = get_time_ms();
+	logs("\033[1;32mis eating\033[0m", philo, false);
+	philo->last_eat_time = get_time_ms();
+	while (!philo->is_dead && eat_time + philo->time_to_eat > get_time_ms())
+		die(philo);
+	if (!philo->is_dead)
+	{
+		philo->meal_number++;
+		if (philo->meal_number == philo->meal_goal)
 		{
-			break ;
+			pthread_mutex_lock(philo->stop->mutex);
+			philo->stop->finish_counter++;
+			if (philo->stop->finish_counter == philo->philos_numbers)
+				philo->stop->status = true;
+			pthread_mutex_unlock(philo->stop->mutex);
 		}
-
-		// should I sleep 5 ms?
-
 	}
+	release_fork(&philo->forks[philo->id]);
+	release_fork(&philo->forks[(philo->id + 1) % philo->philos_numbers]);
 }
 
-void	think(t_philosopher *philosopher)
+void	dream(t_philo *philo)
 {
-	struct timeval	current_time;
+	int	start_sleep_time;
 
-	pthread_mutex_lock(philosopher->can_speak_mutex);
-	gettimeofday(&current_time, NULL);
-	printf("%f %d is thinking\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
-	pthread_mutex_unlock(philosopher->can_speak_mutex);
-
-	// while 2 forks are not available, sleep
-
-
-}
-
-bool isDead(t_philosopher *philosopher)
-{
-	struct timeval	current_time;
-	double elapsed_time_in_ms;
-	struct timeval start;
-	struct timeval now;
-
-	if (philosopher->state == DEAD)
-		return (true);
-	start = philosopher->last_eat_time;
-	gettimeofday(&now, NULL);
-
-	if (get_time_in_ms(philosopher->last_eat_time) + philosopher->activities_times.die < get_time_in_ms(now))
-	{
-		philosopher->state = DEAD;
-		pthread_mutex_lock(philosopher->can_speak_mutex);
-		gettimeofday(&current_time, NULL);
-		printf("%f %d died\n", get_time_in_ms(current_time) - get_time_in_ms(philosopher->program_start_time), philosopher->id);
-		pthread_mutex_unlock(philosopher->can_speak_mutex);
-		return (true);
-	}
-	return (false);
+	if (philo->is_dead)
+		return ;
+	start_sleep_time = get_time_ms();
+	logs("\033[1;35mis sleeping\033[0m", philo, false);
+	while (!philo->is_dead && \
+		start_sleep_time + philo->time_to_sleep > get_time_ms())
+		die(philo);
 }
