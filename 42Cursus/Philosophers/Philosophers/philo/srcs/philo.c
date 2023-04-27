@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:31:31 by thfavre           #+#    #+#             */
-/*   Updated: 2023/04/25 13:37:59 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/27 10:49:55 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,9 @@ void	die(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	bool	is_thinking;
-
 	if (philo->is_dead)
 		return ;
 	logs("\033[1;30mis thinking\033[0m", philo, false);
-	is_thinking = false;
 	philo->fork_in_hand_numbers = 0;
 	while (!philo->is_dead && philo->fork_in_hand_numbers != 2)
 	{
@@ -55,8 +52,6 @@ void	think(t_philo *philo)
 		if (take_fork(philo, &philo->forks[(philo->id + 1) % \
 				philo->philos_numbers]))
 			philo->fork_in_hand_numbers++;
-		if (philo->fork_in_hand_numbers != 2 && !is_thinking)
-			is_thinking = true;
 		die(philo);
 	}
 }
