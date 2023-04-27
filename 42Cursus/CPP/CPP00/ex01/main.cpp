@@ -18,10 +18,8 @@ int main() {
 			phoneBook.displayContactList();
 			std::cout << "Enter index: ";
 			std::getline(std::cin, input);
-			if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
+			if (input.length() == 1)
 				phoneBook.displayContact(input[0] - '0');
-			else
-				std::cout << "Invalid index" << std::endl;
 		}
 		else if (input == "EXIT" || std::cin.eof())
 			break;

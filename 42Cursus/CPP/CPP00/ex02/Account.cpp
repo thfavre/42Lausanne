@@ -98,6 +98,7 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 	// ex. [19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
 	_amount -= withdrawal;
 	_totalNbWithdrawals++;
+	_totalAmount -= withdrawal;
 	_nbWithdrawals++;
 	std::cout << " index:" << _accountIndex
 			<< ";p_amount:" << p_amount
