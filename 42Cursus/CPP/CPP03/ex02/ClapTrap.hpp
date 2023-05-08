@@ -22,7 +22,7 @@ public:
 	uint		getAttackDamage(void);
 	void		getStatus(void);
 
-private:
+protected:
 	std::string	_name;
 	uint		_hp;
 	uint		_attack_damage;
