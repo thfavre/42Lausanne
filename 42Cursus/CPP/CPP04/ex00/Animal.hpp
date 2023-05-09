@@ -7,8 +7,9 @@ class Animal
 {
 public:
 	Animal(void);
-	Animal(Animal &animal);
-	virtual ~Animal(void);
+	Animal(std::string type);
+	Animal(Animal const &animal);
+	virtual ~Animal(void); // virtual keyword is mendatory to ensure proper destruction of derived class objects when deleting through a base class
 
 	Animal	&operator=(const Animal &animal);
 
