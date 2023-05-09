@@ -31,15 +31,19 @@ void	Harl::complain(std::string level)
 	{
 	case 0:
 		debug();
+		// break ;
 	case 1:
 		info();
+		// break ;
 	case 2:
 		warning();
+		// break ;
 	case 3:
 		error();
 		break ;
 	default:
 		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		break ;
 	}
 	// }
 
