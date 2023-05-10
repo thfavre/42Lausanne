@@ -13,7 +13,7 @@ public:
 
 	Animal	&operator=(const Animal &animal);
 
-	void virtual	makeSound(void) const;
+	void virtual	makeSound(void) const; // virtual to choose the correct makeSound at run time
 	std::string		getType(void) const;
 
 

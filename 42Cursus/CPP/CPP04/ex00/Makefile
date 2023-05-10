@@ -11,7 +11,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SOURCES = main.cpp Animal.cpp Cat.cpp Dog.cpp
+SOURCES = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 # Object files
 OBJECTS = $(addprefix objs/, $(notdir $(SOURCES:.cpp=.o)))
