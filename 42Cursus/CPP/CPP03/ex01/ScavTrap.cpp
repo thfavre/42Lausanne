@@ -1,4 +1,5 @@
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <string>
 #include <iostream>
 
@@ -12,7 +13,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
 	std::cout << "Named ScavTrap constructor called for " << _name << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other._name, other._hp, other._attack_damage, other._energy)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) // other._name, other._hp, other._attack_damage, other._energy
 {
 	std::cout << "Copy ScavTrap constructor called for " << _name << std::endl;
 }
@@ -40,7 +41,12 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &other)
 
 void		ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap " << _name << " is now in Gate Keeper mode!" << std::endl;
+	if (_hp == 0)
+		std::cout << "ScavTrap " << _name << " has not enough hp to guard the gate..." << std::endl;
+	else if (_energy == 0)
+		std::cout << "ScavTrap " << _name << " has not enough energy to guard the gate..." << std::endl;
+	else
+		std::cout << "ScavTrap " << _name << " is now in Gate Keeper mode!" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string &target)

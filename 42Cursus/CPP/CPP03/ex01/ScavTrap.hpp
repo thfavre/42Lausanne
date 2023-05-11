@@ -10,7 +10,7 @@ class ScavTrap : public ClapTrap
 	public:
 		ScavTrap(void);
 		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const &other);
+		ScavTrap(const ScavTrap  &other);
 		ScavTrap(std::string name, uint hp, uint attack_damage, uint energy);
 
 		~ScavTrap(void);

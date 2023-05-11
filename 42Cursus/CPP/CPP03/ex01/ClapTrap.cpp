@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(std::string name, uint hp, uint attack_damage, uint energy) :
 	std::cout << "Full ClapTrap constructor called for " << _name << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &other) : _name(other._name), _hp(other._hp), _attack_damage(other._attack_damage), _energy(other._energy)
+ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _hp(other._hp), _attack_damage(other._attack_damage), _energy(other._energy)
 {
 	std::cout << "Copy ClapTrap constructor called for " << _name << std::endl;
 }

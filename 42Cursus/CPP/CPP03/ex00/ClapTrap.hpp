@@ -9,12 +9,12 @@ class ClapTrap
 {
 public:
 	ClapTrap(void);
-	ClapTrap(ClapTrap &other);
+	ClapTrap(const ClapTrap &other);
 	ClapTrap(std::string name);
 	ClapTrap(std::string name, uint hp, uint attack_damage, uint energy);
 	~ClapTrap(void);
 
-	ClapTrap	&operator=(ClapTrap const & rhs);
+	ClapTrap	&operator=(const ClapTrap &rhs);
 
 	void		attack(const std::string& target);
 	void		takeDamage(unsigned int amount);

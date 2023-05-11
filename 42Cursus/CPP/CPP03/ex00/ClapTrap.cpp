@@ -17,8 +17,9 @@ ClapTrap::ClapTrap(std::string name, uint hp, uint attack_damage, uint energy) :
 	std::cout << "Full constructor called for " << _name << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &other) : _name(other._name), _hp(other._hp), _attack_damage(other._attack_damage), _energy(other._energy)
+ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _hp(other._hp), _attack_damage(other._attack_damage), _energy(other._energy)
 {
+	// *this = other; // instead of copying the values, we can use the operator= to do it
 	std::cout << "Copy constructor called for " << _name << std::endl;
 }
 
@@ -27,7 +28,7 @@ ClapTrap::~ClapTrap(void)
 	std::cout << "Destructor called for " << _name << std::endl;
 }
 
-ClapTrap	&ClapTrap::operator=(ClapTrap const & rhs)
+ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
 {
 	if (this == &rhs)
 		return *this;
