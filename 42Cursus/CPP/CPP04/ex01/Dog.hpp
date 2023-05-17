@@ -3,6 +3,7 @@
 
 # include <string>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
@@ -16,7 +17,7 @@ public:
 	void	makeSound(void) const;
 
 private:
-	std::string	_type;
+	Brain		*_brain;
 };
 
 #endif
