@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------------------------|--------------------|----------|--------------------------------------------|----------------|-------------|
 | [Libft](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Libft)                 | :white_check_mark: | C        | `Library` `Makefile` `Linked list`         | 125            |               |
 | [ft_printf](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/ft_printf)         | :white_check_mark: | C        | `Variadic functions`                       | 100            |               |
-| [get_next_line](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/get_next_line) | :white_check_mark: | C        | `File descriptor` `Read`                   | 125            |               |
+| [get_next_line](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/get_next_line) | :white_check_mark: | C        | `File descriptor` `Read` `Buffer`          | 125            |               |
 | [Born2beroot](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Born2beroot)     | :white_check_mark: | /        | `Virtualisation`                           | 100            |               |
 | [so_long](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/so_long)             | :x:                | C        | `Graphical` `Game` `Structures`            | :x:            | FDF instead   |
 | [FDF](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/FDF)                     | :white_check_mark: | C        | `Graphical` `Structures`                   | 125            |               |
