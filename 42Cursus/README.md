@@ -13,7 +13,7 @@
 | [Philosophers](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Philosophers)   | :white_check_mark: | C        | `Thread` `Mutex`                           | 100             |               |
 | [minishell](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minishell)         | :white_check_mark: | C        | `Shell` `Inter-process communication`      | 100             |               |
 | [CPP](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/CPP)                     | :construction:     | C++      | `Learning C++ language`                    | :construction:  | CPP00 - CPP09 |
-| [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :x:                |          | `Docker` `Compose`                         | :x:             |               |
+| [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :construction:     |          | `Docker` `Compose`                         | :x:             |               |
 
 <!-- Symbols : -->
 <!-- :construction: -->
