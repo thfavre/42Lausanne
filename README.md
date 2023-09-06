@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-My Piscine and Cursus at 42 Lausanne.
+My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscine</a> and <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Cursus">Cursus</a> at 42 Lausanne.
 </p>
 <br>
 
@@ -18,4 +18,44 @@ My Piscine and Cursus at 42 Lausanne.
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
 </p>
 
+## Strange
+### 1) Designated Initializers
+```C
+int a[6] = { [4] = 29, [2] = 15 };
+// Is the same as 
+int a[6] = { 0, 0, 15, 0, 29, 0 };
+```
+### 2)
+```C
+lst[i];
+// Is the same as
+i[lst];
+```
+Why? Because `lst[i]` means `*(lst+i)`
 
+### 3) goto
+```C
+label:
+...
+goto label;
+```
+
+### 4) fast swap
+```C
+a ^= b ;
+b ^= a;
+a ^= b;
+```
+
+### 5) any-order structure initialization
+```C
+struct foo{
+  int x;
+  char* name;
+};
+
+void main(){
+  struct foo f = { .name = "awesome", .x = -38 };
+}
+
+```

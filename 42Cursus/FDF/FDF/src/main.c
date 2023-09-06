@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:19:15 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/19 10:24:16 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/02/06 18:15:48 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		test_fd;
 
-	if (argc == 1)
+	if (argc != 2)
 	{
 		write(1, "You must include the map path (ex: maps/42.fdf)\n", 49);
 		return (1);

@@ -54,7 +54,7 @@ t_vector2	get_map_size(char *map_path)
 	fd = open(map_path, O_RDWR);
 	line = get_next_line(fd);
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if ((i == 0 || line[i - 1] == ' ') && line[i] != ' ')
 			size.x++;

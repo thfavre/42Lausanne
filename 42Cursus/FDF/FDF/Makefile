@@ -9,8 +9,6 @@ MLX = $(PATH_MLX)libmlx.a
 LIBFT = $(PATH_LIBFT)libft.a
 NAME = fdf
 
-
-#FILES =	$(PATH_GAME)test.c
 FILES = $(PATH_SRC)main.c $(PATH_GAME)keys.c $(PATH_GAME)update.c $(PATH_GAME)render.c $(PATH_GAME)parse.c $(PATH_GAME)draw.c $(PATH_GAME)vector.c $(PATH_GAME)transform.c $(PATH_GAME)line.c\
 		$(PATH_GNL)get_next_line.c $(PATH_GNL)get_next_line_utils.c
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(FILES))

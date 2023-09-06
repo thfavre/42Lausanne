@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 16:27:01 by thfavre           #+#    #+#             */
+/*   Updated: 2023/03/31 18:05:20 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -7,12 +19,12 @@
 ** =============================================================================
 */
 
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
-#include <stdbool.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <stdbool.h>
 
 /*
 ** =============================================================================
@@ -20,41 +32,51 @@
 ** =============================================================================
 */
 
-enum e_state
-{
-	EATING,
-	THINKING,
-	SLEEPING,
-	DEAD
-}	;
-
 /*
 ** =============================================================================
 ** Struct Type Definitions
 ** =============================================================================
 */
 
-typedef struct s_activity_times
+typedef struct s_philos_stats
 {
-	int				eat;
-	int				sleep;
-	int				die;
+	int	philos_numbers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	meal_goal;
 
-}					t_activities_times;
+}	t_philos_stats;
 
-typedef struct s_philosopher
+typedef struct s_fork
+{
+	pthread_mutex_t	mutex;
+	bool			is_taken;
+}					t_fork;
+
+typedef struct s_stop
+{
+	pthread_mutex_t	*mutex;
+	int				finish_counter;
+	bool			status;
+}					t_stop;
+
+typedef struct s_philo
 {
 	int					id;
-	enum e_state		state;
-	struct timeval		start_time;
-	struct timeval		last_eat_time;
-	struct timeval		program_start_time;
-	int					eat_count;
-	t_activities_times	activities_times;
-	pthread_mutex_t		*can_speak_mutex;
-	pthread_mutex_t		*forks;
+	int					philos_numbers;
+	t_fork				*forks;
+	int					last_eat_time;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	bool				is_dead;
+	int					fork_in_hand_numbers;
+	int					meal_number;
+	int					meal_goal;
+	t_stop				*stop;
 
-}						t_philosopher;
+}						t_philo;
 
 /*
 ** =============================================================================
@@ -62,12 +84,17 @@ typedef struct s_philosopher
 ** =============================================================================
 */
 //	philo.c
-bool	isDead(t_philosopher *philosopher);
-void	eat(t_philosopher *philosopher);
-void	sleep_(t_philosopher *philosopher);
-void	think(t_philosopher *philosopher);
-void	*ft_philosopher(void *arg);
+void	*brain(void *args);
+void	die(t_philo *philo);
+void	think(t_philo *philo);
+void	eat(t_philo *philo);
+void	dream(t_philo *philo);
+// fork.c
+bool	take_fork(t_philo *philo, t_fork *fork);
+void	release_fork(t_fork *fork);
 //	utils.c
-double	get_time_in_ms(struct timeval time);
-void	logs(char *msg, int id);
+void	logs(char *msg, t_philo *philo, bool kill);
+int		get_time_ms(void);
+int		ft_atoi(char *str);
+void	free_all(t_philo *philos);
 #endif
