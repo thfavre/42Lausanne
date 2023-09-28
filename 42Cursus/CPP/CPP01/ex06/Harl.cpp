@@ -8,10 +8,6 @@ Harl::Harl()
 	_levels[1] = "INFO";
 	_levels[2] = "WARNING";
 	_levels[3] = "ERROR";
-	_complainFunctions[0] = &Harl::debug;
-	_complainFunctions[1] = &Harl::info;
-	_complainFunctions[2] = &Harl::warning;
-	_complainFunctions[3] = &Harl::error;
 }
 
 void	Harl::complain(std::string level)
@@ -26,12 +22,12 @@ void	Harl::complain(std::string level)
 			break ;
 		}
 	}
-	std::cout << levelIndex << std::endl;
+	// std::cout << levelIndex << std::endl;
 	switch (levelIndex)
 	{
 	case 0:
 		debug();
-		// break ;
+		// break ; // So it cascade
 	case 1:
 		info();
 		// break ;
