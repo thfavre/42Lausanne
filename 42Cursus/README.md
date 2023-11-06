@@ -2,6 +2,7 @@
 
 | Project                                                                                    | Status             | Language | Topics                                     | Grade [%]       | Comments       |
 |--------------------------------------------------------------------------------------------|--------------------|----------|--------------------------------------------|-----------------|---------------|
+| [Piscine](https://github.com/thfavre/42Lausanne/tree/main/42Piscine)    | :white_check_mark:     | /      | `Learning C language`      |:white_check_mark:| |
 | [Libft](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Libft)                 | :white_check_mark: | C        | `Library` `Makefile` `Linked list`         | 125             |               |
 | [ft_printf](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/ft_printf)         | :white_check_mark: | C        | `Variadic functions`                       | 100             |               |
 | [get_next_line](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/get_next_line) | :white_check_mark: | C        | `File descriptor` `Read` `Buffer`          | 125             |               |
@@ -13,6 +14,7 @@
 | [Philosophers](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Philosophers)   | :white_check_mark: | C        | `Thread` `Mutex`                           | 100             |               |
 | [minishell](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minishell)         | :white_check_mark: | C        | `Shell` `Inter-process communication`      | 100             |               |
 | [CPP](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/CPP)                     | :construction:     | C++      | `Learning C++ language`                    | :construction:  | CPP00 - CPP09 |
+| NetPractice                     | :white_check_mark:     | /      | `Networking`      | 100  | |
 | [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :construction:     |          | `Docker` `Compose`                         | :x:             |               |
 
 <!-- Symbols : -->

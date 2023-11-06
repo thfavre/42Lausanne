@@ -5,6 +5,7 @@
 <p align="center">
 My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscine</a> and <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Cursus">Cursus</a> at 42 Lausanne.
 </p>
+
 <br>
 
 
@@ -12,50 +13,37 @@ My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscin
 
 <p align="center">
 	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/repo-size/diabolo257/42Lausanne?color=blueviolet" />
-	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/diabolo257/42Lausanne?color=blueviolet" />
-	<img alt="Code language count" src="https://img.shields.io/github/languages/count/diabolo257/42Lausanne?color=blue" />
-	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/diabolo257/42Lausanne?color=blue" />
-	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
+
+<!-- <img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/diabolo257/42Lausanne?color=blueviolet" /> -->
+<img alt="Code language count" src="https://img.shields.io/github/languages/count/diabolo257/42Lausanne?color=blue" />
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/diabolo257/42Lausanne?color=blue" />
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diabolo257/42Lausanne?color=brightgreen" /><br>
 </p>
 
-## Strange
-### 1) Designated Initializers
-```C
-int a[6] = { [4] = 29, [2] = 15 };
-// Is the same as 
-int a[6] = { 0, 0, 15, 0, 29, 0 };
-```
-### 2)
-```C
-lst[i];
-// Is the same as
-i[lst];
-```
-Why? Because `lst[i]` means `*(lst+i)`
+<br>
+ 
+# 42 projects
 
-### 3) goto
-```C
-label:
-...
-goto label;
-```
+| Project                                                                                    | Status             | Language | Topics                                     | Grade [%]       | Comments       |
+|--------------------------------------------------------------------------------------------|--------------------|----------|--------------------------------------------|-----------------|---------------|
+| [Piscine](https://github.com/thfavre/42Lausanne/tree/main/42Piscine)    | :white_check_mark:     | /      | `Learning C language`      |:white_check_mark:| |
+| [Libft](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Libft)                 | :white_check_mark: | C        | `Library` `Makefile` `Linked list`         | 125             |               |
+| [ft_printf](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/ft_printf)         | :white_check_mark: | C        | `Variadic functions`                       | 100             |               |
+| [get_next_line](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/get_next_line) | :white_check_mark: | C        | `File descriptor` `Read` `Buffer`          | 125             |               |
+| [Born2beroot](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Born2beroot)     | :white_check_mark: | /        | `Virtualisation`                           | 100             |               |
+| [so_long](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/so_long)             | :x:                | C        | `Graphical` `Game` `Structures`            | :x:             | FDF instead   |
+| [FDF](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/FDF)                     | :white_check_mark: | C        | `Graphical` `Structures`                   | 125             |               |
+| [push_swap](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/push_swap)         | :white_check_mark: | C        | `Algorithm` `Stack` `Sort`                 | 84              |               |
+| [minitalk](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minitalk)           | :white_check_mark: | C        | `Signals` `Processes` `Bits manipulation ` | 125             |               |
+| [Philosophers](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Philosophers)   | :white_check_mark: | C        | `Thread` `Mutex`                           | 100             |               |
+| [minishell](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minishell)         | :white_check_mark: | C        | `Shell` `Inter-process communication`      | 100             |               |
+| [CPP](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/CPP)                     | :construction:     | C++      | `Learning C++ language`                    | :construction:  | CPP00 - CPP09 |
+| NetPractice                     | :white_check_mark:     | /      | `Networking`      | 100  | |
+| [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :construction:     |          | `Docker` `Compose`                         | :x:             |               |
 
-### 4) fast swap
-```C
-a ^= b ;
-b ^= a;
-a ^= b;
-```
+<!-- Symbols : -->
+<!-- :construction: -->
+<!-- :white_check_mark: -->
+<!-- :x: -->
 
-### 5) any-order structure initialization
-```C
-struct foo{
-  int x;
-  char* name;
-};
 
-void main(){
-  struct foo f = { .name = "awesome", .x = -38 };
-}
-
-```

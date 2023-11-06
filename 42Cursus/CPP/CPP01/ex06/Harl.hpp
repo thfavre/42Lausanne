@@ -16,7 +16,6 @@ private:
 	void	error(void);
 
 	std::string	_levels[4];
-	void		(Harl::*_complainFunctions[4])(void);
 
 } ;
 
