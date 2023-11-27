@@ -21,6 +21,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 		return (*this);
 	setTarget(form.getTarget());
 	setSigned(form.isSigned());
+	return (*this);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

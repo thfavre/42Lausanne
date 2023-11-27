@@ -21,6 +21,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &f
 		return (*this);
 	setTarget(form.getTarget());
 	setSigned(form.isSigned());
+	return (*this);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()

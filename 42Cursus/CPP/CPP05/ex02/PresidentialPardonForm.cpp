@@ -21,6 +21,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 		return (*this);
 	setTarget(form.getTarget());
 	setSigned(form.isSigned());
+	return (*this);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
