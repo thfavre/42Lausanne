@@ -6,8 +6,11 @@ class Array
 {
 public:
 	Array();
+	Array(unsigned int n);
+
 private:
-	T _array[];
+	unsigned int _size;
+	T *_arr;
 
 } ;
 

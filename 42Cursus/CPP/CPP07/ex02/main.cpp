@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Array.hpp"
+#include "Array.tpp"
 
 
 
 
 int main()
 {
-	Array  <int>array;
+	Array <int>array;
 
 }
