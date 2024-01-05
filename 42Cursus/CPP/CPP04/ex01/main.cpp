@@ -5,7 +5,7 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-# define ANIMALS_NBR 4
+# define ANIMALS_NBR 6
 int main()
 {
 	Animal	*animals[ANIMALS_NBR];

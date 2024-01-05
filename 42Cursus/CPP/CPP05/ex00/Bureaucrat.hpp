@@ -23,14 +23,14 @@ public:
 	{
 		virtual const char *what(void) const throw()
 		{
-			return ("Bureaucrat grade can't be less than 0.");
+			return ("Bureaucrat grade can't be higher than 1.");
 		}
 	};
 	class GradeTooLowException : public std::exception
 	{
 		virtual const char *what(void) const throw()
 		{
-			return ("Bureaucrat grade can't be higher than 150.");
+			return ("Bureaucrat grade can't be smaller than 150.");
 		}
 	};
 

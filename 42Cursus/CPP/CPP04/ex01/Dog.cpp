@@ -16,6 +16,7 @@ Dog::Dog(Dog const &other) : Animal(other._type)
 
 Dog::~Dog(void)
 {
+	delete _brain;
 	std::cout << "Dog destructor called." << std::endl;
 }
 
