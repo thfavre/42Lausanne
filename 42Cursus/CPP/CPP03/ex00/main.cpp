@@ -6,9 +6,11 @@ int main()
 	ClapTrap thom("Thom");
 	ClapTrap tim("Tim", 15, 2, 100);
 	std::cout << std::endl;
+	std::cout << std::endl;
 
 	thom.getStatus();
 	tim.getStatus();
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 	thom.attack("Tim");
@@ -22,9 +24,28 @@ int main()
 	thom.getStatus();
 	tim.getStatus();
 	std::cout << std::endl;
+	std::cout << std::endl;
+
+	tim.attack("Thom");
+	thom.takeDamage(tim.getAttackDamage());
+	tim.attack("Thom");
+	thom.takeDamage(tim.getAttackDamage());
+	tim.attack("Thom");
+	thom.takeDamage(tim.getAttackDamage());
+	tim.attack("Thom");
+	thom.takeDamage(tim.getAttackDamage());
+	tim.attack("Thom");
+	thom.takeDamage(tim.getAttackDamage());
+	tim.getStatus();
+	thom.getStatus();
+	std::cout << std::endl;
+	std::cout << std::endl;
 
 	tim. beRepaired(999);
+	thom. beRepaired(999);
 	tim.getStatus();
+	thom.getStatus();
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 }
