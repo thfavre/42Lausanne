@@ -7,6 +7,13 @@ class Array
 public:
 	Array();
 	Array(unsigned int n);
+	~Array();
+	Array(Array const &array);
+
+	Array	&operator=(const Array &array);
+
+	unsigned int size();
+
 
 private:
 	unsigned int _size;
