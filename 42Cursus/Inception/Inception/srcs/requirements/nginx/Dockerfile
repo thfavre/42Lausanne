@@ -16,7 +16,9 @@ RUN openssl req -x509 -nodes \
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 # COPY nginx.conf /etc/nginx/sites-available/default
 
-# COPY ./index.html /usr/share/nginx/html/index.html
+COPY ./index.html /var/www/html/index.html
+#  /usr/share/nginx/html/index.html
+
 
 EXPOSE 443
 RUN chmod 755 /var/www/html
