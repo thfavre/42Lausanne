@@ -13,6 +13,7 @@ RUN openssl req -x509 -nodes \
 	-out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key \
 	-subj "/C=FR/ST=IDF/L=Lausanne/O=42/OU=42/CN=localhost/UID=localhost"
 
+
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 # COPY nginx.conf /etc/nginx/sites-available/default
 
