@@ -1,19 +1,9 @@
 version: '3'
 services:
-  # mysql:
-  #   image: mariadb
-  #   volumes:
-  #     - /data/mysql:/var/lib/mysql
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: mysql_root_pass
-  #     MYSQL_DATABASE: db_name
-  #     MYSQL_USER: user_name
-  #     MYSQL_PASSWORD: user_pass
-  #   restart: always
   nginx:
     container_name: nginx
-    # volumes:
-    #   - wordpress:/var/www/wordpress
+    volumes:
+      - wordpress_v:/var/www/html
     networks:
       - inception
     depends_on:  # Nouvelle ligne, indiquant de ne pas démarrer NGINX tant que WordPress n'a pas démarré.
@@ -21,28 +11,60 @@ services:
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
-    env_file: .env
     ports:
       - "443:443"  # on indique le port qui sera exposé a la machine locale
     restart: on-failure  # Ici nous changeons, le container redémarrera uniquement en cas de crash.
+    env_file: .env
 
   wordpress:
     container_name: wordpress
-    env_file: .env
-    # volumes:
-    #   - wordpress:/var/www/wordpress
+    volumes:
+      - wordpress_v:/var/www/html
     networks:
       - inception
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
-    # depends_on:  # WordPress démarrera uniquement après MariaDB (sinon il ne pourra pas configurer la base de données...)
-    #   - mariadb
+    depends_on:  # WordPress démarrera uniquement après MariaDB (sinon il ne pourra pas configurer la base de données...)
+      - mariadb
     restart: on-failure
     expose:
       - "9000"
+    env_file: .env
+  mariadb:
+    # image: mariadb
+    container_name: mariadb
+    restart: always
+    build:
+      context: requirements/mariadb
+      dockerfile: Dockerfile
+    networks:
+      - inception
+    volumes:
+      - db_v:/var/lib/mysql
+    # environment:
+    #   MYSQL_ROOT_PASSWORD: mysql_root_pass
+    #   MYSQL_DATABASE: db_name
+    #   MYSQL_USER: user_name
+    #   MYSQL_PASSWORD: user_pass
+    env_file: .env
 
 networks:
   inception:
     driver: bridge
+
+volumes:
+  db_v:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: /home/thomas/Desktop/42Lausanne/42Cursus/Inception/Inception/db
+
+  wordpress_v:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: /home/thomas/Desktop/42Lausanne/42Cursus/Inception/Inception/wordpress
 
