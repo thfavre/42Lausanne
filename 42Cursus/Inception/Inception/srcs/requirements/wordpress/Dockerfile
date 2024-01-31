@@ -20,6 +20,8 @@ COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
 EXPOSE 9000
 
+COPY ./tools/wp-config.php /
+
 RUN mkdir -p /run/php
 #Launch PHP FPM in foreground and ignore deamonize from conf file (-F)
 CMD ["/usr/sbin/php-fpm7.3", "-F"]
