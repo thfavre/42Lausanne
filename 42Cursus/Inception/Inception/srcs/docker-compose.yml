@@ -59,12 +59,12 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/thomas/Desktop/42Lausanne/42Cursus/Inception/Inception/db
+      device: /Users/thfavre/data/db
 
   wordpress_v:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/thomas/Desktop/42Lausanne/42Cursus/Inception/Inception/wordpress
+      device: /Users/thfavre/data/wordpress
 
