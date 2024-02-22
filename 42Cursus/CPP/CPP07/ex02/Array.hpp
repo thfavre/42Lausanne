@@ -8,11 +8,19 @@ public:
 	Array();
 	Array(unsigned int n);
 	~Array();
-	Array(Array const &array);
+	Array(const Array<T> &array);
 
-	Array	&operator=(const Array &array);
+	Array<T>	&operator=(const Array<T> &array);
+	T			&operator[](int i) const;
 
-	unsigned int size();
+	unsigned int size() const;
+
+	class IndexOutOfBoundsException : public std::exception {
+		virtual const char *what(void) const throw()
+		{
+			return ("Index out of bounds");
+		}
+	};
 
 
 private:
