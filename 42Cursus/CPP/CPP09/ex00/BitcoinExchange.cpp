@@ -1,5 +1,9 @@
 #include "BitcoinExchange.hpp"
-
+#include <fstream>
+#include <iostream>
+// #include <sstream>
+// #include <cstdlib>
+#include <string>
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -16,12 +20,24 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 
 BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-	//TODO
+	if (this != &other)
+	{
+		_rates = other.getRates();
+	}
+	return (*this);
 }
 
 
 BitcoinExchange::BitcoinExchange(std::string filePath)
 {
-
+	std::ifstream input(filePath);
+	getline( input, NULL );
+	for(std::string line; getline( input, line ); )
+	{
+		std::cout << line << std::endl;
+	}
 }
+
+// getter+
+std::map<std::string, float> BitcoinExchange::getRates() const { return _rates;}
 
