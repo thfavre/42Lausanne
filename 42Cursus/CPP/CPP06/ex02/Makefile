@@ -11,13 +11,13 @@ CXX = g++
 CXXFLAGS = #-Wall -Wextra -Werror -std=c++98
 
 # Source files
-SOURCES = main.cpp ScalarConverter.cpp
+SOURCES = main.cpp Base.cpp
 
 # Object files
 OBJECTS = $(addprefix objs/, $(notdir $(SOURCES:.cpp=.o)))
 
 # Target executable
-TARGET = convert
+TARGET = bbbase
 
 all: $(TARGET)
 	@echo "$(COLOR_GREEN)Compilation completed successfully!$(COLOR_RESET)"
