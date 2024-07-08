@@ -37,9 +37,9 @@ My <a href="https://github.com/diabolo257/42Lausanne/tree/main/42Piscine">Piscin
 | [minitalk](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minitalk)           | :white_check_mark: | C        | `Signals` `Processes` `Bits manipulation ` | 125             |               |
 | [Philosophers](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Philosophers)   | :white_check_mark: | C        | `Thread` `Mutex`                           | 100             |               |
 | [minishell](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/minishell)         | :white_check_mark: | C        | `Shell` `Inter-process communication`      | 100             |               |
-| [CPP](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/CPP)                     | :white_check_mark:     | C++      | `Learning C++ language`                    | :construction:  | CPP00 - CPP09 |
+| [CPP](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/CPP)                     | :white_check_mark:     | C++      | `Learning C++ language`                    | :white_check_mark:  | CPP00 - CPP09 |
 | NetPractice                     | :white_check_mark:     | /      | `Networking`      | 100  | |
-| [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :white_check_mark:     |          | `Docker` `Compose`                         | :x:             |               |
+| [Inception](https://github.com/diabolo257/42Lausanne/tree/main/42Cursus/Inception)         | :white_check_mark:     |          | `Docker` `Compose`                         | 100             |               |
 
 <!-- Symbols : -->
 <!-- :construction: -->
