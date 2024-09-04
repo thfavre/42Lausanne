@@ -28,13 +28,13 @@ class EquationSolver:
 	def _solveSecondDegree(a: int, b: int, c: int) -> tuple:
 		discriminant: float = EquationSolver._calculateDiscriminant(a, b, c)
 		if discriminant < 0:
-			# print("Discriminant < 0, no solution")
-			return None
+			return (f"{-b/2*a} - {sqrt(-discriminant)/2*a}i", f"{-b/2*a} + {sqrt(-discriminant)/2*a}i")
+			# return None
 		elif discriminant == 0:
-			# print("Discriminant == 0, one solution : ")
-			return (-b/2*a, )
+			print("Discriminant == 0, one solution")
+			return (-b/(2*a), )
 		else:
-			# print("Discriminant > 0, two solutions : ")
+			print("Discriminant > 0, two solutions")
 			return tuple(sorted(((-b - sqrt(discriminant))/(2*a), (-b + sqrt(discriminant))/(2*a))))
 
 	@staticmethod

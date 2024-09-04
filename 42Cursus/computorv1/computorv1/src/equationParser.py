@@ -23,7 +23,11 @@ class EquationParser:
 			if len(term.split('*')) == 1:
 				if '^' in term: # (ex: X^2)
 					degree=term.split('^')[1]
-					coefficient=1
+					coefficient = -1 if '-' in term else 1
+				elif 'X' in term: # (ex: -X)
+					degree = 1
+					print("term", term)
+					coefficient = -1 if '-' in term else 1
 				else: # (ex: 4)
 					degree=0
 					coefficient=term
