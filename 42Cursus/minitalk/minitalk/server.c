@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:33:43 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/02 16:08:12 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/02/27 11:39:54 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(void)
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sa.sa_handler = &handle_sigusr;
-	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGKILL, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();

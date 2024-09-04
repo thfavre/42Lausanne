@@ -13,7 +13,10 @@ COPY conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
 #         chown -R mysql:mysql /etc/mysql/
 
 
-COPY ./tools/script.sh /
-RUN chmod +x /script.sh
+COPY ./tools/script.sh /usr/local/
+RUN chmod +x /usr/local/script.sh
 
-CMD ["/script.sh"]
+EXPOSE 3306
+
+# CMD ["/script.sh"]
+ENTRYPOINT [ "sh", "/usr/local/script.sh" ]

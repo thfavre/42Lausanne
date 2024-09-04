@@ -8,7 +8,7 @@ COLOR_ORANGE = \033[1;38;5;208m
 
 # Compiler settings
 CXX = g++
-CXXFLAGS = #-Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files
 SOURCES = main.cpp ScalarConverter.cpp

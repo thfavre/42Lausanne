@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:47:37 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/02 13:19:15 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/02/10 15:22:35 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_stack
 	enum e_operation	*operations;
 	unsigned int		operations_numbers;
 }		t_stack;
+
 
 /* utils.c */
 int				ascii_to_int(char *str);

@@ -1,35 +1,35 @@
-#ifndef INPUT_FILE_PARSER
-# define INPUT_FILE_PARSER
+#ifndef BITCOINEXCHANGE_HPP
+# define BITCOINEXCHANGE_HPP
 
-# include <string>
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <fstream>
+#include <sstream>
 #include <map>
-
 
 class BitcoinExchange
 {
-	public:
-		~BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange &other);
-		BitcoinExchange	&operator=(const BitcoinExchange &other);
+	public :
 
-		BitcoinExchange(std::string filePath);
+		BitcoinExchange(const std::string file);
+		BitcoinExchange(BitcoinExchange const &src);
+		~BitcoinExchange(void);
+		BitcoinExchange	&operator=(BitcoinExchange const &src);
 
-		std::map<std::string, float> getRates() const;
+		std::map<std::string, double> getData() const;
 
-		void	display(int stream);
+		bool isNumeric(const std::string& str, int mode) const;
+		int checkNumber(double number) const;
+		int checkDate(std::string date, int mode) const;
+		double exchange(std::string date, double value) const;
+		std::string findRightDate(const std::string &date) const;
+		void printData() const;
 
-		// Exceptions
-		class NoSpaceLeftException : public  std::exception
-		{
-			virtual const char	*what(void) const throw()
-			{
-				return "No space left in span";
-			}
-		};
+	private :
+		BitcoinExchange(void);
+		std::map<std::string, double> _data;  // to store .csv
 
-	private:
-		BitcoinExchange();
-		std::map<std::string, float> _rates;
 };
 
-#endif // INPUT_FILE_PARSER
+#endif

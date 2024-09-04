@@ -55,7 +55,6 @@ void	printSpecial(std::string str)
 
 void	ScalarConverter::convert(std::string str)
 {
-
 	if (str == "-inff" || str == "+inff" || str == "nanf")
 	{
 		// remove the 'f' at the end

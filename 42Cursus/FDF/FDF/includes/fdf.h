@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 21:32:29 by thfavre           #+#    #+#             */
-/*   Updated: 2023/01/19 11:27:16 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/03 19:53:27 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 # include <fcntl.h>
-# include "math.h"
+# include <math.h>
 
 # include "../mlx/mlx.h"
 # include "../src/Libft/libft.h"

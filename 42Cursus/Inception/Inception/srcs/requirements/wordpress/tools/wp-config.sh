@@ -29,7 +29,7 @@ else
 	cd /var/www/wordpress
 	wp core download --allow-root
 
-	Configuration de wordpress : connection a la base de donnees et creation des users de wordpress
+	# Configuration de wordpress : connection a la base de donnees et creation des users de wordpress
 	wp config create --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_PASSWORD --dbhost=$WP_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
 	wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$SQL_ROOT_PASSWORD --admin_email=$SQL_ADMIN_EMAIL --skip-email --allow-root
 	wp user create $SQL_USER $WP_USER_EMAIL --role=author --user_pass=$SQL_PASSWORD --allow-root

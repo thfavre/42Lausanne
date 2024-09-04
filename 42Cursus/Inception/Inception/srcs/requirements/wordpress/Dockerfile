@@ -20,7 +20,7 @@ COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
 EXPOSE 9000
 
-COPY ./tools/wp-config.sh /usr/local
+COPY ./tools/wp-config.sh /usr/local/wp-config.sh
 # give persmissions
 RUN chmod +x usr/local/wp-config.sh
 

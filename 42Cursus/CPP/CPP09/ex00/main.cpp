@@ -1,15 +1,69 @@
-#include <iostream>
 #include "BitcoinExchange.hpp"
 
-int	main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-
-	std::cout << "laadasd\n" << std::endl;
-	std::cout << argv[0] << std::endl;
 	if (argc != 2)
 	{
-		std::cerr << "Use : ./head input_file" << std::endl;
-		return (1);
+		std::cerr << "\033[1;31mError: Missing input file argument OR too many inputs.\033[0m" << std::endl;
+		std::cerr << "\033[1;31mFormat is : ./btc [.txt file]\033[0m" << std::endl;
 	}
-	BitcoinExchange btcE = BitcoinExchange(argv[1]);
+	else
+	{
+		std::ifstream infile(argv[1]);
+		if (!infile.is_open())
+		{
+			std::cerr << "Error: could not open file." << std::endl;
+		}
+
+		else
+		{
+			BitcoinExchange btc_exchange("data.csv");
+			std::string line;
+
+			while (std::getline(infile, line))
+			{
+				int count = 0;
+				size_t i = 0;
+				while (i < line.size()) {
+					if (line[i] == '|')
+						count++;
+					i++;
+				}
+
+				if (line.empty()) {
+					std::cerr << "\033[1;1mWarning:\033[0m empty line - please use this format : date | value " << line << std::endl;
+					continue;
+				}
+
+				if (count != 1) {
+					std::cerr << "\033[1;31mError:\033[0m bad input => " << line << std::endl;
+					continue;
+				}
+
+				std::istringstream iss(line);
+				std::string date, value;
+
+				std::getline(iss, date, '|');
+				if (date == "date ")
+					continue;
+				if (!btc_exchange.checkDate(date, 1))
+				{
+					std::cerr << "\033[1;31mError:\033[0m bad input => " << line << std::endl;
+					continue;
+				}
+
+				std::getline(iss, value, '|');
+				if (value.empty())
+				{
+					std::cerr << "\033[1;31mError:\033[0m bad input => " << date << std::endl;
+					continue;
+				}
+				double number = std::atof(value.c_str());
+				if (!btc_exchange.checkNumber(number))
+					continue;
+
+				std::cout << date << "=> " << number << " = " << btc_exchange.exchange(date, number) << std::endl;
+			}
+		}
+	}
 }
