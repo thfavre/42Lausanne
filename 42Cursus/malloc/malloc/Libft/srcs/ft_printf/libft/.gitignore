@@ -1,0 +1,7 @@
+Session.vim
+.*.swp
+.*.c.swp
+*.o
+*.exe
+*.a
+*.swo
