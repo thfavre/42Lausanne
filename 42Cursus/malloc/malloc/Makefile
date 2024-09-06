@@ -6,7 +6,7 @@
 #    By: thomas <thfavre@student.42lausanne.ch>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/22 09:45:49 by lnicosia          #+#    #+#              #
-#    Updated: 2024/09/06 23:14:27 by thomas           ###   ########.fr        #
+#    Updated: 2024/09/07 00:10:24 by thomas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,4 +144,10 @@ fclean:
 
 re: fclean all
 
-.PHONY: fclean all clean libft
+
+# # test the prgramm with the main.c
+# test: all
+# 	gcc -o test main.c -L. -lft_malloc
+# 	./test
+
+# .PHONY: fclean all clean libft
