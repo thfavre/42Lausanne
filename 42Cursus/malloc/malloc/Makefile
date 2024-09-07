@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lnicosia <lnicosia@student.42.fr>          +#+  +:+       +#+         #
+#    By: thomas <thfavre@student.42lausanne.ch>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/22 09:45:49 by lnicosia          #+#    #+#              #
-#    Updated: 2022/06/15 11:24:26 by lnicosia         ###   ########.fr        #
+#    Updated: 2024/09/07 00:10:24 by thomas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,6 @@ LDFLAGS = -L $(LIBFT_DIR)
 LIB_RAW =
 
 SRC_RAW =	malloc.c
-
-SRC_SIZE = $(shell ls src | wc -l)
-$(eval SRC_SIZE=$(shell echo $$(($(SRC_SIZE) - 0))))
-# -1 because we have main.c to ignore # TODO?
 
 HEADERS =	malloc.h
 
@@ -117,7 +113,6 @@ $(OBJ_DIR):
 
 I = 1
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)
-	@printf $(YELLOW)"[$(I)/$(SRC_SIZE)] Compiling $<\n"$(RESET)
 	$(eval I=$(shell echo $$(($(I) + 1))))
 	gcc -c $< -o $@ $(CFLAGS)
 
@@ -144,7 +139,15 @@ fclean:
 	rm -rf $(OBJ_DIR)
 	@printf ${CYAN}"[INFO] Removing $(BIN_DIR)/$(NAME)\n"$(RESET)
 	rm -rf $(BIN_DIR)/$(NAME)
+	@printf ${CYAN}"[INFO] Removing $(BIN_DIR)/$(FULLNAME)\n"$(RESET)
+	rm -rf $(BIN_DIR)/$(FULLNAME)
 
 re: fclean all
 
-.PHONY: fclean all clean libft
+
+# # test the prgramm with the main.c
+# test: all
+# 	gcc -o test main.c -L. -lft_malloc
+# 	./test
+
+# .PHONY: fclean all clean libft
