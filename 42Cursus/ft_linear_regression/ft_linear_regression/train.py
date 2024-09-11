@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
-from matplotlib import style
+from typing import Optional, Union, Tuple
 
 class Train:
-	def __init__(self, data_path, x_label: str='X', y_label: str='Y', plot: bool=True,
-			  outputFile: str|None=None, mse_threshold: float=0.00000001,
-			  max_iterations: int=100000, learning_rate: float=0.05 ) -> None:
+	def __init__(self, data_path, x_label: str = 'X', y_label: str = 'Y', plot: bool = True,
+				 outputFile: Optional[str] = None, mse_threshold: float = 0.00000001,
+				 max_iterations: int = 100000, learning_rate: float = 0.05) -> None:
 		original_data = Train._load_data(data_path)
 		normalized_data = Train._normalize_data(original_data)
 		self._x_label = x_label
 		self._y_label = y_label
 
-		self._mse_threshold = mse_threshold # Mean Squared Error
+		self._mse_threshold = mse_threshold  # Mean Squared Error
 		self._max_iterations = max_iterations
 		self._learning_rate = learning_rate
 		self._current_iteration = 0
@@ -29,7 +29,7 @@ class Train:
 			self._plot(original_data, normalized_data)
 
 	@staticmethod
-	def _load_data(path: str) -> tuple[tuple[int, int]]:
+	def _load_data(path: str) -> Tuple[Tuple[int, int]]:
 		"""Load the data from the given file path."""
 		data = []
 		with open(path, 'r') as file:
@@ -39,13 +39,13 @@ class Train:
 				if len(numbers) != 2:
 					raise ValueError(f"The line: '{line.strip()}' is not formatted correctly.")
 				try:
-					data.append((int(numbers[0]), int(numbers[1]))) # TODO ? put float?
+					data.append((int(numbers[0]), int(numbers[1])))  # TODO ? put float?
 				except ValueError:
 					raise ValueError(f"Unable to convert the values in line: '{line.strip()}' to integers.")
 		return tuple(data)
 
 	@staticmethod
-	def _normalize_data(data: tuple[tuple[int, int]]) -> tuple[tuple[float, float]]:
+	def _normalize_data(data: Tuple[Tuple[int, int]]) -> Tuple[Tuple[float, float]]:
 		"""Normalize the data to be between 0 and 1."""
 		minimum_x = min(data, key=lambda x: x[0])[0]
 		maximum_x = max(data, key=lambda x: x[0])[0]
@@ -53,7 +53,7 @@ class Train:
 		maximum_y = max(data, key=lambda x: x[1])[1]
 		return tuple(((x - minimum_x) / (maximum_x - minimum_x), (y - minimum_y) / (maximum_y - minimum_y)) for x, y in data)
 
-	def _gradient_descent(self, data):
+	def _gradient_descent(self, data: Tuple[Tuple[int, int]]) -> None:
 		"""Perform the gradient descent algorithm on the given data."""
 		previous_mse = None
 		delta_mse = None
@@ -61,7 +61,7 @@ class Train:
 		while not self._stop_condition(delta_mse):
 			data_len = len(data)
 			tmp_eq_intercept = self._learning_rate * 1/data_len * sum(self._estimate_y(data[i][0]) - data[i][1] for i in range(data_len))
-			tmp_eq_slope = self._learning_rate * 1/data_len * sum((self._estimate_y(data[i][0]) - data[i][1])* data[i][0] for i in range(data_len))
+			tmp_eq_slope = self._learning_rate * 1/data_len * sum((self._estimate_y(data[i][0]) - data[i][1]) * data[i][0] for i in range(data_len))
 			self._eq_intercept -= tmp_eq_intercept
 			self._eq_slope -= tmp_eq_slope
 
@@ -74,20 +74,27 @@ class Train:
 	def _estimate_y(self, x: float) -> float:
 		return self._eq_slope * x + self._eq_intercept
 
-	def _denormalize_element(self, element: float, list: tuple[float]) -> float:
+	def _denormalize_element(self, element: float, lst: Tuple[float]) -> float:
 		"""Denormalize the given element using the given list."""
-		minimum = min(list)
-		maximum = max(list)
+		minimum = min(lst)
+		maximum = max(lst)
 		return element * (maximum - minimum) + minimum
 
 	def _denormalize_equation(self, original_data):
 		"""Denormalize the slope and intercept using the _denormalize_element function."""
 		all_original_x, all_original_y = zip(*original_data)
-		denorm_slope = self._denormalize_element(self._eq_slope, all_original_y) / self._denormalize_element(1, all_original_x)
-		denorm_intercept = self._denormalize_element(self._eq_intercept, all_original_y)# - denorm_slope * min(all_original_x)
+		range_x = max(all_original_x) - min(all_original_x)
+		range_y = max(all_original_y) - min(all_original_y)
+
+		# Denormalize slope
+		denorm_slope = self._eq_slope * (range_y / range_x)
+
+		# Denormalize intercept
+		denorm_intercept = self._eq_intercept * range_y + min(all_original_y) - denorm_slope * min(all_original_x)
+
 		return denorm_intercept, denorm_slope
 
-	def _stop_condition(self, delta_mse: float | None) -> bool:
+	def _stop_condition(self, delta_mse: Optional[float]) -> bool:
 		"""Check if the stopping condition is met."""
 		if delta_mse is not None and delta_mse < self._mse_threshold:
 			return True
@@ -95,7 +102,7 @@ class Train:
 			return True
 		return False
 
-	def _mean_squared_error(self, data: tuple[tuple[int, int]]) -> float:
+	def _mean_squared_error(self, data: Tuple[Tuple[int, int]]) -> float:
 		"""Compute the mean squared error of the model on the given data."""
 		return sum((self._estimate_y(x) - y) ** 2 for x, y in data) / len(data)
 
@@ -103,10 +110,9 @@ class Train:
 		"""Save the output to the given file."""
 		print(f"Saving the output to '{output_file}'")
 		with open(output_file, 'w') as file:
-			file.write(f"{self._eq_intercept},{self._eq_slope}")
+			file.write(f"{self._denorm_intercept},{self._denorm_slope}")
 
 	def _plot(self, original_data, normalized_data):
-		style.use('seaborn-v0_8-pastel')
 		plt.figure(figsize=(12, 6))  # Create a figure with two subplots
 
 		# Plot the original data
@@ -116,7 +122,9 @@ class Train:
 		# Draw the regression line for original data (denormalized)
 		x_min = self._eq_intercept
 		x_max = self._eq_intercept + self._eq_slope
-		plt.plot([self._denormalize_element(0, all_original_x), self._denormalize_element(1, all_original_x)], [self._denormalize_element(x_min, all_original_y), self._denormalize_element(x_max, all_original_y)], label='Regression Line')
+		plt.plot([self._denormalize_element(0, all_original_x), self._denormalize_element(1, all_original_x)],
+				 [self._denormalize_element(x_min, all_original_y), self._denormalize_element(x_max, all_original_y)],
+				 label='Regression Line')
 
 		plt.xlabel(self._x_label)
 		plt.ylabel(self._y_label)
@@ -137,6 +145,7 @@ class Train:
 		plt.tight_layout()  # Adjust layout so subplots fit well together
 
 		plt.show()
+
 
 
 def main():

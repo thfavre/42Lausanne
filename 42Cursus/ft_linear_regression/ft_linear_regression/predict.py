@@ -1,5 +1,6 @@
+from typing import Tuple
 
-def get_thetas(file_path: str) -> tuple[float, float]:
+def get_thetas(file_path: str) -> Tuple[float, float]:
 	try:
 		with open(file_path, 'r') as file:
 			try:
@@ -35,7 +36,6 @@ def main():
 			print(f"Prediction: {predict(theta_intercept, theta_slope, x)}")
 		except ValueError:
 			print("The value must be a number.")
-
 
 if __name__ == "__main__":
 	main()
