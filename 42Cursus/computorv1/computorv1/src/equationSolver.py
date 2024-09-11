@@ -28,7 +28,7 @@ class EquationSolver:
 	def _solveSecondDegree(a: int, b: int, c: int) -> tuple:
 		discriminant: float = EquationSolver._calculateDiscriminant(a, b, c)
 		if discriminant < 0:
-			return (f"{-b/2*a} - {sqrt(-discriminant)/2*a}i", f"{-b/2*a} + {sqrt(-discriminant)/2*a}i")
+			return (f"{-b/(2*a)} - {sqrt(-discriminant)/(2*a)}i", f"{-b/(2*a)} + {sqrt(-discriminant)/(2*a)}i")
 			# return None
 		elif discriminant == 0:
 			print("Discriminant == 0, one solution")
