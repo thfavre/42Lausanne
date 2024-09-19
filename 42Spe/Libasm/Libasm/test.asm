@@ -1,0 +1,3 @@
+DATA SEGMENT USE16
+MESG DB 'Hello, World!', 0
+DATA ENDS
