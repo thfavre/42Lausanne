@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_print_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:15:44 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/10 13:37:32 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/11/11 10:10:52 by berard            #+#    #+#             */
+/*   Updated: 2022/11/14 14:55:20 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "ft_printf.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_print_s(char *str)
 {
-	int		i;
-	char	*smod;
+	int	i;
 
 	i = 0;
-	smod = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (smod == NULL)
-		return (NULL);
-	while (s[i])
+	if (str == NULL)
 	{
-		smod[i] = (*f)(i, s[i]);
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
 		i++;
 	}
-	smod[i] = 0;
-	return (smod);
+	return (i);
 }

@@ -57,7 +57,7 @@ int	ft_atoi(const char *str)
 /*
 #include <stdio.h>
 #include <stdlib.h>
-int main() {char str[]="\t \n +508"; 
-printf("%i\n", ft_atoi(str)); 
+int main() {char str[]="\t \n +508";
+printf("%i\n", ft_atoi(str));
 printf("%i", atoi(str));}
 */

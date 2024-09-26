@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 23:35:57 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/10 23:46:41 by yassinebenseg    ###   ########.fr       */
+/*   Created: 2022/11/11 13:57:52 by berard            #+#    #+#             */
+/*   Updated: 2022/11/12 15:52:56 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_print_percent(void)
 {
-	t_list	*lstlast;
-
-	lstlast = lst;
-	if (lst)
-	{
-		while (lstlast->next)
-			lstlast = lstlast->next;
-	}
-	return (lstlast);
+	write(1, "%", 1);
+	return (1);
 }
