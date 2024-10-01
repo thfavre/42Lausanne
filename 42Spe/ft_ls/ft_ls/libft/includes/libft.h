@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:44:43 by thfavre           #+#    #+#             */
-/*   Updated: 2022/11/01 15:54:01 by thfavre          ###   ########.fr       */
+/*   Updated: 2024/09/30 18:49:44 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 
@@ -34,6 +35,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -79,4 +81,9 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+// sort
+typedef int (*compare_fn)(const void *, const void *);
+void	ft_lstsort(t_list *lst, compare_fn cmp);
+
 #endif
