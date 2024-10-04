@@ -14,7 +14,7 @@ int main(int ac, char **av) {
 	// ft_printf("el ->%s[\n", lst->next->content);
 	// ft_printf("el ->%s[\n", lst->next->next->content);
 
-	t_options options = {0};
+	t_options options = parse_options(ac, av);
 
 
 	list_files(".", &options);
