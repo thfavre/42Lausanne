@@ -7,13 +7,14 @@
 int	lst_compare_fn_dirent_str(const void *dirent1, const void *dirent2) {
 	const struct dirent *d1 = (const struct dirent *)dirent1;
     const struct dirent *d2 = (const struct dirent *)dirent2;
+	// printf("hrer %s, %s\n", d1->d_name, d2->d_name);
     return (ft_strcmp(d1->d_name, d2->d_name));
     // return (ft_strcmp(dirent1, dirent2));
 }
 
 
 void sort_list(t_list *lst, t_options *options) {
-	ft_lstsort(lst, lst_compare_fn_dirent_str);
+	ft_lstsort(lst, lst_compare_fn_dirent_str, options->r);
 }
 
 #define BOLD_BLUE "\033[1;34m"
@@ -22,7 +23,8 @@ void sort_list(t_list *lst, t_options *options) {
 
 void	print_all_dirents(t_list *all_dirents, t_options *options) {
 
-	sort_list(all_dirents, options);
+	// sort_list(all_dirents, options);
+	ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
 	// ! TODO free t_list
 	while (all_dirents && all_dirents->content) {
 		const struct dirent *entity = (const struct dirent *)all_dirents->content;
@@ -37,6 +39,7 @@ void	print_all_dirents(t_list *all_dirents, t_options *options) {
         ft_printf(COLOR_RESET); // Reset color
 		all_dirents = all_dirents->next;
 	}
+	ft_printf("\n");
 }
 
 t_list *list_files(const char *dirname, t_options *options) {
@@ -65,10 +68,10 @@ t_list *list_files(const char *dirname, t_options *options) {
 		// if (entity == NULL) continue;  // Added safety check
 
 		// if not the -a option
-		if (entity->d_name[0] == '.') continue;
+		if (!options->a && entity->d_name[0] == '.') continue;
 
 		// ft_printf("%s\t", entity->d_name);
-		ft_lstadd_back(&all_dirents, ft_lstnew(entity)); // ? TODO no need of strdup
+		ft_lstadd_back(&all_dirents, ft_lstnew(entity));
 		if (entity->d_type == DT_DIR && ft_strcmp(entity->d_name, ".") != 0 && ft_strcmp(entity->d_name, "..") != 0) {
 			char path[1000] = { 0 }; // TODO find better way
 			ft_strlcat(path, dirname, 1000);
@@ -86,15 +89,15 @@ t_list *list_files(const char *dirname, t_options *options) {
 
 }
 
-
 void	list_files_recursively(const char *dirname, t_list *queue, t_options *options) {
 	if (queue) {
 		queue = queue->next;
 	}
 	// IF OPTION -R
-	ft_printf("\n---\n%s:\n", dirname);
+	ft_printf("%s:\n", dirname);
 	t_list *directories = list_files(dirname, options);
-	sort_list(directories, options);
+	// sort_list(directories, options);
+	ft_lstsort(directories, ft_lstsort_cmpft_str, options->r);
 
 	if (!queue)
 		queue = directories;
@@ -103,6 +106,9 @@ void	list_files_recursively(const char *dirname, t_list *queue, t_options *optio
 		queue = directories;
 		ft_lstadd_back(&queue, tmp);
 	}
-	if (queue)
+	// ft_printf("\n");
+	if (queue) {
+		ft_printf("\n");
 		list_files_recursively(queue->content, queue, options);
+	}
 }
