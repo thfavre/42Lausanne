@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Iincludes -Ilibft/includes # -Wall -Wextra -Werror
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
-SRCS = src/main.c src/list_files.c src/sort.c src/parse_options.c
+SRCS = src/main.c src/listing.c src/parse_options.c src/directory.c src/file.c src/sorting_utils.c src/entity_handling.c
 OBJS_DIR = obj
 OBJS = $(SRCS:src/%.c=$(OBJS_DIR)/%.o)
 RM = rm -f
