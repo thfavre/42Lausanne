@@ -11,20 +11,25 @@ t_list *list_entities(const char *dirname, t_options *options) {
     DIR *dir = open_directory(dirname);
     if (dir == NULL) return NULL;
 
-    struct dirent *entity;
+    struct dirent *dir_entry;
     t_list *directories = NULL;
-    t_list *all_dirents = NULL;
+    t_list *entities = NULL; // TODO rename to entities
     long total_blocks = 0;
 
-    while ((entity = readdir(dir)) != NULL) {
-        process_entity(dirname, entity, &directories, &all_dirents, &total_blocks, options);
+    while ((dir_entry = readdir(dir)) != NULL) {
+        process_entity(dirname, dir_entry, &directories, &entities, &total_blocks, options);
     }
 
     // Print all files and total block count
-	if (options->l)
-		print_all_dirents_long_format(all_dirents, options, total_blocks);
+	if (options->t)
+    	ft_lstsort(entities, lst_compare_fn_entity_time, options->r);
 	else
-    	print_all_dirents(all_dirents, options);
+    	ft_lstsort(entities, lst_compare_fn_entity_str, options->r);
+
+	if (options->l)
+		print_entities_long_format(entities, options, total_blocks);
+	else
+    	print_entities(entities, options);
 
     closedir(dir);
     return directories;

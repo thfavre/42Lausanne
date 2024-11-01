@@ -26,10 +26,10 @@ typedef struct	s_options {
 }				t_options;
 
 
-typedef struct s_entity_info {
+typedef struct s_entity { // ? TODO rename to entity?
     struct dirent dir_entry; // Directory entry (from readdir)
     struct stat entity_stat;   // File metadata (from stat)
-}				t_entity_info;
+}				t_entity;
 // pase_options
 t_options	parse_options(int ac, char**av);
 
@@ -40,16 +40,17 @@ void	list_entities_recursively(const char *dirname, t_list *queue, t_options *op
 
 DIR *open_directory(const char *dirname);
 void handle_open_error(const char *dirname);
-void process_entity(const char *dirname, struct dirent *entity, t_list **directories, t_list **all_dirents, long *total_blocks, t_options *options);
+void process_entity(const char *dirname, struct dirent *dir_entry, t_list **directories, t_list **entities, long *total_blocks, t_options *options);
 void handle_directory(const char *path, t_list **directories);
 int handle_file(const char *path, struct stat *entity_stat, long *total_blocks);
 // void print_file_info(struct stat *entity_stat);
-void print_all_dirents(t_list *all_dirents, t_options *options);
-void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, long total_blocks);
+void print_entities(t_list *entities, t_options *options);
+void    print_entities_long_format(t_list *entities, t_options *options, long total_blocks);
 // t_list *list_files(const char *dirname, t_options *options);
 // void list_files_recursively(const char *dirname, t_list *queue, t_options *options);
 
-int lst_compare_fn_dirent_str(const void *dirent1, const void *dirent2);
+int lst_compare_fn_entity_str(const void *entity1, const void *entity2);
+int lst_compare_fn_entity_time(const void *entity1, const void *entity2);
 void sort_list(t_list *lst, t_options *options);
 
 

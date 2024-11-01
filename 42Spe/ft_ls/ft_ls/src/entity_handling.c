@@ -4,33 +4,35 @@
  #include <pwd.h>
 #include <grp.h>
 #include <time.h>
-void print_all_dirents(t_list *all_dirents, t_options *options) {
-    ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
+void print_entities(t_list *entities, t_options *options) {
+    // ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
+        // ft_printf("COLOR_RESET\n");
 
-    while (all_dirents && all_dirents->content) {
-        const t_entity_info *entity_info = (const t_entity_info *)all_dirents->content;
-        const struct dirent *entity = &entity_info->dir_entry;//(const struct dirent *)all_dirents->content->dir_entry;
-        if (entity->d_type == DT_DIR)
+    while (entities && entities->content) {
+        const t_entity *entity = (const t_entity *)entities->content;
+        const struct dirent *dir_entry = &entity->dir_entry;//(const struct dirent *)all_dirents->content->dir_entry;
+        if (dir_entry->d_type == DT_DIR)
             ft_printf(BOLD_BLUE);
-        else if (entity->d_type == DT_LNK)
+        else if (dir_entry->d_type == DT_LNK)
             ft_printf(BOLD_CYAN);
         else
             ft_printf(COLOR_RESET);
 
-        ft_printf("%s\t", entity->d_name);
+        ft_printf("%s\t", dir_entry->d_name);
         ft_printf(COLOR_RESET);
-        all_dirents = all_dirents->next;
+        entities = entities->next;
     }
     ft_printf("\n");
 }
 
-void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, long total_blocks) {
-    ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
-    ft_printf("total %d\n", total_blocks/2);
-    while (all_dirents && all_dirents->content) {
-        const t_entity_info *entity_info = (const t_entity_info *)all_dirents->content;
+// ! TODO put in other/new file
+void    print_entities_long_format(t_list *entities, t_options *options, long total_blocks) {
+    // ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
+    // ft_printf("total %d\n", total_blocks/2);
+    while (entities && entities->content) {
+        const t_entity *entity = (const t_entity *)entities->content;
         char file_type;
-        mode_t mode =  entity_info->entity_stat.st_mode;
+        mode_t mode =  entity->entity_stat.st_mode;
         // Determine the file type (regular file, directory, etc.)
         if (S_ISREG(mode)) file_type = '-';      // Regular file
         else if (S_ISDIR(mode)) file_type = 'd'; // Directory
@@ -59,10 +61,10 @@ void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, l
         printf("%c", (mode & S_IXOTH) ? 'x' : '-');
 
         // number of hard link
-        printf("  %ld", entity_info->entity_stat.st_nlink);
+        printf("  %ld", entity->entity_stat.st_nlink);
 
         // Get user name from UID
-        struct passwd *pw = getpwuid(entity_info->entity_stat.st_uid);
+        struct passwd *pw = getpwuid(entity->entity_stat.st_uid);
         if (pw != NULL) {
             printf(" %s", pw->pw_name);  // Print the user name
         } else {
@@ -70,7 +72,7 @@ void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, l
         }
 
         // Get group name from GID
-        struct group *gr = getgrgid(entity_info->entity_stat.st_gid);
+        struct group *gr = getgrgid(entity->entity_stat.st_gid);
         if (gr != NULL) {
             printf(" %s", gr->gr_name);  // Print the group name
         } else {
@@ -78,13 +80,14 @@ void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, l
         }
 
         // byte size
-        printf(" %ld", entity_info->entity_stat.st_size);
+        printf(" %ld", entity->entity_stat.st_size);
 
 
         // date and time
-        // char *time_str = ctime(&entity_info->entity_stat.st_mtime);
-        printf("   %ld   ", entity_info->entity_stat.st_mtime);
-        printf("Modification time  = %s\n", ctime(&entity_info->entity_stat.st_mtime));
+        // char *time_str = ctime(&entity->entity_stat.st_mtime);
+        // printf("   %ld   ", entity->entity_stat.st_mtime);
+        // ! TODO set as same forat as ls -l time
+        printf("Modification time  = %sd", ctime(&entity->entity_stat.st_mtime));
 
         // Example: "Tue Oct 10 15:32:45 2023\n"
         // We need to extract: "Oct 10 15:32"
@@ -103,32 +106,32 @@ void    print_all_dirents_long_format(t_list *all_dirents, t_options *options, l
 
         // entity name
         // TODO in color (make a function)
-        printf(" %s", entity_info->dir_entry.d_name);
+        printf(" %s", entity->dir_entry.d_name);
 
         printf("\n");
-        all_dirents = all_dirents->next;
+        entities = entities->next;
     }
 
 }
 
-void process_entity(const char *dirname, struct dirent *entity, t_list **directories, t_list **all_dirents, long *total_blocks, t_options *options) {
-    if (!options->a && entity->d_name[0] == '.') return;
+void process_entity(const char *dirname, struct dirent *dir_entry, t_list **directories, t_list **entities, long *total_blocks, t_options *options) {
+    if (!options->a && dir_entry->d_name[0] == '.') return;
 
     char path[1000] = { 0 };
     ft_strlcat(path, dirname, 1000);
     ft_strlcat(path, "/", 1000);
-    ft_strlcat(path, entity->d_name, 1000);
+    ft_strlcat(path, dir_entry->d_name, 1000);
 
-    if (entity->d_type == DT_DIR && strcmp(entity->d_name, ".") != 0 && strcmp(entity->d_name, "..") != 0) {
+    if (dir_entry->d_type == DT_DIR && strcmp(dir_entry->d_name, ".") != 0 && strcmp(dir_entry->d_name, "..") != 0) {
         handle_directory(path, directories);
     }
 
     struct stat entity_stat;
-    // t_entity_info entity_info;
-    t_entity_info *entity_info = malloc(sizeof(t_entity_info)); // TODO free
+    // t_entity entity;
+    t_entity *entity = malloc(sizeof(t_entity)); // TODO free
     if (handle_file(path, &entity_stat, total_blocks) == 0) {
-        entity_info->dir_entry = *entity;
-        entity_info->entity_stat = entity_stat;
-        ft_lstadd_back(all_dirents, ft_lstnew(entity_info));
+        entity->dir_entry = *dir_entry;
+        entity->entity_stat = entity_stat;
+        ft_lstadd_back(entities, ft_lstnew(entity));
     } // ? TODO something on error?
 }
