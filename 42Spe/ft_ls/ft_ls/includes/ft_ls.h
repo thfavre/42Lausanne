@@ -53,9 +53,12 @@ int lst_compare_fn_entity_str(const void *entity1, const void *entity2);
 int lst_compare_fn_entity_time(const void *entity1, const void *entity2);
 void sort_list(t_list *lst, t_options *options);
 
+// date.c
+// char	*get_date(const time_t *timep);
+
 
 // typedef int (*compare_fn)(const void *, const void *);
 // t_list	*lst_bubble_sort(t_list *lst, compare_fn cmp);
-
+void	print_entity_name(const t_entity *entity);
 
 #endif	// FT_LS_H

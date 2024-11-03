@@ -11,17 +11,19 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*s != '\0' && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
-}
+
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	if (!s)
+// 		return (NULL);
+// 	while (*s != '\0' && *s != (char)c)
+// 		s++;
+// 	if (*s == (char)c)
+// 		return ((char *)s);
+// 	return (NULL);
+// }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
@@ -35,60 +37,60 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t	i;
+// void	*ft_memcpy(void *dst, const void *src, size_t n)
+// {
+// 	size_t	i;
 
-	if (!dst && !src)
-		return (0);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
-}
+// 	if (!dst && !src)
+// 		return (0);
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
+// 		i++;
+// 	}
+// 	return (dst);
+// }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*s;
-	size_t	s1_len;
-	size_t	s2_len;
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char	*s;
+// 	size_t	s1_len;
+// 	size_t	s2_len;
 
-	s1_len = 0;
-	while (s1[s1_len])
-		s1_len++;
-	s2_len = 0;
-	while (s2[s2_len])
-		s2_len++;
-	s = malloc(sizeof(*s) * (s1_len + s2_len + 1));
-	if (s != NULL)
-	{
-		ft_memcpy(s, s1, s1_len);
-		ft_memcpy(s + s1_len, s2, s2_len);
-		s[s1_len + s2_len] = '\0';
-	}
-	return (s);
-}
+// 	s1_len = 0;
+// 	while (s1[s1_len])
+// 		s1_len++;
+// 	s2_len = 0;
+// 	while (s2[s2_len])
+// 		s2_len++;
+// 	s = malloc(sizeof(*s) * (s1_len + s2_len + 1));
+// 	if (s != NULL)
+// 	{
+// 		ft_memcpy(s, s1, s1_len);
+// 		ft_memcpy(s + s1_len, s2, s2_len);
+// 		s[s1_len + s2_len] = '\0';
+// 	}
+// 	return (s);
+// }
 
-// calloc with ft_bzero added
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*array;
-	char	*str;
-	size_t	i;
+// // calloc with ft_bzero added
+// void	*ft_calloc(size_t nmemb, size_t size)
+// {
+// 	void	*array;
+// 	char	*str;
+// 	size_t	i;
 
-	array = malloc(nmemb * size);
-	if (array != NULL)
-	{
-		str = (char *)array;
-		i = 0;
-		while (i < nmemb * size)
-		{
-			str[i] = '\0';
-			i++;
-		}
-	}
-	return (array);
-}
+// 	array = malloc(nmemb * size);
+// 	if (array != NULL)
+// 	{
+// 		str = (char *)array;
+// 		i = 0;
+// 		while (i < nmemb * size)
+// 		{
+// 			str[i] = '\0';
+// 			i++;
+// 		}
+// 	}
+// 	return (array);
+// }
