@@ -8,14 +8,15 @@
 
 char	*get_date(const time_t *timep) {
 	char *time = ctime(timep);
-	time[4 + 12] = '\0';
+    
+	time[4 + 12] = '\0'; // remove the year
 	time += 4; // skip the day name
 	return (time);
 }
 
 void    print_entities_long_format(t_list *entities, t_options *options, long total_blocks) {
-    // ft_lstsort(all_dirents, lst_compare_fn_dirent_str, options->r);
-    // ft_printf("total %d\n", total_blocks/2);
+    t_list  *tmp_lst;
+
     while (entities && entities->content) {
         const t_entity *entity = (const t_entity *)entities->content;
         char file_type;
@@ -53,7 +54,7 @@ void    print_entities_long_format(t_list *entities, t_options *options, long to
         // Get user name from UID
         struct passwd *pw = getpwuid(entity->entity_stat.st_uid);
         if (pw != NULL) {
-            ft_printf(" %s", pw->pw_name);  // Print the user name
+            ft_printf(" %s", pw->pw_name);
         } else {
             perror("getpwuid");
         }
@@ -61,45 +62,24 @@ void    print_entities_long_format(t_list *entities, t_options *options, long to
         // Get group name from GID
         struct group *gr = getgrgid(entity->entity_stat.st_gid);
         if (gr != NULL) {
-            ft_printf(" %s", gr->gr_name);  // Print the group name
+            ft_printf(" %s", gr->gr_name);
         } else {
             perror("getgrgid");
         }
 
         // byte size
-        ft_printf(" %ld", entity->entity_stat.st_size);
+        ft_printf(" %d", entity->entity_stat.st_size);
 
-
-        // date and time
-        // char *time_str = ctime(&entity->entity_stat.st_mtime);
-        // ft_printf("   %ld   ", entity->entity_stat.st_mtime);
-        // ! TODO set as same forat as ls -l time
-        // ft_printf("Modification time  = %sd", ctime(&entity->entity_stat.st_mtime));
-
-
-
-        // Example: "Tue Oct 10 15:32:45 2023\n"
-        // We need to extract: "Oct 10 15:32"
-
-        // Extract month (Oct), day (10), and time (15:32)
-        // char output[13];
-        // output[0] = '\0';  // Initialize the output string
-
-        // Copy the month, day, and time to the output buffer
-        // time_str[4..10] is "Oct 10" and time_str[11..15] is "15:32"
-        // strncat(output, &time_str[4], 7);  // "Oct 10"
-        // strncat(output, &time_str[11], 6); // " 15:32"
-
-        // Write the result to stdout
+        // date
         ft_printf(" %s ", get_date(&entity->entity_stat.st_mtime));
 
         // entity name
-        // TODO in color (make a function)
-        // ft_printf(" %s", entity->dir_entry.d_name);
 		print_entity_name(entity);
 
         ft_printf("\n");
+        tmp_lst = entities;
         entities = entities->next;
+        // FREEls
+        ft_lstdelone(tmp_lst, free);
     }
-
 }

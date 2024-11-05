@@ -13,9 +13,13 @@ DIR *open_directory(const char *dirname) {
 
 void handle_open_error(const char *dirname) {
     if (errno == EACCES) {
-        fprintf(stderr, "ls: cannot open directory '%s': Permission denied\n", dirname);
+        ft_putstr_fd("ls: cannot open directory '", 2);
+        ft_putstr_fd((char *)dirname, 2);
+        ft_putstr_fd("': Permission denied\n", 2);
     } else {
-        fprintf(stderr, "ls: cannot access '%s': No such file or directory\n", dirname);
+        ft_putstr_fd("ls: cannot access '", 2);
+        ft_putstr_fd((char *)dirname, 2);
+        ft_putstr_fd("': No such file or directory\n", 2);
     }
 }
 
