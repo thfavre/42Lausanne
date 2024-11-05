@@ -8,8 +8,14 @@ void	fill_options(t_options *options, char *options_str) {
 	}
 	options_str++;
 	while (*options_str) {
-		if (*options_str == 'a')
+		if (*options_str == 'a') {
 			options->a = true;
+			options->A = false;
+		}
+		else if (*options_str == 'A'){
+			options->a = false;
+			options->A = true;
+		}
 		else if (*options_str == 'l')
 			options->l = true;
 		else if (*options_str == 'r')
@@ -18,6 +24,12 @@ void	fill_options(t_options *options, char *options_str) {
 			options->R = true;
 		else if (*options_str == 't')
 			options->t = true;
+		else if (*options_str == 'U')
+			options->U = true;
+		else if (*options_str == 'f'){
+			options->U = true;
+			options->a = true;
+		}
 		else {
 			ft_putstr_fd("ls: invalid option -- '", 2);
 			ft_putchar_fd(*options_str, 2);

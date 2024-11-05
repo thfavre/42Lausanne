@@ -2,43 +2,40 @@
 #include "ft_ls.h"
 
 
-t_list *list_entities(const char *dirname, t_options *options) {
-    DIR *dir = open_directory(dirname);
-    if (dir == NULL) return NULL;
+t_list *list_entities(const char *dirname, t_options *options, bool is_recursive) {
+	DIR *dir = open_directory(dirname);
+	if (dir == NULL) return NULL;
 
-    struct dirent *dir_entry;
-    t_list *directories = NULL;
-    t_list *entities = NULL;
-    long total_blocks = 0;
+	struct dirent *dir_entry;
+	t_list *directories = NULL;
+	t_list *entities = NULL;
+	long total_blocks = 0;
 
-    while ((dir_entry = readdir(dir)) != NULL) {
-        process_entity(dirname, dir_entry, &directories, &entities, &total_blocks, options);
-    }
-
-	if (options->t)
-    	ft_lstsort(entities, lst_compare_fn_entity_time, options->r);
-	else
-    	ft_lstsort(entities, lst_compare_fn_entity_str, options->r);
+	while ((dir_entry = readdir(dir)) != NULL) {
+		process_entity(dirname, dir_entry, &directories, &entities, &total_blocks, options);
+	}
+	if (!options->U && options->t)
+		ft_lstsort(entities, lst_compare_fn_entity_time, options->r);
+	else if (!options->U)
+		ft_lstsort(entities, lst_compare_fn_entity_str, options->r);
 
 	if (options->l)
 		print_entities_long_format(entities, options, total_blocks);
 	else
-    	print_entities(entities, options);
+		print_entities(entities, options);
 
-    closedir(dir);
-	ft_lstdelone(directories, free);
-    return directories;
+	closedir(dir);
+	return directories;
 }
 
 void	list_entities_recursively(const char *dirname, t_list *queue, t_options *options) {
-	// t_list *tmp;
+	t_list *to_free = NULL;
 	if (queue) {
-		// tmp = queue;
+		to_free = queue;
 		queue = queue->next;
-		// ft_lstdelone(tmp, free);
 	}
 	ft_printf("%s:\n", dirname);
-	t_list	*directories = list_entities(dirname, options);
+	t_list	*directories = list_entities(dirname, options, true);
 	ft_lstsort(directories, ft_lstsort_cmpft_str, options->r);
 
 	if (!queue)
@@ -52,5 +49,7 @@ void	list_entities_recursively(const char *dirname, t_list *queue, t_options *op
 		ft_printf("\n");
 		list_entities_recursively(queue->content, queue, options);
 	}
-	// ft_lstdelone(directories, free);
+	if (to_free)
+		ft_lstdelone(to_free, free);
+
 }

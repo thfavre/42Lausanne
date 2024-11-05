@@ -3,8 +3,8 @@
 
 void	process_paths(t_options *options) {
 	t_list	*tmp;
-
-	ft_lstsort(options->paths, ft_lstsort_cmpft_str, options->r);
+	if (!options->U)
+		ft_lstsort(options->paths, ft_lstsort_cmpft_str, options->r);
 	bool is_multiple_src_paths = options->paths->next != NULL;
 	while (options->paths) {
 		if (options->R)
@@ -12,11 +12,10 @@ void	process_paths(t_options *options) {
 		else {
 			if (is_multiple_src_paths)
 				ft_printf("%s:\n", options->paths->content);
-			list_entities(options->paths->content, options);
+			list_entities(options->paths->content, options, false);
 		}
 		tmp = options->paths;
 		options->paths = options->paths->next;
-		// ft_lstdelone(tmp, free);
 		free(tmp);
 		if (options->paths)
 			ft_printf("\n");

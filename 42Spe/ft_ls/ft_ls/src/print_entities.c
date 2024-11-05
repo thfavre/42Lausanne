@@ -17,12 +17,12 @@ void	print_entity_name(const t_entity *entity) {
 
 void print_entities(t_list *entities, t_options *options) {
 	t_list	*tmp;
-    while (entities && entities->content) {
-        const t_entity *entity = (const t_entity *)entities->content;
+	while (entities && entities->content) {
+		const t_entity *entity = (const t_entity *)entities->content;
 		print_entity_name(entity);
 		tmp = entities;
-        entities = entities->next;
+		entities = entities->next;
 		ft_lstdelone(tmp, free);
-    }
-    ft_printf("\n");
-}
+	}
+	ft_printf("\n");
+}	
