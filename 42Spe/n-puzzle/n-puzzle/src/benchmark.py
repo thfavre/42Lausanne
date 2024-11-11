@@ -8,7 +8,7 @@ def benchmark() -> None:
 	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict") #"custom"
 	# heuristic : str = "manhattan"
 
-	print(f"Starting benchmark with {", ".join(heuristics)}... ({nbTest} tests for size 3 to 10)")
+	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests for size 3 to 10)")
 
 	for size in range(3, 11):
 		print(f"\nSize: {size}")
