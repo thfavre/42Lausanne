@@ -106,8 +106,7 @@ class AStar:
 				self._steps = AStar._getSteps(minimalNode)
 				return True
 
-			children = minimalNode.createChildrenNodes(self._solutionGrid, size)
-			for child in children:
+			for child in minimalNode.createChildrenNodes(self._solutionGrid, size):
 				if tuple(child.getGrid()) not in seenGrid:
 					priorityQueue.push(child)
 
