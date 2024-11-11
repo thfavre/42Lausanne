@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int	open_file(const char *filename) {
-	int	fd = open("tests/a.out", O_RDONLY);
+	int	fd = open(filename, O_RDONLY);
 	if (fd == -1) {
 		perror("open");
     	exit(EXIT_FAILURE);

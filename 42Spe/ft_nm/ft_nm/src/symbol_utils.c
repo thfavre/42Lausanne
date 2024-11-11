@@ -83,18 +83,28 @@ int should_skip_symbol(const Elf64_Sym *symbol, const char *name) {
     return 0;
 }
 
-// Function to create a formatted symbol entry
-char *create_symbol_entry(const Elf64_Sym *symbol, const char *name, const Elf64_Shdr *section_headers, const Elf64_Ehdr *elf_header) {
-    char *symbol_info = malloc(256);
+// Function to create a symbol entry
+t_symbol_info *create_symbol_info(const Elf64_Sym *symbol, const char *name, const Elf64_Shdr *section_headers, const Elf64_Ehdr *elf_header) {
+    t_symbol_info *symbol_info = malloc(sizeof(t_symbol_info));
     if (!symbol_info) {
         perror("malloc");
         exit(EXIT_FAILURE);
     }
-    if (symbol->st_shndx == SHN_UNDEF)
-        snprintf(symbol_info, 256, "                  %c %s", get_symbol_type(symbol, section_headers, elf_header), name);
-    else
-        snprintf(symbol_info, 256, "%016lx %c %s", symbol->st_value, get_symbol_type(symbol, section_headers, elf_header), name);
+    symbol_info->value = symbol->st_value;
+    symbol_info->type = get_symbol_type(symbol, section_headers, elf_header);
+    symbol_info->name = strdup(name);
+    if (!symbol_info->name) {
+        perror("strdup");
+        exit(EXIT_FAILURE);
+    }
     return symbol_info;
+}
+
+// Function to compare symbols for sorting
+int compare_symbols(const void *a, const void *b) {
+    const t_symbol_info *symbol_a = (const t_symbol_info *)a;
+    const t_symbol_info *symbol_b = (const t_symbol_info *)b;
+    return strcmp(symbol_a->name, symbol_b->name);
 }
 
 // Function to process and add symbols to linked list
@@ -114,10 +124,40 @@ t_list *process_symbols(const char *file_in_memory, const Elf64_Shdr *symtab_hea
         }
 
         // Create a symbol entry and add it to the linked list
-        char *symbol_info = create_symbol_entry(sym, name, section_headers, elf_header);
+        t_symbol_info *symbol_info = create_symbol_info(sym, name, section_headers, elf_header);
         t_list *new_node = ft_lstnew(symbol_info);
         ft_lstadd_back(&symbol_list, new_node);
     }
 
+    // Sort the linked list
+    // ft_lstsort(symbol_list, compare_symbols, false);
+
     return symbol_list;
+}
+
+void print_symbol_list(t_list *symbol_list) {
+    t_list *current = symbol_list;
+    while (current) {
+        t_symbol_info *symbol_info = (t_symbol_info *)current->content;
+        if (symbol_info->value == 0)
+            printf("                ");
+        else
+            printf("%016lx", symbol_info->value);
+        printf(" %c %s\n", symbol_info->type, symbol_info->name);
+        current = current->next;
+    }
+}
+
+// ? TODO Create 2 functions that are called in main ? (process and sort_and_print)
+void process_and_print_symbols(const char *file_in_memory, const Elf64_Shdr *symtab_header, const Elf64_Shdr *strtab_header, const Elf64_Ehdr *elf_header) {
+    // Process symbols and add them to linked list
+    t_list *symbol_list = process_symbols(file_in_memory, symtab_header, strtab_header, elf_header);
+
+    // Sort
+    ft_lstsort(symbol_list, compare_symbols, false);
+    // Print the symbols
+    print_symbol_list(symbol_list);
+
+    // Clear the linked list
+    ft_lstclear(&symbol_list, free);
 }

@@ -21,11 +21,11 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "usage : ./ft_nm file_path (optional)");
 		exit(EXIT_FAILURE);
 	}
-    printf("The path is %s\n", file_path);
+    // printf("The path is '%s'\n", file_path);
 
 
 	// Step 1: Open and map the file
-    int fd = open_file(argv[1]);
+    int fd = open_file(file_path);
     struct stat sb = get_file_stats(fd);
     char *file_in_memory = map_file_to_memory(fd, sb.st_size);
     close(fd);
@@ -54,15 +54,13 @@ int main(int argc, char **argv) {
         // Step 6: Process symbols and add them to linked list
         t_list *symbol_list = process_symbols(file_in_memory, symtab_header, strtab_header, elf_header);
 
-        // Step 7: Iterate over the list and print the symbols
-        ft_lstiter(symbol_list, (void (*)(void *))puts);
+        // Step 6-8: Process and print symbols
+        process_and_print_symbols(file_in_memory, symtab_header, strtab_header, elf_header);
 
-        // Step 8: Clear the linked list
-        ft_lstclear(&symbol_list, free);
     } else {
         fprintf(stderr, "Error: Could not find symbol table or string table\n");
     }
 
-    // Step 7: Unmap the file
+    // Step 9: Unmap the file
     unmap_file(file_in_memory, sb.st_size);
 }

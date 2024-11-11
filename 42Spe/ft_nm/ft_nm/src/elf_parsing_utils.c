@@ -5,6 +5,8 @@
 
 // Function to parse the ELF header
 void parse_elf_header(const Elf64_Ehdr *elf_header) {
+    // ? TODO
+    return ;
     if (elf_header->e_ident[EI_CLASS] == ELFCLASS64) {
         printf("This is a 64-bit ELF file\n");
     } else if (elf_header->e_ident[EI_CLASS] == ELFCLASS32) {
