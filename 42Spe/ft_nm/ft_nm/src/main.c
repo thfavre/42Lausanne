@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <elf.h>
+#include "libft.h"
 
 
 
@@ -20,6 +21,7 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "usage : ./ft_nm file_path (optional)");
 		exit(EXIT_FAILURE);
 	}
+    printf("The path is %s\n", file_path);
 
 
 	// Step 1: Open and map the file
@@ -47,8 +49,16 @@ int main(int argc, char **argv) {
     const Elf64_Shdr *strtab_header = locate_string_table(file_in_memory, section_headers, elf_header->e_shnum, elf_header->e_shstrndx);
 
     if (symtab_header && strtab_header) {
-        // Step 6: Print symbols using the print_symbols function
-        print_symbols(file_in_memory, symtab_header, strtab_header);
+        // // Step 6: Print symbols using the print_symbols function
+        // print_symbols(file_in_memory, symtab_header, strtab_header, elf_header);
+        // Step 6: Process symbols and add them to linked list
+        t_list *symbol_list = process_symbols(file_in_memory, symtab_header, strtab_header, elf_header);
+
+        // Step 7: Iterate over the list and print the symbols
+        ft_lstiter(symbol_list, (void (*)(void *))puts);
+
+        // Step 8: Clear the linked list
+        ft_lstclear(&symbol_list, free);
     } else {
         fprintf(stderr, "Error: Could not find symbol table or string table\n");
     }
