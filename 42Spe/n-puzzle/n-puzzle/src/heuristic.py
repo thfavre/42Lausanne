@@ -1,6 +1,11 @@
 from typing import List, Tuple
+from functools import lru_cache
+
 class Node:
+	@staticmethod
+	@lru_cache(None)
 	def getCoordinates(index: int, size: int) -> Tuple[int, int]: return index % size, index // size
+
 
 class Heuristic:
 	@staticmethod

@@ -1,5 +1,6 @@
 from heuristic import Heuristic
 from typing import List, Optional, Tuple
+from functools import lru_cache
 
 class Node:
 	"""
@@ -120,6 +121,7 @@ class Node:
 		return self._cost
 
 	@staticmethod
+	@lru_cache(None)
 	def getCoordinates(index: int, size: int) -> Tuple[int, int]:
 		"""Get the (x, y) coordinates for a given index in the grid."""
 		return index % size, index // size

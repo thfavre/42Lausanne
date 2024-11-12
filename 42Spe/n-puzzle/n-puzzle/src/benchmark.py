@@ -4,14 +4,14 @@ from npuzzle_gen import make_puzzle
 def benchmark() -> None:
 	averageTime: float
 	averageNbMoves: float
-	nbTest: int = 10
-	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
+	nbTest: int = 5
+	heuristics: tuple[str] = ("manhattan", "euclidean", "linear_conflict", "manhattan_linear_conflict", "hamming")
 	searchStrategy = "greedy" # a_star, uniform or greedy
 	# heuristic : str = "manhattan"
 
 	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests)")
 
-	size: int = 3
+	size: int = 6
 	while True:
 		print(f"\nSize: {size}")
 		for heuristic in heuristics:

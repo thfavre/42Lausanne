@@ -5,7 +5,7 @@ from npuzzle_gen import make_goal
 from typing import List, Optional, Set, Tuple
 
 CLEAR_LINE = '\r' + ' ' * 80 + '\r'
-STATS_INTERVAL = 100
+STATS_INTERVAL = 200
 
 class AStar:
 	def __init__(self, grid: List[int], size: int, heuristic: str = "manhattan", searchStrategy: str = 'greedy', showProgress: bool = True) -> None:
