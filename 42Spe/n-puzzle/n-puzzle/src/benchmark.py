@@ -8,9 +8,10 @@ def benchmark() -> None:
 	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
 	# heuristic : str = "manhattan"
 
-	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests for size 3 to 10)")
+	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests)")
 
-	for size in range(3, 11):
+	size: int = 3
+	while True:
 		print(f"\nSize: {size}")
 		for heuristic in heuristics:
 			totalTime: float = 0.0
@@ -32,6 +33,7 @@ def benchmark() -> None:
 			averageNbMoves = totalNbMoves / nbTest
 
 			print('\r' + ' ' * 80, end='\r')  # erase the "loading" stats
-			print(f"\t-{heuristic:<20}\t Average time [s]: {averageTime:.5f}\t Average moves: {averageNbMoves:.1f}")
+			print(f"\t-{heuristic:<23}\t Average time [s]: {averageTime:.5f}\t Average moves: {averageNbMoves:.1f}")
+		size += 1
 if __name__ == "__main__":
 	benchmark()
