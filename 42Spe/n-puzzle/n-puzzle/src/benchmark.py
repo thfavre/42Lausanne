@@ -4,8 +4,8 @@ from npuzzle_gen import make_puzzle
 def benchmark() -> None:
 	averageTime: float
 	averageNbMoves: float
-	nbTest: int = 1000
-	heuristics: tuple[str] = ("euclidean",)#("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
+	nbTest: int = 10
+	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
 	# heuristic : str = "manhattan"
 
 	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests for size 3 to 10)")

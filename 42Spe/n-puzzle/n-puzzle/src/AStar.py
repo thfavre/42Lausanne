@@ -99,7 +99,6 @@ class AStar:
 			self._maxQueueSize = max(self._maxQueueSize, len(priorityQueue))
 
 			# Check if the current node is the solution
-			# if minimalNode.getCost() == 0:
 			if minimalNode.getGrid() == self._solutionGrid:
 				self._elapsedTime = time.time() - startTime
 				self._nbMovesRequired = minimalNode.getLevel()
