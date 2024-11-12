@@ -11,7 +11,7 @@ def benchmark() -> None:
 
 	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests)")
 
-	size: int = 6
+	size: int = 3
 	while True:
 		print(f"\nSize: {size}")
 		for heuristic in heuristics:
