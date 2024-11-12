@@ -5,7 +5,7 @@ def benchmark() -> None:
 	averageTime: float
 	averageNbMoves: float
 	nbTest: int = 10
-	heuristics: tuple[str] = ("hamming", )#("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
+	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
 	searchStrategy = "greedy" # a_star, uniform or greedy
 	# heuristic : str = "manhattan"
 

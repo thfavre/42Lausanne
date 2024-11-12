@@ -8,7 +8,7 @@ CLEAR_LINE = '\r' + ' ' * 80 + '\r'
 STATS_INTERVAL = 100
 
 class AStar:
-	def __init__(self, grid: List[int], size: int, heuristic: str = "manhattan", searchStrategy: str = 'a_star', showProgress: bool = True) -> None:
+	def __init__(self, grid: List[int], size: int, heuristic: str = "manhattan", searchStrategy: str = 'greedy', showProgress: bool = True) -> None:
 		"""
 		Initialize the A* solver for the given puzzle grid.
 
@@ -21,9 +21,7 @@ class AStar:
 		"""
 		self._heuristic: str = heuristic
 		self._solutionGrid: List[int] = make_goal(size)
-
 		self._showProgress: bool = showProgress
-
 		self._isSolved: bool = False
 		self._steps: Optional[List[Node]] = None
 		self._numberVisited: int = 0
@@ -73,7 +71,6 @@ class AStar:
 		Returns:
 			bool: True if the puzzle is solvable, False otherwise.
 		"""
-		# Check if the grid is solvable
 		invCount: int = self._countInversion(grid)
 		solutionInvCount: int = self._countInversion(self._solutionGrid)
 		if size % 2 == 0:

@@ -16,6 +16,7 @@ class Node:
 			solutionGrid (List[int]): The goal state of the puzzle.
 			gridSize (int): The size of the puzzle grid (e.g., 3 for a 3x3 puzzle).
 			heuristic (str): The heuristic method to use for evaluating the node.
+			searchStrategy (str): The type of search algorithm ('a_star', 'uniform', 'greedy').
 		"""
 		self._parentNode: Optional['Node'] = parentNode
 		self._grid: List[int] = grid
