@@ -15,9 +15,9 @@ def solvePuzzle(grid: List[int], size: int, heuristic: str, show_stats: bool = T
     """
     solver = AStar(grid, size, heuristic, show_stats)
     if solver.isSolved():
-        print("\nSolution Found:")
-        print("\nSequence of states:")
+        print("\nSolution Found!")
         if show_resolution:
+            print("\nSequence of states:")
             steps = solver.getSteps()
             for step in steps:
                 print(f"Move {step.getLevel()}:")

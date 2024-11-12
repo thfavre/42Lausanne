@@ -1,5 +1,5 @@
 from heuristic import Heuristic
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 class Node:
 	"""
@@ -105,3 +105,8 @@ class Node:
 
 	def getCost(self) -> int:
 		return self._cost
+
+	@staticmethod
+	def getCoordinates(index: int, size: int) -> Tuple[int, int]:
+		"""Get the (x, y) coordinates for a given index in the grid."""
+		return index % size, index // size

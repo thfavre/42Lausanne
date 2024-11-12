@@ -11,7 +11,7 @@ def parseArguments():
 	parser = argparse.ArgumentParser(description="N-puzzle solver using A* algorithm")
 	parser.add_argument("-s", "--size", type=int, help="Size of the puzzle grid (e.g., 3 for 3x3 puzzle)", default=3)
 	parser.add_argument("-f", "--file", type=str, help="Path to input file with initial state of the puzzle, otherwise a random puzzle will be generated")
-	parser.add_argument("-c", "--heuristic", type=str, choices=["manhattan", "hamming", "euclidean", "linear_conflict", "custom"], default="manhattan", help="Heuristic function to use")
+	parser.add_argument("-c", "--heuristic", type=str, choices=["manhattan", "hamming", "euclidean", "linear_conflict", "manhattan_linear_conflict"], default="manhattan", help="Heuristic function to use")
 	parser.add_argument("-r", "--hide-resolution", action="store_false", help="Hide resolution statistics")
 	return parser.parse_args()
 
