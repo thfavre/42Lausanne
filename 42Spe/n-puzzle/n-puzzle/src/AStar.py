@@ -8,7 +8,7 @@ CLEAR_LINE = '\r' + ' ' * 80 + '\r'
 STATS_INTERVAL = 100
 
 class AStar:
-	def __init__(self, grid: List[int], size: int, heuristic: str = "manhattan", showProgress: bool = True) -> None:
+	def __init__(self, grid: List[int], size: int, heuristic: str = "manhattan", searchStrategy: str = 'a_star', showProgress: bool = True) -> None:
 		"""
 		Initialize the A* solver for the given puzzle grid.
 
@@ -16,6 +16,7 @@ class AStar:
 			grid (List[int]): Initial puzzle grid.
 			size (int): Size of the puzzle grid.
 			heuristic (str): Heuristic function to use.
+            searchStrategy (str): The type of search algorithm ('a_star', 'uniform', 'greedy').
 			showInfos (bool): Whether to print detailed information during solving.
 		"""
 		self._heuristic: str = heuristic
@@ -29,12 +30,13 @@ class AStar:
 		self._maxQueueSize: int = 0
 		self._nbMovesRequired: Optional[int] = None
 		self._elapsedTime: Optional[float] = None
+		self._searchType: str = searchStrategy
 
 		if not self._isSolvable(grid, size):
 			print("\nThis puzzle is not solvable.")
 			return
 
-		startNode: Node = Node(None, grid, self._solutionGrid, size, self._heuristic)
+		startNode: Node = Node(None, grid, self._solutionGrid, size, self._heuristic, searchStrategy=self._searchType)
 		self._isSolved: bool = self._solve(startNode, size)
 		if not self._isSolved:
 			raise Exception("This puzzle should be solvable but no solution was found...!")

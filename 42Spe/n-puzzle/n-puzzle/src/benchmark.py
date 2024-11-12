@@ -5,7 +5,8 @@ def benchmark() -> None:
 	averageTime: float
 	averageNbMoves: float
 	nbTest: int = 10
-	heuristics: tuple[str] = ("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
+	heuristics: tuple[str] = ("hamming", )#("manhattan", "euclidean", "hamming", "linear_conflict", "manhattan_linear_conflict")
+	searchStrategy = "greedy" # a_star, uniform or greedy
 	# heuristic : str = "manhattan"
 
 	print(f"Starting benchmark with {', '.join(heuristics)}... ({nbTest} tests)")
@@ -19,7 +20,7 @@ def benchmark() -> None:
 			for i in range(nbTest):
 				print(f"\t-{heuristic}\t {i+1}/{nbTest}", end="\r")  # i+1 for more natural counting display
 				grid = make_puzzle(size, True, 1000)
-				solver: AStar = AStar(grid, size, showProgress=False, heuristic=heuristic)
+				solver: AStar = AStar(grid, size, showProgress=False, heuristic=heuristic, searchStrategy=searchStrategy)
 				elapsedTime = solver.getSolutionElapsedTime()
 				nbMoves = solver.getSolutionNbMoves()
 

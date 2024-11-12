@@ -6,7 +6,7 @@ class Node:
 	A class representing a node in the search tree for solving the N-puzzle.
 	"""
 
-	def __init__(self, parentNode: Optional['Node'], grid: List[int], solutionGrid: List[int], gridSize: int, heuristic: str) -> None:
+	def __init__(self, parentNode: Optional['Node'], grid: List[int], solutionGrid: List[int], gridSize: int, heuristic: str, searchStrategy: str = 'a_star') -> None:
 		"""
 		Initialize a Node with the given attributes.
 
@@ -21,9 +21,21 @@ class Node:
 		self._grid: List[int] = grid
 		self._gridSize: int = gridSize
 		self._heuristic: str = heuristic
+		self._searchType: str = searchStrategy
 		self._level: int = 0 if not parentNode else parentNode.getLevel() + 1
 
-		self._cost: int = Heuristic.evaluate(self, solutionGrid, gridSize, self._heuristic)
+		# Calculate the cost based on the type of search
+		self._g_cost: int = self._level
+		self._h_cost: int = Heuristic.evaluate(self, solutionGrid, gridSize, self._heuristic)
+
+		if self._searchType == 'a_star':
+			self._cost = self._g_cost + self._h_cost * 2  # g(x) + h(x) * 2
+		elif self._searchType == 'uniform':
+			self._cost = self._g_cost  # Only g(x)
+		elif self._searchType == 'greedy':
+			self._cost = self._h_cost  # Only h(x)
+		else:
+			raise ValueError(f"Unsupported search type: {self._searchType}")
 
 	def showGrid(self) -> None:
 		"""
@@ -67,28 +79,28 @@ class Node:
 			newGrid: List[int] = self._grid.copy()
 			newGrid[zeroY * gridSize + zeroX], newGrid[zeroY * gridSize + zeroX + 1] = \
 				newGrid[zeroY * gridSize + zeroX + 1], newGrid[zeroY * gridSize + zeroX]
-			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic)
+			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic, self._searchType)
 
 		# Move the 0 to the left
 		if zeroX > 0:
 			newGrid = self._grid.copy()
 			newGrid[zeroY * gridSize + zeroX], newGrid[zeroY * gridSize + zeroX - 1] = \
 				newGrid[zeroY * gridSize + zeroX - 1], newGrid[zeroY * gridSize + zeroX]
-			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic)
+			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic, self._searchType)
 
 		# Move the 0 to the bottom
 		if zeroY < gridSize - 1:
 			newGrid = self._grid.copy()
 			newGrid[zeroY * gridSize + zeroX], newGrid[zeroY * gridSize + zeroX + gridSize] = \
 				newGrid[zeroY * gridSize + zeroX + gridSize], newGrid[zeroY * gridSize + zeroX]
-			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic)
+			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic, self._searchType)
 
 		# Move the 0 to the top
 		if zeroY > 0:
 			newGrid = self._grid.copy()
 			newGrid[zeroY * gridSize + zeroX], newGrid[zeroY * gridSize + zeroX - gridSize] = \
 				newGrid[zeroY * gridSize + zeroX - gridSize], newGrid[zeroY * gridSize + zeroX]
-			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic)
+			yield Node(self, newGrid, solutionGrid, gridSize, self._heuristic, self._searchType)
 
 	# Getters
 	def getParentNode(self) -> Optional['Node']:
