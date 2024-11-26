@@ -14,11 +14,11 @@ int main(int argc, char **argv) {
 	// Step 0: get the agruments
 	char	*file_path;
 	if (argc == 1)
-		file_path = "tests/a.out"; // TODO change to ./a.out
+		file_path = "./a.out"; // TODO change to ./a.out
 	else if (argc == 2)
 		file_path = argv[1];
 	else {
-		fprintf(stderr, "usage : ./ft_nm file_path (optional)");
+		fprintf(stderr, "usage : ./ft_nm file_path(optional)");
 		exit(EXIT_FAILURE);
 	}
     // printf("The path is '%s'\n", file_path);
