@@ -1,11 +1,12 @@
 #include "file_utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 int	open_file(const char *filename) {
 	int	fd = open(filename, O_RDONLY);
 	if (fd == -1) {
-		perror("open");
+		ft_fprintf(STDERR_FILENO, "nm: '%s': No such file\n", filename);
     	exit(EXIT_FAILURE);
 	}
 }

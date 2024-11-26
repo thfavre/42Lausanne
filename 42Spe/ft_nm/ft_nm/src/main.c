@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <elf.h>
 #include "libft.h"
+#include "parsing.h"
 
 
 
@@ -13,16 +14,12 @@ int main(int argc, char **argv) {
 
 	// Step 0: get the agruments
 	char	*file_path;
-	if (argc == 1)
-		file_path = "./a.out"; // TODO change to ./a.out
-	else if (argc == 2)
-		file_path = argv[1];
-	else {
-		fprintf(stderr, "usage : ./ft_nm file_path(optional)");
-		exit(EXIT_FAILURE);
-	}
-    // printf("The path is '%s'\n", file_path);
+    t_list *files = NULL; // TODO free
+    t_options options = {0};
 
+    parse_args(++argv, &options, &files);
+    // printf("The path is '%s'\n", file_path);
+    file_path = files[0].content;
 
 	// Step 1: Open and map the file
     int fd = open_file(file_path);
@@ -32,7 +29,7 @@ int main(int argc, char **argv) {
 
     // Step 2: Validate the ELF file
     if (!is_elf_file(file_in_memory)) {
-        fprintf(stderr, "Error: Not an ELF file\n");
+        ft_fprintf(STDERR_FILENO, "Error: Not an ELF file\n");
         unmap_file(file_in_memory, sb.st_size);
         return EXIT_FAILURE;
     }

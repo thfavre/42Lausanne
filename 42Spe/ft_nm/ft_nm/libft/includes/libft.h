@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:44:43 by thfavre           #+#    #+#             */
-/*   Updated: 2024/10/07 14:41:27 by thfavre          ###   ########.fr       */
+/*   Updated: 2024/11/26 21:27:55 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // sort
-typedef int (*compare_fn)(const void *, const void *);
-void	ft_lstsort(t_list *lst, compare_fn cmp, bool reverse);
+typedef int	(*t_compare_fn)(const void *, const void *);
+void	ft_lstsort(t_list *lst, t_compare_fn cmp, bool reverse);
 int		ft_lstsort_cmpft_str(const void *lst1, const void *lst2);
 
 #endif
